@@ -1,0 +1,189 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Память старого ноутбука</title>
+<link rel="icon" href="image.png" type="image/x-icon">
+<meta name="title" content="Память старого ноутбука" />
+<meta name="description" content="Здесь похоронен не кусок кремния, а целая эпоха." />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://renothingg.github.io/index/goodbye-laptop" />
+<meta property="og:title" content="Память старого ноутбука" />
+<meta property="og:description" content="Здесь похоронен не кусок кремния, а целая эпоха." />
+<meta property="og:image" content="notebook-front.jpg" />
+<meta property="twitter:card" content="summary_large_image" />
+<meta property="twitter:url" content="https://renothingg.github.io/index/goodbye-laptop" />
+<meta property="twitter:title" content="Память старого ноутбука" />
+<meta property="twitter:description" content="Здесь похоронен не кусок кремния, а целая эпоха." />
+<meta property="twitter:image" content="notebook-front.jpg" />
+<style>
+    body {
+        background-color: #111;
+        color: #ccc;
+        font-family: 'Courier New', monospace;
+        padding: 40px;
+        max-width: 800px;
+        margin: auto;
+        line-height: 1.5;
+    }
+    a { color: #f66; text-decoration: none; }
+    h1 {
+        color: #f55;
+        margin: 0 0 10px 0;
+        letter-spacing: 1px;
+    }
+    .meta { color: #888; margin-bottom: 24px; }
+    img {
+        max-width: 100%;
+        margin-top: 20px;
+        border: 1px solid #444;
+        display: block;
+    }
+    .epitaph {
+        margin-top: 20px;
+        font-style: italic;
+        color: #bbb;
+        background: rgba(255,255,255,0.02);
+        padding: 14px;
+        border-radius: 8px;
+        border: 1px solid #222;
+    }
+    .specs {
+        margin-top: 18px;
+        background: rgba(255,255,255,0.02);
+        padding: 12px;
+        border-radius: 6px;
+        border: 1px dashed #222;
+        color: #aaa;
+    }
+    .gallery {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(180px,1fr));
+        gap: 12px;
+        margin-top: 18px;
+    }
+    .thumb {
+        cursor: pointer;
+        overflow: hidden;
+        border-radius: 6px;
+        border: 1px solid #2a2a2a;
+        background: #070707;
+    }
+    .thumb img { width: 100%; height: 100%; object-fit: cover; display:block; }
+    .controls {
+        margin-top: 18px;
+        display:flex;
+        gap:10px;
+        flex-wrap:wrap;
+    }
+    button {
+        background: #222;
+        color: #f66;
+        border: 1px solid #333;
+        padding: 10px 14px;
+        border-radius: 6px;
+        cursor: pointer;
+        font-family: inherit;
+    }
+    button.secondary { color: #ccc; border-color:#2a2a2a; }
+    textarea {
+        width:100%;
+        min-height:80px;
+        margin-top:10px;
+        background:#0c0c0c;
+        color:#ddd;
+        border:1px solid #222;
+        padding:10px;
+        border-radius:6px;
+        font-family: inherit;
+    }
+    .note-list { margin-top:12px; color:#bdbdbd; font-size:14px; }
+    .small { color:#777; font-size:13px; margin-top:8px; }
+
+    .lightbox {
+        position: fixed;
+        inset: 0;
+        display: none;
+        background: rgba(0,0,0,0.85);
+        align-items: center;
+        justify-content: center;
+        z-index: 9999;
+    }
+    .lightbox img { max-width: 92%; max-height: 92%; border: 1px solid #333; }
+    .close-x {
+        position: fixed;
+        right: 28px;
+        top: 24px;
+        color: #fff;
+        font-weight: bold;
+        cursor: pointer;
+        font-size: 20px;
+    }
+</style>
+</head>
+<body>
+    <h1>RIP — старый ноутбук</h1>
+    <div class="meta">Здесь похоронен не кусок кремния, а целая эпоха.</div>
+    
+    <p>Это был мой первый ноутбук. Не самый быстрый. Не самый мощный. Но именно с него всё началось.</p>
+    <p>С пятого класса он был рядом. Мы прошли через десятки проектов, сотни часов кода, тысячи ошибок, странных багов и внезапных озарений. На нём рождались мои первые идеи, игры, сайты, нейросети.</p>
+    <p>Он не жаловался. Даже когда я запускал Blender, даже когда пытался тренировать ИИ, даже когда бил по клавиатуре в ярости. Он просто продолжал дышать, крутить кулером, и быть рядом.</p>
+    <p>Зимой 2024 года, после случайного удара, его видеовывод умер. Я пытался всё восстановить. Но внутри уже была тишина.</p>
+    <p>Теперь он уходит. Не в корзину. А в историю. Потому что был не просто железкой. А моим первым спутником.</p>
+    <p>Здесь похоронен не кусок кремния, а целая эпоха.</p>   
+    <p>Этот ноутбук видел первые проекты, первые баги и первые победы — от Hello World до мучительных деплоев в 3 ночи. </p>  
+    <p>Он ревел кулером и замолкал перед ошибкой, но всегда был рядом. Спасибо, старичок. </p>
+
+    <img src="notebook-front.jpg" alt="Фото ноутбука — фронт" id="hero" />
+
+    <div class="specs">
+        <strong>Коротко о нём</strong><br>
+        Модель: <span id="model">15s-eq1059ur</span><br>
+        Годы жизни: 2022 — 2024<br>
+        Состояние: умер после героического удара по клавиатуре (POST-код: 5.3).<br>
+        Что спасли: SSD, RAM, экран/клавиатура — для запчастей.
+    </div>
+
+    <section class="gallery" aria-label="Галерея ноутбука">
+        <div class="thumb" data-src="notebook-front.jpg"><img src="notebook-front.jpg" alt="Открытый ноут"></div>
+        <div class="thumb" data-src="notebook-open.jpg"><img src="notebook-open.jpg" alt="Крышка"></div>
+        <div class="thumb" data-src="notebook-inside.jpg"><img src="notebook-inside.jpg" alt="клавиатура"></div>
+        <div class="thumb" data-src="notebook-keyboard.png"><img src="notebook-keyboard.png" alt="клавиатура"></div>
+    </section>
+
+    <div class="small" style="margin-top:20px;">
+        Он многое мог. Но доказать ему не дали.
+    </div>
+
+    <div class="lightbox" id="lightbox">
+        <div class="close-x" id="closeX">✕</div>
+        <img src="" alt="Большое фото" id="lightboxImg">
+    </div>
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+    const thumbs = document.querySelectorAll('.thumb');
+    const lightbox = document.getElementById('lightbox');
+    const lbImg = document.getElementById('lightboxImg');
+    const closeX = document.getElementById('closeX');
+
+    thumbs.forEach(t => t.addEventListener('click', () => {
+        const src = t.getAttribute('data-src');
+        lbImg.src = src;
+        lightbox.style.display = 'flex';
+    }));
+    closeX.addEventListener('click', () => {
+        lightbox.style.display = 'none';
+        lbImg.src = '';
+    });
+    lightbox.addEventListener('click', (e) => {
+        if (e.target === lightbox) {
+            lightbox.style.display = 'none';
+            lbImg.src = '';
+        }
+    });
+});
+</script>
+</body>
+</html>
