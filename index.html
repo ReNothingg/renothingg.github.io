@@ -97,70 +97,152 @@
                 <div class="projects-title">
                     <h3 class="section-title">Мои Проекты</h3>
                 </div>
-                <div class="projects-grid">
-                    <a href="https://synvexai.github.io" target="_blank" rel="noopener noreferrer" class="project-card">
-                        <div class="project-image-container">
-                            <picture>
-                                <source srcset="https://avatars.githubusercontent.com/u/210514589?s=200&v=4&format=webp"
-                                    type="image/webp">
-                                <img src="https://avatars.githubusercontent.com/u/210514589?s=200&v=4" alt="SynvexAI"
-                                    loading="lazy" decoding="async">
-                            </picture>
-                            <div class="project-overlay"></div>
-                        </div>
-                        <div class="project-info">
-                            <h4>SynvexAI</h4>
-                            <p>Intelligent products at the intersection of neural networks, cognitive science and
-                                human-centered design.</p>
-                            <div class="project-stats">
-                                <span class="stat">AI</span>
-                                <span class="stat">Neural</span>
-                                <span class="stat">Design</span>
+                <div class="projects-scene" data-projects-scene>
+                    <div class="projects-pin">
+                        <div class="projects-showcase">
+                            <div class="projects-showcase-grid" aria-hidden="true"></div>
+                            <div class="projects-showcase-orb" aria-hidden="true"></div>
+                            <div class="projects-progress" aria-hidden="true">
+                                <span class="projects-progress-bar"></span>
                             </div>
-                        </div>
-                    </a>
 
-                    <a href="FCube/" target="_blank" rel="noopener noreferrer" class="project-card">
-                        <div class="project-image-container">
-                            <picture>
-                                <source srcset="FCube/assets/favicon.png" type="image/webp">
-                                <img src="FCube/assets/favicon.png" alt="[F]CUBE баннер" loading="lazy"
-                                    decoding="async">
-                            </picture>
-                            <div class="project-overlay"></div>
-                        </div>
-                        <div class="project-info">
-                            <h4>[F]CUBE</h4>
-                            <p>A unique sandbox that lacks the usual restrictions, providing unlimited opportunities for
-                                creativity.</p>
-                            <div class="project-stats">
-                                <span class="stat">Unity</span>
-                                <span class="stat">C#</span>
-                                <span class="stat">3D</span>
-                            </div>
-                        </div>
-                    </a>
+                            <div class="projects-frame">
+                                <a href="https://synvexai.github.io" target="_blank" rel="noopener noreferrer"
+                                    class="project-preview is-active" data-project-preview="0"
+                                    style="--project-accent: 188, 209, 202;">
+                                    <div class="project-preview-media">
+                                        <picture>
+                                            <source
+                                                srcset="https://avatars.githubusercontent.com/u/210514589?s=200&v=4&format=webp"
+                                                type="image/webp">
+                                            <img src="https://avatars.githubusercontent.com/u/210514589?s=200&v=4"
+                                                alt="SynvexAI" loading="lazy" decoding="async">
+                                        </picture>
+                                    </div>
+                                    <div class="project-preview-chrome">
+                                        <div class="project-preview-mark">
+                                            <h4>SynvexAI</h4>
+                                        </div>
+                                    </div>
+                                </a>
 
-                    <a href="FloppaRun/" target="_blank" rel="noopener noreferrer" class="project-card">
-                        <div class="project-image-container">
-                            <picture>
-                                <source srcset="FloppaRun/assets/favicon.png" type="image/webp">
-                                <img src="FloppaRun/assets/favicon.png" alt="Floppa Run баннер" loading="lazy"
-                                    decoding="async">
-                            </picture>
-                            <div class="project-overlay"></div>
-                        </div>
-                        <div class="project-info">
-                            <h4>Floppa Run</h4>
-                            <p>Захватывающий бесконечный раннер, где вы управляете Шлёпой, уворачиваясь от препятствий!
-                            </p>
-                            <div class="project-stats">
-                                <span class="stat">Mobile</span>
-                                <span class="stat">Game</span>
-                                <span class="stat">Unity</span>
+                                <a href="FCube/" target="_blank" rel="noopener noreferrer" class="project-preview"
+                                    data-project-preview="1" style="--project-accent: 242, 184, 91;">
+                                    <div class="project-preview-media">
+                                        <picture>
+                                            <source srcset="FCube/assets/favicon.png" type="image/webp">
+                                            <img src="FCube/assets/favicon.png" alt="[F]CUBE banner" loading="lazy"
+                                                decoding="async">
+                                        </picture>
+                                    </div>
+                                    <div class="project-preview-chrome">
+                                        <div class="project-preview-mark">
+                                            <h4>[F]CUBE</h4>
+                                        </div>
+                                    </div>
+                                </a>
+
+                                <a href="FloppaRun/" target="_blank" rel="noopener noreferrer"
+                                    class="project-preview" data-project-preview="2"
+                                    style="--project-accent: 226, 151, 120;">
+                                    <div class="project-preview-media">
+                                        <picture>
+                                            <source srcset="FloppaRun/assets/favicon.png" type="image/webp">
+                                            <img src="FloppaRun/assets/favicon.png" alt="Floppa Run banner"
+                                                loading="lazy" decoding="async">
+                                        </picture>
+                                    </div>
+                                    <div class="project-preview-chrome">
+                                        <div class="project-preview-mark">
+                                            <h4>Floppa Run</h4>                                        
+                                        </div>
+                                    </div>
+                                </a>
                             </div>
                         </div>
-                    </a>
+                    </div>
+
+                    <div class="projects-list">
+                        <article class="project-story is-active" data-project-story="0"
+                            style="--project-accent: 188, 209, 202;">
+                            <span class="project-story-index">01</span>
+                            <a href="https://synvexai.github.io" target="_blank" rel="noopener noreferrer"
+                                class="project-story-card">
+                                <div class="project-story-top">
+                                    <span class="project-status project-status--active">Активен</span>
+                                </div>
+                                <h4>SynvexAI</h4>
+                                <p>Мы создаём искусственный интеллект, чтобы технологии лучше работали для человека.</p>
+                                <div class="project-story-meta">
+                                    <div class="project-story-date">
+                                        <span class="project-meta-label">Started</span>
+                                        <strong>5 мая 2025</strong>
+                                    </div>
+                                </div>
+                                <div class="project-stats">
+                                    <span class="stat">AI</span>
+                                    <span class="stat">LLM</span>
+                                    <span class="stat">Gen</span>
+                                    <span class="stat">Core</span>
+                                    <span class="stat">Lab</span>
+                                </div>
+                                <span class="project-story-link">Открыть проект</span>
+                            </a>
+                        </article>
+
+                        <article class="project-story" data-project-story="1"
+                            style="--project-accent: 242, 184, 91;">
+                            <span class="project-story-index">02</span>
+                            <a href="FCube/" target="_blank" rel="noopener noreferrer" class="project-story-card">
+                                <div class="project-story-top">
+                                    <span class="project-status project-status--dormant">Приостановлен</span>
+                                </div>
+                                <h4>[F]CUBE</h4>
+                                <p>[F]CUBE — уникальная песочница, в которой отсутствуют привычные ограничения, предоставляющая игроку неограниченные возможности для экспериментов и творчества.</p>
+                                <div class="project-story-meta">
+                                    <div class="project-story-date">
+                                        <span class="project-meta-label">Started</span>
+                                        <strong>2025</strong>
+                                    </div>
+                                </div>
+                                <div class="project-stats">
+                                    <span class="stat">Unity</span>
+                                    <span class="stat">C#</span>
+                                    <span class="stat">3D</span>
+                                </div>
+                                <span class="project-story-link">View archive</span>
+                            </a>
+                        </article>
+
+                        <article class="project-story" data-project-story="2"
+                            style="--project-accent: 226, 151, 120;">
+                            <span class="project-story-index">03</span>
+                            <a href="FloppaRun/" target="_blank" rel="noopener noreferrer" class="project-story-card">
+                                <div class="project-story-top">
+                                    <span class="project-status project-status--active">Завершен</span>
+                                </div>
+                                <h4>Floppa Run</h4>
+                                <p>Захватывающий мобильный раннер, где нужно отлично чувствовать ритм, чтобы не собирать все препятствия лицом.</p>
+                                <div class="project-story-meta">
+                                    <div class="project-story-date">
+                                        <span class="project-meta-label">Started</span>
+                                        <strong>2019</strong>
+                                    </div>
+                                    <div class="project-story-date">
+                                        <span class="project-meta-label">Stage</span>
+                                        <strong>Playable</strong>
+                                    </div>
+                                </div>
+                                <div class="project-stats">
+                                    <span class="stat">Mobile</span>
+                                    <span class="stat">Game</span>
+                                    <span class="stat">Unity</span>
+                                    <span class="stat">Platformer</span>
+                                </div>
+                                <span class="project-story-link">Открыть проект</span>
+                            </a>
+                        </article>
+                    </div>
                 </div>
             </div>
         </section>

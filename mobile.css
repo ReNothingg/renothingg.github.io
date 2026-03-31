@@ -83,26 +83,174 @@ section {
   text-align: center;
 }
 
-.projects-grid {
+#projects {
+  padding: 110px 0 90px;
+}
+
+.projects-title {
+  margin-bottom: 50px;
+}
+
+.projects-intro {
+  font-size: 0.98rem;
+}
+
+.projects-scene {
   grid-template-columns: 1fr;
-  gap: 30px;
+  gap: 22px;
 }
 
-.project-card {
-  min-height: auto;
+.projects-pin {
+  top: 14px;
+  z-index: 4;
+}
+
+.projects-showcase {
+  min-height: 56svh;
+  padding: 16px;
+  border-radius: 24px;
+}
+
+.projects-showcase::after {
+  inset: 12px;
+  border-radius: 18px;
+}
+
+.projects-showcase-grid {
+  background-size: 44px 44px;
+}
+
+.projects-showcase-orb {
+  width: 150px;
+  right: -20px;
+  top: 12%;
+}
+
+.projects-progress {
+  top: 18px;
+  right: 18px;
+  height: 120px;
+}
+
+.projects-scroll-note {
+  top: 18px;
+  left: 18px;
+  max-width: 12ch;
+  font-size: 0.62rem;
+  letter-spacing: 0.18em;
+}
+
+.projects-frame {
+  min-height: 48svh;
+  border-radius: 20px;
+}
+
+.project-preview {
+  padding: 14px;
+}
+
+.project-preview-chrome {
+  gap: 14px;
+}
+
+.project-preview-topline {
+  align-items: flex-start;
+}
+
+.project-preview-mark {
+  align-items: flex-end;
+  gap: 12px;
+}
+
+.project-preview-mark h4 {
+  font-size: clamp(2.5rem, 14vw, 4.2rem);
+  max-width: 6ch;
+}
+
+.project-preview-index {
+  font-size: 0.92rem;
+}
+
+.project-preview-bottomline {
+  align-items: flex-start;
+}
+
+.project-preview-date {
+  font-size: 0.68rem;
+  letter-spacing: 0.18em;
+}
+
+.project-preview-link {
+  padding: 9px 13px;
+  font-size: 0.66rem;
+  letter-spacing: 0.16em;
+}
+
+.projects-list {
+  gap: 16px;
+  padding-block: 0 12px;
+}
+
+.project-story {
+  min-height: 58svh;
+  align-items: flex-end;
+}
+
+.project-story:last-child {
+  min-height: 42svh;
+}
+
+.project-story-index {
+  top: 22px;
+  left: 0;
   transform: none;
+  font-size: clamp(2.6rem, 20vw, 4.5rem);
 }
 
-.project-card:hover {
-  transform: translateY(-5px);
+.project-story.is-active .project-story-index {
+  transform: scale(1.04);
 }
 
-.project-image-container {
-  aspect-ratio: 16 / 9;
+.project-story-card {
+  margin-left: 0;
+  width: 100%;
+  padding: 20px;
+  border-radius: 20px;
 }
 
-.project-info h4 {
-  font-size: 1.5em;
+.project-story-top {
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 10px;
+}
+
+.project-story-card h4 {
+  font-size: 2rem;
+}
+
+.project-story-card p {
+  max-width: none;
+  font-size: 1rem;
+}
+
+.project-story-meta {
+  gap: 10px;
+}
+
+.project-story-date {
+  min-width: 0;
+  flex: 1 1 140px;
+  padding: 11px 12px;
+}
+
+.project-story:not(.is-active) .project-story-card {
+  transform: translate3d(0, 18px, 0) scale(0.97);
+  opacity: 0.72;
+}
+
+.stat {
+  padding: 5px 10px;
+  font-size: 0.74rem;
 }
 
 #contact {
