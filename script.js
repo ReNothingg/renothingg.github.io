@@ -180,7 +180,24 @@ document.addEventListener('DOMContentLoaded', () => {
     window.addEventListener('resize', requestProgressUpdate);
   };
 
+  const setupDeadProjectsMarquee = () => {
+    const track = document.querySelector('[data-dead-projects-track]');
+    const group = document.querySelector('[data-dead-projects-group]');
+
+    if (!track || !group || track.children.length > 1) return;
+
+    const clone = group.cloneNode(true);
+    clone.setAttribute('aria-hidden', 'true');
+
+    clone.querySelectorAll('img').forEach((image) => {
+      image.alt = '';
+    });
+
+    track.appendChild(clone);
+  };
+
   setupProjectsScene();
+  setupDeadProjectsMarquee();
 
   const scrollButton = document.getElementById('scrollToTopBtn');
   if (scrollButton) {

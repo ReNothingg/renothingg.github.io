@@ -938,6 +938,110 @@ section {
   transform: translateY(-6px);
 }
 
+.dead-projects {
+  margin-top: clamp(40px, 7vw, 88px);
+  display: grid;
+  gap: 22px;
+}
+
+.dead-projects-header {
+  max-width: 720px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.dead-projects-label {
+  margin: 0 0 12px;
+  font-size: 0.76rem;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: rgba(var(--color-text-raw), 0.52);
+}
+
+.dead-projects-header h4 {
+  margin: 0;
+  font-size: clamp(1.8rem, 3vw, 2.8rem);
+  line-height: 0.95;
+}
+
+.dead-projects-marquee {
+  position: relative;
+  overflow: hidden;
+  padding: 6px 0;
+  margin-inline: calc(50% - 50vw);
+  padding-inline: clamp(16px, 3vw, 36px);
+}
+
+.dead-projects-track {
+  --dead-project-gap: 16px;
+  display: flex;
+  width: max-content;
+  animation: dead-projects-scroll 32s linear infinite;
+  will-change: transform;
+}
+
+.dead-projects-marquee:hover .dead-projects-track,
+.dead-projects-marquee:focus-within .dead-projects-track {
+  animation-play-state: paused;
+}
+
+.dead-projects-group {
+  display: flex;
+  gap: var(--dead-project-gap);
+  padding-right: var(--dead-project-gap);
+  flex-shrink: 0;
+}
+
+.dead-project-card {
+  min-width: clamp(260px, 22vw, 320px);
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 14px 20px;
+  border-radius: 18px;
+  border: 1px solid rgba(var(--color-border-raw), 0.72);
+  background: rgba(var(--color-bg-raw), 0.86);
+  box-shadow: 0 12px 30px rgba(20, 20, 19, 0.06);
+  backdrop-filter: blur(12px);
+}
+
+.dead-project-icon {
+  width: 56px;
+  aspect-ratio: 1;
+  flex-shrink: 0;
+  overflow: hidden;
+  border-radius: 14px;
+  border: 1px solid rgba(var(--color-border-raw), 0.7);
+  background: rgba(255, 255, 255, 0.82);
+}
+
+.dead-project-icon img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.dead-project-name {
+  display: block;
+  font-size: clamp(0.96rem, 1.2vw, 1.08rem);
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  color: var(--color-text);
+}
+
+@keyframes dead-projects-scroll {
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .dead-projects-track {
+    animation: none;
+  }
+}
+
 .research-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));

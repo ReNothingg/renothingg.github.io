@@ -248,6 +248,45 @@ section {
   opacity: 0.72;
 }
 
+.dead-projects {
+  margin-top: 28px;
+  gap: 16px;
+}
+
+.dead-projects-header h4 {
+  font-size: 1.7rem;
+}
+
+.dead-projects-label {
+  margin-bottom: 10px;
+  letter-spacing: 0.22em;
+}
+
+.dead-projects-marquee {
+  padding: 4px 0;
+  margin-inline: calc(50% - 50vw);
+  padding-inline: 16px;
+}
+
+.dead-projects-track {
+  --dead-project-gap: 12px;
+  animation-duration: 24s;
+}
+
+.dead-project-card {
+  min-width: 220px;
+  gap: 12px;
+  padding: 12px 14px;
+}
+
+.dead-project-icon {
+  width: 52px;
+}
+
+.dead-project-name {
+  font-size: 0.94rem;
+}
+
 .stat {
   padding: 5px 10px;
   font-size: 0.74rem;
