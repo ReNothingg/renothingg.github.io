@@ -83,6 +83,35 @@ section {
   text-align: center;
 }
 
+.about-stack {
+  margin-top: 34px;
+  padding-top: 26px;
+}
+
+.about-stack-head {
+  align-items: flex-start;
+  gap: 12px;
+}
+
+.about-stack-icon {
+  width: 42px;
+  font-size: 1rem;
+}
+
+.about-stack h4 {
+  font-size: 1.25rem;
+}
+
+.about-stack-tags {
+  gap: 7px;
+}
+
+.about-stack-tags span {
+  min-height: 32px;
+  padding: 7px 10px;
+  font-size: 0.82rem;
+}
+
 #projects {
   padding: 110px 0 90px;
 }
@@ -270,11 +299,11 @@ section {
 
 .dead-projects-track {
   --dead-project-gap: 12px;
-  animation-duration: 24s;
+  min-height: 78px;
 }
 
 .dead-project-card {
-  min-width: 220px;
+  width: 220px;
   gap: 12px;
   padding: 12px 14px;
 }
