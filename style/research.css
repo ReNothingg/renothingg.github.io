@@ -1,0 +1,58 @@
+.research-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: var(--space-8);
+  margin-top: var(--space-8);
+}
+
+.research-card {
+  background: var(--color-bg);
+  border: 1px solid var(--color-border);
+  border-radius: var(--global-radius);
+  padding: var(--space-6);
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+  transition:
+    transform var(--transition-speed) var(--transition-easing),
+    box-shadow var(--transition-speed) var(--transition-easing),
+    border-color var(--transition-speed) var(--transition-easing);
+}
+
+.research-card:hover {
+  border-color: rgba(var(--color-text-raw), 0.5);
+  transform: translateY(-5px);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+}
+
+.research-card h4 {
+  font-size: 1.3em;
+  margin: 0 0 var(--space-4) 0;
+  color: var(--color-text);
+}
+
+.research-card p {
+  color: var(--color-text-muted);
+  margin-bottom: var(--space-6);
+  flex-grow: 1;
+}
+
+.research-link {
+  color: var(--color-text);
+  font-weight: var(--font-weight-medium);
+  align-self: flex-start;
+  background-image: linear-gradient(
+    90deg,
+    var(--color-text) 0%,
+    var(--color-text) 100%
+  );
+  background-repeat: no-repeat;
+  background-position: 0 100%;
+  background-size: 0% 2px;
+  transition: background-size var(--transition-speed) ease;
+}
+
+.research-link:hover {
+  background-size: 100% 2px;
+}
+

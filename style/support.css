@@ -1,0 +1,196 @@
+#support {
+  background: #1c1c1a;
+  color: #f6f1e7;
+  border-radius: 28px;
+  margin: var(--margin-section);
+  padding-block: 170px 150px;
+  position: relative;
+  overflow: hidden;
+}
+
+#support::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(255, 255, 255, 0.08);
+  opacity: 0.8;
+  pointer-events: none;
+}
+
+.support-layout {
+  display: grid;
+  grid-template-columns: minmax(240px, 0.9fr) minmax(320px, 1.1fr);
+  gap: clamp(2rem, 6vw, 5rem);
+  align-items: start;
+  position: relative;
+  z-index: 2;
+}
+
+.support-sticky {
+  position: sticky;
+  top: 18vh;
+  align-self: start;
+}
+
+.support-kicker {
+  margin: 0 0 var(--space-3);
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.35em;
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.support-title {
+  font-family: var(--font-family-display);
+  font-size: clamp(2.6rem, 6vw, 5.5rem);
+  text-transform: uppercase;
+  margin: 0 0 var(--space-4);
+  color: #f6f1e7;
+  overflow-wrap: anywhere;
+}
+
+.support-subtitle {
+  max-width: 32ch;
+  font-size: 1.1rem;
+  color: rgba(255, 255, 255, 0.72);
+  margin: 0 0 var(--space-8);
+}
+
+.support-scroll-hint {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-3);
+  text-transform: uppercase;
+  letter-spacing: 0.25em;
+  font-size: 0.75rem;
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.support-scroll-hint span {
+  display: block;
+  width: 70px;
+  height: 1px;
+  background: rgba(255, 255, 255, 0.8);
+  position: relative;
+  overflow: hidden;
+}
+
+.support-scroll-hint span::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  transform: translateX(-100%);
+  animation: supportPulse 2.2s ease-in-out infinite;
+}
+
+@keyframes supportPulse {
+  50% {
+    transform: translateX(100%);
+  }
+}
+
+.support-cards {
+  display: grid;
+  gap: var(--space-6);
+}
+
+.support-card {
+  display: block;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  border-radius: 18px;
+  padding: 26px;
+  color: inherit;
+  position: relative;
+  overflow: hidden;
+  transition:
+    transform var(--transition-speed) var(--transition-easing),
+    box-shadow var(--transition-speed) var(--transition-easing),
+    border-color var(--transition-speed) var(--transition-easing);
+}
+
+.support-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(188, 209, 202, 0.18);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity var(--transition-speed) var(--transition-easing);
+}
+
+.support-card:hover {
+  transform: translateY(-6px);
+  border-color: rgba(255, 255, 255, 0.35);
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.45);
+}
+
+.support-card:hover::before {
+  opacity: 1;
+}
+
+.support-card.is-copied {
+  border-color: rgba(188, 209, 202, 0.8);
+  box-shadow: 0 0 0 2px rgba(188, 209, 202, 0.3);
+}
+
+.support-card-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-4);
+  margin-bottom: var(--space-3);
+}
+
+.support-tag {
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  padding: 6px 14px;
+  border-radius: var(--radius-pill);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: rgba(255, 255, 255, 0.85);
+}
+
+.support-card--copy .support-tag {
+  cursor: pointer;
+}
+
+.support-action {
+  font-size: 0.95rem;
+  font-weight: var(--font-weight-medium);
+  color: rgba(255, 255, 255, 0.85);
+}
+
+.support-code {
+  display: block;
+  font-family: "SF Mono", "Fira Code", "Consolas", monospace;
+  font-size: 1rem;
+  color: #f6f1e7;
+  margin-bottom: var(--space-3);
+  word-break: break-all;
+}
+
+.support-card p {
+  margin: 0;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.copy-btn {
+  border-radius: var(--radius-pill);
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  padding: 6px 16px;
+  font-size: 0.85rem;
+  color: rgba(255, 255, 255, 0.85);
+  transition:
+    background var(--transition-speed) var(--transition-easing),
+    color var(--transition-speed) var(--transition-easing),
+    border-color var(--transition-speed) var(--transition-easing);
+}
+
+.copy-btn:hover {
+  background: rgba(255, 255, 255, 0.15);
+  border-color: rgba(255, 255, 255, 0.7);
+  color: #fff;
+}
+

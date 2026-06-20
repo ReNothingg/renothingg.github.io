@@ -1,0 +1,287 @@
+.projects-frame {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  isolation: isolate;
+}
+
+.project-preview {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: stretch;
+  padding: clamp(22px, 2.4vw, 30px);
+  color: #f7f1e8;
+  opacity: 0;
+  clip-path: inset(0 18% 0 0);
+  transform: translate3d(-28px, 0, 0) scale(1.025);
+  pointer-events: none;
+  transition:
+    opacity 0.52s ease,
+    clip-path 0.82s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.82s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.project-preview.is-active {
+  opacity: 1;
+  clip-path: inset(0);
+  transform: translate3d(0, 0, 0) scale(1);
+  pointer-events: auto;
+  z-index: 2;
+}
+
+.project-preview-media,
+.project-preview-media picture,
+.project-preview-media img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.project-preview-media {
+  -webkit-mask-image: linear-gradient(
+    90deg,
+    #000 0%,
+    #000 70%,
+    transparent 100%
+  );
+  mask-image: linear-gradient(
+    90deg,
+    #000 0%,
+    #000 70%,
+    transparent 100%
+  );
+}
+
+.project-preview-media img {
+  object-fit: cover;
+  transform: scale(1.08);
+  transition:
+    transform 1.2s var(--transition-easing),
+    filter 0.8s ease;
+  filter: saturate(0.88) contrast(1.04);
+}
+
+.project-preview.is-active .project-preview-media img {
+  transform: scale(1);
+  filter: saturate(1) contrast(1.02);
+}
+
+.project-preview--logo .project-preview-media,
+.project-preview--logo .project-preview-media picture {
+  display: grid;
+  place-items: center;
+  background: var(--project-accent), 0.26;
+}
+
+.project-preview--logo .project-preview-media img {
+  position: relative !important;
+  inset: auto !important;
+  width: clamp(140px, 34vw, 240px) !important;
+  height: auto !important;
+  aspect-ratio: 1 / 1;
+  object-fit: contain !important;
+  transform: none;
+  filter: drop-shadow(0 22px 44px rgba(0, 0, 0, 0.35));
+}
+
+.project-preview--logo.is-active .project-preview-media img {
+  transform: none;
+  filter: drop-shadow(0 24px 48px rgba(0, 0, 0, 0.38));
+}
+
+.project-preview--remind .project-preview-media,
+.project-preview--remind .project-preview-media picture {
+  display: block;
+  background: #05080c;
+}
+
+.project-preview--remind .project-preview-media img {
+  position: absolute !important;
+  inset: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+  aspect-ratio: auto;
+  object-fit: cover !important;
+  filter: none;
+}
+
+.project-preview--remind.is-active .project-preview-media img {
+  transform: none;
+  filter: none;
+}
+
+.project-preview-media::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, transparent 58%, rgba(8, 8, 8, 0.28) 100%);
+}
+
+.project-preview-chrome {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: clamp(18px, 2vw, 28px);
+}
+
+.projects-pin .project-preview-chrome {
+  display: none;
+}
+
+.project-preview-kicker {
+  margin: 0;
+  font-size: 0.78rem;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.62);
+  text-shadow: 0 4px 20px rgba(0, 0, 0, 0.28);
+}
+
+.project-preview-topline {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--space-4);
+  flex-wrap: wrap;
+}
+
+.project-preview-mark {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: var(--space-6);
+  margin-top: auto;
+}
+
+.project-preview-mark h4 {
+  margin: 0;
+  max-width: 7ch;
+  font-size: clamp(3.2rem, 7vw, 6.4rem);
+  line-height: 0.86;
+  color: #fff;
+  text-shadow: 0 12px 36px rgba(0, 0, 0, 0.46);
+}
+
+.projects-list {
+  order: 2;
+}
+
+.project-preview-index {
+  font-family: var(--font-family-display);
+  font-size: clamp(1.2rem, 2vw, 1.8rem);
+  line-height: 1;
+  letter-spacing: 0.18em;
+  color: rgba(255, 255, 255, 0.58);
+  text-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
+}
+
+.project-preview-bottomline {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: var(--space-4);
+  flex-wrap: wrap;
+}
+
+.project-preview-date {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  margin: 0;
+  font-size: 0.76rem;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.72);
+  text-shadow: 0 4px 18px rgba(0, 0, 0, 0.3);
+}
+
+.project-preview-date::before {
+  content: "";
+  width: 26px;
+  height: 1px;
+  background: rgba(255, 255, 255, 0.45);
+}
+
+.project-preview-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 16px;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  background: rgba(255, 255, 255, 0.08);
+  color: rgba(255, 255, 255, 0.96);
+  font-size: 0.74rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.18);
+  backdrop-filter: blur(14px);
+}
+
+.project-preview-link::after {
+  content: "↗";
+  font-size: 1rem;
+  letter-spacing: normal;
+  transform: translateY(-1px);
+}
+
+.project-status {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 14px;
+  border-radius: 999px;
+  font-size: 0.72rem;
+  font-weight: var(--font-weight-medium);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  backdrop-filter: blur(14px);
+}
+
+.project-status::before {
+  content: "";
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: currentColor;
+  box-shadow: 0 0 0 6px rgba(255, 255, 255, 0.08);
+}
+
+.project-status--active {
+  color: #e3f8ee;
+  border: 1px solid rgba(188, 209, 202, 0.28);
+  background: rgba(98, 150, 129, 0.2);
+}
+
+.project-status--dormant {
+  color: #ffe3a9;
+  border: 1px solid rgba(242, 184, 91, 0.26);
+  background: rgba(138, 100, 29, 0.24);
+}
+
+.project-story-card .project-status--active {
+  color: rgb(73, 129, 107);
+  border-color: rgba(98, 150, 129, 0.22);
+  background: rgba(98, 150, 129, 0.1);
+}
+
+.project-story-card .project-status--dormant {
+  color: rgb(158, 108, 28);
+  border-color: rgba(242, 184, 91, 0.24);
+  background: rgba(242, 184, 91, 0.12);
+}
+
+.projects-list {
+  position: relative;
+  display: grid;
+  gap: clamp(24px, 4vw, 40px);
+  padding-block: 6vh 8vh;
+}
+
