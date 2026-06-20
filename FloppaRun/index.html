@@ -1,412 +1,203 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="ru">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Floppa RUN</title>
-    <meta name="description"
-        content="Floppa Run — захватывающий бесконечный раннер: уворачивайтесь от препятствий, собирайте пельмени и ставьте новые рекорды." />
-    <link rel="canonical" href="https://renothingg.github.io/FloppaRun/" />
-    <link rel="stylesheet" href="style.css">
-    <link rel="preload" href="PressStart2P-Regular.ttf" as="font" type="font/ttf" crossorigin>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600&display=swap"
-        rel="stylesheet">
-    <link rel="icon" href="assets/favicon.png" type="image/png">
-
-    <!-- Open Graph / Facebook -->
-    <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://renothingg.github.io/FloppaRun/" />
-    <meta property="og:title" content="Floppa Run" />
-    <meta property="og:description"
-        content="Захватывающий бесконечный раннер, где вы управляете Шлёпой, уворачиваясь от препятствий и собирая пельмени!" />
-    <meta property="og:image" content="https://renothingg.github.io/FloppaRun/assets/screenshots/img1.png" />
-
-    <!-- X (Twitter) -->
-    <meta property="twitter:card" content="summary_large_image" />
-    <meta property="twitter:url" content="https://renothingg.github.io/FloppaRun/" />
-    <meta property="twitter:title" content="Floppa Run" />
-    <meta property="twitter:description"
-        content="Захватывающий бесконечный раннер, где вы управляете Шлёпой, уворачиваясь от препятствий и собирая пельмени!" />
-    <meta property="twitter:image" content="https://renothingg.github.io/FloppaRun/assets/screenshots/img1.png" />
-    <meta name="theme-color" content="#fff8e1">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Floppa RUN — пиксельный раннер</title>
+  <meta name="description" content="Floppa RUN — пиксельный раннер про Шлёпу, ловушки и пельмени. Скачайте APK или играйте на itch.io.">
+  <meta name="theme-color" content="#56c9e8">
+  <meta property="og:title" content="Floppa RUN">
+  <meta property="og:description" content="Беги. Уворачивайся. Собирай пельмени.">
+  <meta property="og:image" content="https://renothingg.github.io/FloppaRun/assets/screenshots/img1.png">
+  <link rel="canonical" href="https://renothingg.github.io/FloppaRun/">
+  <link rel="icon" href="assets/favicon.png" type="image/png">
+  <link rel="preload" href="PressStart2P-Regular.ttf" as="font" type="font/ttf" crossorigin>
+  <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
-    <header>
-        <div class="container header-container">
-            <div class="logo-area">
-                <a href="#hero" class="logo">Floppa RUN</a>
-                <span class="sticky-title" id="pageStickyTitle">Floppa RUN</span>
-            </div>
-            <button id="menu-toggle" type="button" aria-controls="main-nav" aria-expanded="false"
-                aria-label="Открыть меню">
-                <span class="hamburger-bar"></span>
-                <span class="hamburger-bar"></span>
-                <span class="hamburger-bar"></span>
-            </button>
-            <nav id="main-nav" aria-label="Основная навигация">
-                <ul>
-                    <li><a href="#hero">Главная</a></li>
-                    <li><a href="#description">Описание</a></li>
-                    <li><a href="#why">Почему</a></li>
-                    <li><a href="#features">Режимы</a></li>
-                    <li><a href="#media">Медиа</a></li>
-                    <li><a href="#faq">FAQ</a></li>
-                    <li><a href="#community">Сообщество</a></li>
-                    <li><a href="#changelog">Изменения</a></li>
-                    <li><a href="#download">Скачать</a></li>
-                </ul>
-            </nav>
-        </div>
-    </header>
+  <header class="game-header">
+    <a class="brand" href="#hero" aria-label="Floppa RUN — к началу страницы">
+      <img src="assets/floppa.svg" alt="" width="52" height="41">
+      <span>FLOPPA RUN</span>
+    </a>
 
-    <main>
-        <section id="hero">
-            <canvas id="hero-canvas" aria-hidden="true"></canvas>
-            <div class="hero-content">
-                <p class="hero-kicker animate-on-scroll fade-in-up">Бесконечный раннер</p>
-                <h1 class="animate-on-scroll fade-in-up" data-animation-delay="100">Floppa RUN</h1>
-                <p class="subtitle animate-on-scroll fade-in-up" data-animation-delay="250">
-                    Реакция, скорость и пельмени. Проверь себя в безумном забеге без финиша.
-                </p>
-                <div class="animate-on-scroll fade-in-up" data-animation-delay="400">
-                    <a href="FloppaRun.apk" download class="cta-button hero-cta">СКАЧАТЬ</a>
-                    <a href="https://renothingg.itch.io/floppa-run" class="itch-link" target="_blank"
-                        rel="noopener noreferrer">Попробовать на itch.io</a>
-                </div>
-            </div>
-        </section>
-
-        <section id="description" class="section-soft">
-            <div class="container">
-                <h3 class="animate-on-scroll fade-in">О игре</h3>
-                <div class="description-card animate-on-scroll fade-in">
-                    <p>
-                        Захватывающий бесконечный раннер, в котором вы берёте под контроль легендарного Шлёпу и
-                        отправляетесь в безумный забег без финиша. Реагируйте молниеносно, уворачивайтесь от коварных
-                        препятствий, прыгайте, скользите и проверяйте свои рефлексы на прочность. По пути собирайте
-                        аппетитные пельмени, набирайте очки и устанавливайте новые рекорды, соревнуясь с собой и другими
-                        игроками. Простое управление, нарастающая сложность и динамичный геймплей делают каждый забег
-                        уникальным и напряжённым, а остановиться становится подозрительно сложно.
-                    </p>
-                </div>
-                <div class="facts-grid animate-on-scroll fade-in-up" data-animation-delay="150">
-                    <div class="fact-card">
-                        <span class="fact-label">Последнее обновление</span>
-                        <span class="fact-value">13 января 2026</span>
-                    </div>
-                    <div class="fact-card">
-                        <span class="fact-label">Сборка</span>
-                        <span class="fact-value">13.01.26</span>
-                    </div>
-                    <div class="fact-card">
-                        <span class="fact-label">Размер APK</span>
-                        <span class="fact-value">67.7 MB</span>
-                    </div>
-                    <div class="fact-card">
-                        <span class="fact-label">Мин. Android</span>
-                        <span class="fact-value">10</span>
-                    </div>
-                </div>
-                <p class="facts-note animate-on-scroll fade-in-up" data-animation-delay="250">
-                    APK устанавливается вручную. Если Android предупреждает о неизвестных источниках — это нормально,
-                    подтвердите установку.
-                </p>
-            </div>
-        </section>
-
-
-        <section id="why">
-            <div class="container">
-                <h3 class="animate-on-scroll fade-in">Почему стоит попробовать</h3>
-                <div class="why-grid">
-                    <div class="why-card animate-on-scroll zoom-in">
-                        <h4>Три режима</h4>
-                        <p>Flying Fight, Infinity Wheel и Randomverse — каждый со своим темпом и правилами.</p>
-                    </div>
-                    <div class="why-card animate-on-scroll zoom-in" data-animation-delay="150">
-                        <h4>Нарастающий челлендж</h4>
-                        <p>Чем дольше живёшь — тем выше скорость, больше опасностей и больше наград.</p>
-                    </div>
-                    <div class="why-card animate-on-scroll zoom-in" data-animation-delay="300">
-                        <h4>Короткие забеги</h4>
-                        <p>Один запуск — 1–3 минуты. Идеально для коротких перерывов.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section id="features">
-            <div class="container">
-                <h3 class="animate-on-scroll fade-in">Режимы игры</h3>
-                <div class="features-grid">
-                    <div class="feature-card animate-on-scroll zoom-in">
-                        <h4>Flying Fight</h4>
-                        <p>
-                            В этом режиме на тебя обрушивается волна вражеских кораблей. Управляй Флоппой, летай по
-                            космическому полю и не дай врагам прорваться к базе.
-                            Ты можешь пропустить не более 5 врагов — после этого база падёт.
-                            Сражайся, уклоняйся, побеждай! Чем дольше держишься — тем выше награда.
-                        </p>
-                    </div>
-                    <div class="feature-card animate-on-scroll zoom-in" data-animation-delay="150">
-                        <h4>Infinity Wheel</h4>
-                        <p>
-                            Флоппа попадает в ловушку вращающегося ада, где на него летят смертоносные пилы.
-                            Только три безопасные зоны — верх, центр и низ — спасут его от распила.
-                            Перемещайся молниеносно, читай паттерны атак и выживай как можно дольше.
-                            С некоторым шансом появляются бусты — используй их, чтобы продержаться ещё дольше!
-                        </p>
-                    </div>
-                    <div class="feature-card animate-on-scroll zoom-in" data-animation-delay="300">
-                        <h4>Randomverse</h4>
-                        <p>
-                            Каждый запуск — новая трасса, сгенерированная случайно.
-                            Собирай пельмени, лови бусты, уклоняйся от преград и доберись до финиша — если он вообще
-                            есть.
-                            Только реакция и немного удачи помогут выжить в этом безумии.
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section id="media">
-            <div class="container">
-                <h3 class="animate-on-scroll fade-in">Поехали в Floppa Run!</h3>
-                <div class="video-container">
-                    <iframe src="https://www.youtube.com/embed/TxZVIGn5Rf8" title="Трейлер Floppa Run" loading="lazy"
-                        referrerpolicy="strict-origin-when-cross-origin"
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                        allowfullscreen></iframe>
-                </div>
-                <div class="media-grid">
-                    <div class="media-item animate-on-scroll fade-in-left">
-                        <a href="assets/screenshots/img1.png" title="Описание скриншота 1">
-                            <img src="assets/screenshots/img1.png" alt="Скриншот игры 1" loading="lazy" decoding="async"
-                                width="2712" height="1220">
-                        </a>
-                    </div>
-                    <div class="media-item animate-on-scroll fade-in-left" data-animation-delay="150">
-                        <a href="assets/screenshots/img2.png" title="Описание скриншота 2">
-                            <img src="assets/screenshots/img2.png" alt="Скриншот игры 2" loading="lazy" decoding="async"
-                                width="2712" height="1220">
-                        </a>
-                    </div>
-                    <div class="media-item animate-on-scroll fade-in-left" data-animation-delay="300">
-                        <a href="assets/screenshots/img3.png" title="Описание скриншота 3">
-                            <img src="assets/screenshots/img3.png" alt="Скриншот игры 3" loading="lazy" decoding="async"
-                                width="2712" height="1220">
-                        </a>
-                    </div>
-                    <div class="media-item animate-on-scroll fade-in-left" data-animation-delay="300">
-                        <a href="assets/screenshots/img4.png" title="Описание скриншота 4">
-                            <img src="assets/screenshots/img4.png" alt="Скриншот игры 4" loading="lazy" decoding="async"
-                                width="2712" height="1220">
-                        </a>
-                    </div>
-                    <div class="media-item animate-on-scroll fade-in-left" data-animation-delay="300">
-                        <a href="assets/screenshots/img5.png" title="Описание скриншота 5">
-                            <img src="assets/screenshots/img5.png" alt="Скриншот игры 5" loading="lazy" decoding="async"
-                                width="2712" height="1220">
-                        </a>
-                    </div>
-                    <div class="media-item animate-on-scroll fade-in-left" data-animation-delay="300">
-                        <a href="assets/screenshots/img6.png" title="Описание скриншота 6">
-                            <img src="assets/screenshots/img6.png" alt="Скриншот игры 6" loading="lazy" decoding="async"
-                                width="2712" height="1220">
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section id="faq" class="section-soft">
-            <div class="container">
-                <h3 class="animate-on-scroll fade-in">FAQ</h3>
-                <div class="faq-list">
-                    <details class="faq-item animate-on-scroll fade-in-up" open>
-                        <summary>Как установить APK?</summary>
-                        <p>Скачайте файл, откройте его и подтвердите установку из неизвестных источников, если Android
-                            попросит.</p>
-                    </details>
-                    <details class="faq-item animate-on-scroll fade-in-up" data-animation-delay="150">
-                        <summary>Почему телефон предупреждает о безопасности?</summary>
-                        <p>APK устанавливается вручную, поэтому Android показывает стандартное предупреждение. Это
-                            нормально для файлов вне Play Market.</p>
-                    </details>
-                    <details class="faq-item animate-on-scroll fade-in-up" data-animation-delay="300">
-                        <summary>Где узнать о новых версиях?</summary>
-                        <p>Смотрите раздел «Изменения» на этой странице и подписывайтесь на Telegram.</p>
-                    </details>
-                    <details class="faq-item animate-on-scroll fade-in-up" data-animation-delay="450">
-                        <summary>Куда отправлять баги и идеи?</summary>
-                        <p>Пишите на почту или в Telegram — ответы быстрые и по делу.</p>
-                    </details>
-                </div>
-            </div>
-        </section>
-
-        <section id="community">
-            <div class="container">
-                <h3 class="animate-on-scroll fade-in">Присоединяйтесь к Сообществу</h3>
-                <p class="community-text animate-on-scroll fade-in-up">
-                    Делитесь рекордами, предлагайте идеи и получайте новости первыми.
-                </p>
-                <div class="contact-cta animate-on-scroll fade-in-up" data-animation-delay="300">
-                    <a href="https://t.me/flopparun" class="email-link" target="_blank"
-                        rel="noopener noreferrer">Telegram</a>
-                    <a href="mailto:renothingg@gmail.com" class="email-link">renothingg@gmail.com</a>
-                </div>
-            </div>
-        </section>
-
-        <section id="changelog">
-            <div class="container">
-                <h3 class="animate-on-scroll fade-in">Изменения</h3>
-                <div class="changelog-container">
-
-                    <div class="changelog-item animate-on-scroll fade-in-up">
-                        <div class="changelog-date">15 июня 2026</div>
-                        <div class="changelog-content">
-                            <h4>Обновление 15.02.26</h4>
-                            <ul>
-                                <li>Перекомпановка панели окончания уровня</li>
-                                <li>Исправления багов</li>
-                                <li>Удаление буста "Замедление времени" во всех режимах игры</li>
-                                <li>Увеличен интервал между спавна врагов в FlyingFight</li>
-                                <li>В режиме FlyingFight теперь враг может появиться с "Доп. жизнью". Это означает, что при его убийстве вы восстанавливаете 10 HP</li>
-                                <li>Улучшения UI</li>
-                                <li>Оптимизация и уменьшение веса игры</li>
-                                <li>Едаиная панель паузы во всех режимах игры</li>
-                                <li>Переработка анимаций в игре и их упращения</li>
-                            </ul>
-                        </div>
-                    </div>
-
-                    <div class="changelog-item animate-on-scroll fade-in-up">
-                        <div class="changelog-date">13 января 2026</div>
-                        <div class="changelog-content">
-                            <h4>Обновление 13.01.26</h4>
-                            <ul>
-                                <li>Исправлен интерфейс в настройках</li>
-                                <li>Убраны кнопки восстановления здоровья за рекламу</li>
-                                <li>Враги в режиме Flying Fight теперь с некоторым шансом могут иметь пельмень. При
-                                    поражении
-                                    такого врага игрок получает +10 пельменей</li>
-                                <li>Снижена скорость врагов в Flying Fight</li>
-                                <li>Работа над UI, улучшения отображения</li>
-                                <li>Оптимизация и уменьшение веса игры</li>
-                            </ul>
-                        </div>
-                    </div>
-
-                    <div class="changelog-item animate-on-scroll fade-in-up">
-                        <div class="changelog-date">13 июля 2025</div>
-                        <div class="changelog-content">
-                            <h4>Пре-релизное обновление 13.07.25</h4>
-                            <h5>Исправления и улучшения</h5>
-                            <ul>
-                                <li>Починены баги</li>
-                                <li>Оптимизация и чистка проекта</li>
-                                <li>Улучшение производительности</li>
-                            </ul>
-                            <h5>Реклама с наградой</h5>
-                            <ul>
-                                <p>Полезно, если нужно быстро восстановиться или накопить ресурсы</p>
-                                <li>+20 ХП за просмотр рекламы в любом режиме</li>
-                                <li>+50 пельменей за рекламу в главном меню</li>
-                            </ul>
-                            <h5>Новая функциональность</h5>
-                            <ul>
-                                <li>Кнопка перехода на сайт разработчика теперь работает</li>
-                            </ul>
-                            <h5>Аудио и визуал</h5>
-                            <ul>
-                                <li>Добавлено больше звуков</li>
-                                <li>Обновлена графика: переход с Linear на Gamma для яркой и насыщенной картинки</li>
-                            </ul>
-                        </div>
-                    </div>
-
-                    <div class="changelog-item animate-on-scroll fade-in-up">
-                        <div class="changelog-date">12 июля 2025</div>
-                        <div class="changelog-content">
-                            <h4>Пре-релизное обновление 12.07.25</h4>
-                            <p>Я продолжаю готовить Floppa Run к релизу! В этом обновлении — много улучшений,
-                                оптимизация и новые возможности.</p>
-                            <ul>
-                                <li>Исправлены баги</li>
-                                <li>Добавлена возможность поражения в FlyingFight</li>
-                                <li>World Gen теперь называется Randomverse</li>
-                                <li>Улучшена генерация миров</li>
-                                <li>Обновлена компоновка интерфейса</li>
-                                <li>Мелкие доработки по всему проекту</li>
-                                <li>Новая панель покупки скинов</li>
-                                <li>Новая иконка приложения</li>
-                                <li>Кнопка перехода на сайт разработчика прямо из настроек</li>
-                                <li>Оптимизация и чистка проекта — вес игры заметно снижен!</li>
-                            </ul>
-                        </div>
-                    </div>
-
-                    <div class="changelog-item animate-on-scroll fade-in-up">
-                        <div class="changelog-date">28 июня 2025</div>
-                        <div class="changelog-content">
-                            <h4>Обновление 28.06.25</h4>
-                            <ul>
-                                <li>Переход на новую версию Unity</li>
-                                <li>Фиксы багов</li>
-                                <li>Адаптивное управление в Infinity Wheel</li>
-                                <li>Исправлена неуязвимость врагов в Flying Fight</li>
-                                <li>Улучшена генерация в World Gen</li>
-                                <li>Изменена компоновка элементов</li>
-                                <li>Новый шрифт</li>
-                                <li>Мелкие доработки</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section id="download">
-            <div class="container">
-                <div class="download-card animate-on-scroll fade-in-up">
-                    <div>
-                        <h3>Готовы к забегу?</h3>
-                        <p>Скачайте APK или попробуйте игру в браузере на itch.io.</p>
-                    </div>
-                    <div class="download-actions">
-                        <a href="FloppaRun.apk" download class="cta-button">Скачать APK</a>
-                        <a href="https://renothingg.itch.io/floppa-run" class="cta-button cta-secondary" target="_blank"
-                            rel="noopener noreferrer">Играть на itch.io</a>
-                    </div>
-                </div>
-            </div>
-        </section>
-    </main>
-
-    <footer>
-        <div class="container">
-            <p>2019 — 2026 © Floppa RUN. Все права защищены.</p>
-            <p>Сделано с <span class="heart">♥</span> для геймеров.</p>
-        </div>
-    </footer>
-
-    <button id="scrollToTopBtn" title="Наверх" aria-label="Наверх">
-        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 16 16">
-            <path fill-rule="evenodd"
-                d="M7.646 2.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1-.708.708L8 3.707 2.354 9.354a.5.5 0 1 1-.708-.708l6-6z" />
-            <path fill-rule="evenodd"
-                d="M7.646 6.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1-.708.708L8 7.707l-5.646 5.647a.5.5 0 0 1-.708-.708l6-6z" />
-        </svg>
+    <button
+      class="menu-toggle"
+      type="button"
+      aria-controls="main-nav"
+      aria-expanded="false"
+      aria-label="Открыть меню"
+    >
+      <span></span>
+      <span></span>
+      <span></span>
     </button>
 
-    <script src="script.js"></script>
-</body>
+    <nav id="main-nav" aria-label="Основная навигация">
+      <a href="#about">ОБ ИГРЕ</a>
+      <a href="#modes">РЕЖИМЫ</a>
+      <a href="#gallery">ГАЛЕРЕЯ</a>
+      <a href="#updates">ОБНОВЛЕНИЯ</a>
+      <a href="#faq">FAQ</a>
+    </nav>
 
+    <a class="pixel-button header-download" href="FloppaRun.apk" download>
+      СКАЧАТЬ APK
+    </a>
+  </header>
+
+  <main>
+    <section class="hero" id="hero">
+      <div class="cloud cloud-a"></div><div class="cloud cloud-b"></div>
+      <div class="hero-copy reveal">
+        <h1><span>FLOPPA</span><span>RUN</span></h1>
+        <p>БЕГИ. УВОРАЧИВАЙСЯ.<br>СОБИРАЙ ПЕЛЬМЕНИ.</p>
+        <div class="hero-actions">
+          <a class="pixel-button pixel-button--large" href="FloppaRun.apk" download>СКАЧАТЬ APK</a>
+          <a class="dark-button" href="https://renothingg.itch.io/floppa-run" target="_blank" rel="noopener noreferrer">ИГРАТЬ НА ITCH.IO</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="hud-strip" id="about" aria-label="Информация об игре">
+      <div class="hud-item">
+        <img class="hud-icon hud-floppa" src="assets/floppa.svg" alt="">
+        <p><strong>3 РЕЖИМА</strong><small>для хардкорных игроков</small></p>
+      </div>
+      <div class="hud-item">
+        <span class="hud-icon android-icon" aria-hidden="true">A</span>
+        <p><strong>ANDROID</strong><small>10+</small></p>
+      </div>
+      <div class="hud-item">
+        <img class="hud-icon" src="assets/pelmen.svg" alt="">
+        <p><strong>РАЗМЕР</strong><small>67.7 MB</small></p>
+      </div>
+      <div class="hud-item">
+        <span class="hud-icon calendar-icon" aria-hidden="true">15</span>
+        <p><strong>ВЕРСИЯ</strong><small>15.06.26</small></p>
+      </div>
+    </section>
+
+    <section class="level-section modes" id="modes">
+      <h2 class="section-title">ВЫБЕРИ РЕЖИМ</h2>
+      <div class="mode-list">
+        <article class="mode-card reveal">
+          <img src="assets/screenshots/img6.png" alt="Игровой процесс Randomverse" loading="lazy">
+          <div>
+            <span class="mode-number">01</span>
+            <h3>RANDOMVERSE</h3>
+            <p>Каждый запуск — новая трасса. Собирай пельмени, лови бусты и уклоняйся от ловушек.</p>
+            <a href="https://renothingg.itch.io/floppa-run" target="_blank" rel="noopener noreferrer" class="pixel-button">ИГРАТЬ</a>
+          </div>
+        </article>
+
+        <article class="mode-card mode-card--reverse reveal">
+          <img src="assets/screenshots/img5.png" alt="Игровой процесс Infinity Wheel" loading="lazy">
+          <div>
+            <span class="mode-number">02</span>
+            <h3>INFINITY WHEEL</h3>
+            <p>Вращающийся ад, три безопасные зоны и смертоносные пилы. Здесь решает реакция.</p>
+            <a href="https://renothingg.itch.io/floppa-run" target="_blank" rel="noopener noreferrer" class="pixel-button">ИГРАТЬ</a>
+          </div>
+        </article>
+
+        <article class="mode-card reveal">
+          <img src="assets/screenshots/img4.png" alt="Игровой процесс Flying Fight" loading="lazy">
+          <div>
+            <span class="mode-number">03</span>
+            <h3>FLYING FIGHT</h3>
+            <p>Взлетай, сражайся и не дай врагам добраться до базы. Уклоняйся от пуль и собирай награды.</p>
+            <a href="https://renothingg.itch.io/floppa-run" target="_blank" rel="noopener noreferrer" class="pixel-button">ИГРАТЬ</a>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="level-section gallery" id="gallery">
+      <h2 class="section-title">ГАЛЕРЕЯ</h2>
+      <div class="gallery-shell reveal">
+        <button class="gallery-arrow gallery-prev" type="button" aria-label="Предыдущий скриншот">‹</button>
+        <div class="gallery-track">
+          <button class="shot is-active" type="button" data-full="assets/screenshots/img1.png"><img src="assets/screenshots/img1.png" alt="Главное меню Floppa RUN" loading="lazy"></button>
+          <button class="shot" type="button" data-full="assets/screenshots/img2.png"><img src="assets/screenshots/img2.png" alt="Выбор режима Floppa RUN" loading="lazy"></button>
+          <button class="shot" type="button" data-full="assets/screenshots/img3.png"><img src="assets/screenshots/img3.png" alt="Магазин обликов Floppa RUN" loading="lazy"></button>
+          <button class="shot" type="button" data-full="assets/screenshots/img4.png"><img src="assets/screenshots/img4.png" alt="Режим Flying Fight" loading="lazy"></button>
+          <button class="shot" type="button" data-full="assets/screenshots/img5.png"><img src="assets/screenshots/img5.png" alt="Режим Infinity Wheel" loading="lazy"></button>
+          <button class="shot" type="button" data-full="assets/screenshots/img6.png"><img src="assets/screenshots/img6.png" alt="Режим Randomverse" loading="lazy"></button>
+        </div>
+        <button class="gallery-arrow gallery-next" type="button" aria-label="Следующий скриншот">›</button>
+      </div>
+      <div class="gallery-dots" aria-label="Выбор скриншота"></div>
+      <dialog class="lightbox"><button type="button" aria-label="Закрыть">×</button><img src="assets/screenshots/img1.png" alt="Увеличенный скриншот"></dialog>
+    </section>
+
+    <section class="level-section update-section" id="updates">
+      <h2 class="section-title">ПОСЛЕДНЕЕ ОБНОВЛЕНИЕ</h2>
+      <div class="update-log reveal">
+        <div class="calendar"><strong>15</strong><span>ИЮНЯ<br>2026</span></div>
+        <div>
+          <h3>СБОРКА 15.06.26</h3>
+          <ul>
+            <li>Перекомпановка панели окончания уровня</li>
+            <li>Исправления багов</li>
+            <li>Удаление буста "Замедление времени" во всех режимах игры</li>
+            <li>Увеличен интервал между спавна врагов в FlyingFight</li>
+            <li>В режиме FlyingFight теперь враг может появиться с "Доп. жизнью". Это означает, что при его убийстве вы восстанавливаете 10 HP</li>
+            <li>Улучшения UI</li>
+            <li>Оптимизация и уменьшение веса игры</li>
+            <li>Едаиная панель паузы во всех режимах игры</li>
+            <li>Переработка анимаций в игре и их упращения</li>
+          </ul>
+        </div>
+        <img src="assets/floppa.svg" alt="Шлёпа" width="160" height="125">
+      </div>
+    </section>
+
+    <section class="level-section faq-section" id="faq">
+      <h2 class="section-title">FAQ</h2>
+      <div class="faq-list reveal">
+        <details>
+          <summary>КАК УСТАНОВИТЬ APK?</summary>
+          <p>Скачайте файл, откройте его и подтвердите установку из неизвестных источников, если Android попросит.</p>
+        </details>
+        <details>
+          <summary>ПОЧЕМУ ANDROID ПОКАЗЫВАЕТ ПРЕДУПРЕЖДЕНИЕ?</summary>
+          <p>APK устанавливается вручную, поэтому система показывает стандартное предупреждение для файлов вне Play Market.</p>
+        </details>
+        <details>
+          <summary>ГДЕ УЗНАТЬ О НОВЫХ ВЕРСИЯХ?</summary>
+          <p>Новости и новые сборки публикуются на этой странице и в Telegram.</p>
+        </details>
+        <details>
+          <summary>КУДА ОТПРАВЛЯТЬ БАГИ И ИДЕИ?</summary>
+          <p>Пишите в Telegram или на renothingg@gmail.com.</p>
+        </details>
+        <div class="faq-decor" aria-hidden="true"><img src="assets/spike.svg" alt=""><img src="assets/floppa.svg" alt=""><img src="assets/pelmen.svg" alt=""></div>
+      </div>
+    </section>
+
+    <section class="community">
+      <div>
+        <span class="heart" aria-hidden="true">♥</span>
+        <p><strong>ПРИСОЕДИНЯЙСЯ К СООБЩЕСТВУ!</strong></p>
+      </div>
+      <a class="dark-button" href="https://t.me/flopparun" target="_blank" rel="noopener noreferrer">TELEGRAM</a>
+    </section>
+
+    <section class="final-cta" id="download">
+      <img class="hazard" src="assets/spike.svg" alt="">
+      <div class="reveal">
+        <h2>ГОТОВ К ЗАБЕГУ?</h2>
+        <p>Проверь реакцию и поставь новый рекорд.</p>
+        <a class="pixel-button pixel-button--large" href="FloppaRun.apk" download>СКАЧАТЬ APK</a>
+      </div>
+      <img class="final-floppa" src="assets/floppa.svg" alt="" width="150" height="118">
+      <img class="hazard" src="assets/spike.svg" alt="">
+    </section>
+  </main>
+
+  <footer><strong>FLOPPA RUN</strong><span>© 2019–2026</span><a href="mailto:renothingg@gmail.com">RENTHINGG@GMAIL.COM</a><span>СДЕЛАНО С <b>♥</b> И ПЕЛЬМЕНЯМИ</span></footer>
+  <button class="to-top" type="button" aria-label="Наверх">↑</button>
+  <script src="script.js"></script>
+</body>
 </html>
