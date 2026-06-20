@@ -1,4 +1,40 @@
 document.addEventListener('DOMContentLoaded', () => {
+  const sectionParams = {
+    home: 'hero',
+    about: 'about',
+    projects: 'projects',
+    orders: 'orders',
+    support: 'support',
+    contact: 'contact',
+  };
+
+  const getRequestedSection = () => {
+    const query = window.location.search.slice(1).split('&')[0];
+    const param = decodeURIComponent(query.split('=')[0] || '').toLowerCase();
+    return sectionParams[param] || null;
+  };
+
+  const scrollToRequestedSection = (behavior = 'auto') => {
+    const sectionId = getRequestedSection();
+    if (!sectionId) return;
+
+    document.getElementById(sectionId)?.scrollIntoView({ behavior, block: 'start' });
+  };
+
+  document.querySelectorAll('[data-section-link]').forEach((link) => {
+    link.addEventListener('click', (event) => {
+      const sectionId = link.getAttribute('data-section-link');
+      if (!sectionId) return;
+
+      event.preventDefault();
+      window.history.pushState(null, '', link.getAttribute('href'));
+      document.getElementById(sectionId)?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+  });
+
+  window.addEventListener('popstate', () => scrollToRequestedSection('smooth'));
+  window.requestAnimationFrame(() => scrollToRequestedSection());
+
   const currentYearElement = document.getElementById('currentYear');
   if (currentYearElement) {
     currentYearElement.textContent = new Date().getFullYear();

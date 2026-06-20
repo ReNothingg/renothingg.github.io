@@ -130,19 +130,23 @@ section {
 }
 
 .projects-pin {
-  top: 14px;
-  z-index: 4;
+  position: relative;
+  top: auto;
+  z-index: 1;
+  order: initial;
+  width: 100%;
+  margin-left: 0;
 }
 
 .projects-showcase {
-  min-height: 56svh;
-  padding: 16px;
-  border-radius: 24px;
+  height: 56svh;
+  min-height: 420px;
+  overflow: hidden;
 }
 
 .projects-showcase::after {
   inset: 12px;
-  border-radius: 18px;
+  border-radius: 12px;
 }
 
 .projects-showcase-grid {
@@ -170,15 +174,20 @@ section {
 }
 
 .projects-frame {
-  min-height: 48svh;
-  border-radius: 20px;
+  height: 100%;
+}
+
+.project-preview-media {
+  -webkit-mask-image: none;
+  mask-image: none;
 }
 
 .project-preview {
   padding: 14px;
 }
 
-.project-preview-chrome {
+.projects-pin .project-preview-chrome {
+  display: flex;
   gap: 14px;
 }
 
@@ -216,35 +225,25 @@ section {
 }
 
 .projects-list {
+  order: initial;
   gap: 16px;
   padding-block: 0 12px;
 }
 
 .project-story {
-  min-height: 58svh;
-  align-items: flex-end;
+  min-height: 0;
+  padding: 18px 0 28px;
+  align-items: stretch;
 }
 
 .project-story:last-child {
-  min-height: 42svh;
-}
-
-.project-story-index {
-  top: 22px;
-  left: 0;
-  transform: none;
-  font-size: clamp(2.6rem, 20vw, 4.5rem);
-}
-
-.project-story.is-active .project-story-index {
-  transform: scale(1.04);
+  min-height: 0;
 }
 
 .project-story-card {
-  margin-left: 0;
   width: 100%;
   padding: 20px;
-  border-radius: 20px;
+  border-radius: var(--global-radius);
 }
 
 .project-story-top {
@@ -267,14 +266,12 @@ section {
 }
 
 .project-story-date {
-  min-width: 0;
-  flex: 1 1 140px;
-  padding: 11px 12px;
+  flex-wrap: wrap;
 }
 
 .project-story:not(.is-active) .project-story-card {
-  transform: translate3d(0, 18px, 0) scale(0.97);
-  opacity: 0.72;
+  transform: translate3d(0, 12px, 0);
+  opacity: 0.78;
 }
 
 .dead-projects {
@@ -316,9 +313,81 @@ section {
   font-size: 0.94rem;
 }
 
-.stat {
-  padding: 5px 10px;
-  font-size: 0.74rem;
+#orders {
+  padding: 62px 0 70px;
+}
+
+.orders-container {
+  gap: 26px;
+}
+
+.orders-heading,
+.small-orders-heading {
+  display: grid;
+  gap: 12px;
+}
+
+.orders-title {
+  font-size: 2.8rem;
+}
+
+.orders-intro {
+  font-size: 0.92rem;
+}
+
+.order-cards {
+  gap: 12px;
+  grid-template-columns: none;
+  grid-auto-flow: column;
+  grid-auto-columns: min(340px, calc(100vw - 46px));
+  overflow-x: auto;
+  margin-inline: -15px;
+  padding: 4px 15px 16px;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: thin;
+}
+
+.order-card {
+  padding: 20px;
+  border-radius: var(--global-radius);
+  scroll-snap-align: start;
+}
+
+.order-card h4 {
+  font-size: 1.7rem;
+}
+
+.small-orders {
+  margin-top: 2px;
+  padding-top: 22px;
+}
+
+.small-order-list {
+  grid-template-columns: none;
+  grid-auto-flow: column;
+  grid-auto-columns: min(250px, calc(100vw - 64px));
+  overflow-x: auto;
+  margin-inline: -15px;
+  padding: 2px 15px 10px;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: thin;
+}
+
+.small-order-card {
+  min-height: 0;
+  scroll-snap-align: start;
+}
+
+.small-order-card h5 {
+  margin: 0;
+}
+
+.small-order-card p {
+  margin-top: 4px;
+}
+
+.small-order-price {
+  margin-top: 14px;
 }
 
 #contact {
