@@ -71,7 +71,6 @@
     box-shadow var(--transition-speed) var(--transition-easing);
 }
 
-.order-card:hover,
 .order-card:focus-visible,
 .order-card:focus-within {
   transform: translateY(-4px);
@@ -200,7 +199,6 @@
 }
 
 .small-order-card:hover {
-  transform: translateY(-3px);
   border-color: rgba(var(--color-text-raw), 0.5);
   box-shadow: var(--shadow-2);
 }

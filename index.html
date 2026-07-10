@@ -11,6 +11,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="mobile.css" media="(max-width: 768px)">
+    <link rel="stylesheet" href="style/polish.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=Oswald:wght@700&display=swap" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
     
@@ -54,9 +55,15 @@
                     <h1 class="hero-title"><a class="section-permalink" href="?home" data-section-link="hero">ReNothingg</a></h1>
                     <p class="hero-description">Я хочу, чтобы технологии были ближе каждому — доступные, понятные и
                         гибкие. Чтобы каждый мог использовать их для своих идей.</p>
+                    <div class="hero-actions">
+                        <a class="hero-action hero-action--primary" href="?projects" data-section-link="projects">Смотреть проекты</a>
+                        <a class="hero-action" href="?contact" data-section-link="contact">Обсудить задачу</a>
+                    </div>
                 </div>
-                <img src="public/main.svg" alt="header" class="hero-container-img" fetchpriority="high"
-                    decoding="async" />
+                <div class="hero-visual">
+                    <img src="public/main.svg" alt="Арбуз в красных очках — персонаж ReNothingg" class="hero-container-img" fetchpriority="high"
+                        decoding="async" />
+                </div>
             </div>
         </section>
 
@@ -64,21 +71,11 @@
             <div class="container about-container">
                 <div class="about-text">
                     <h3 class="section-title"><a class="section-permalink" href="?about" data-section-link="about">Обо мне</a></h3>
-                    <p>
-                        Здравствуйте! Я занимаюсь разработкой веб-приложений, автоматизацией, созданием Telegram-ботов, AI-интеграций и программных решений под ваши задачи.
-                    </p>
 
-                    <p>
-                        Работаю в fullstack-направлении: React + TypeScript, Python, C#, Unity. Разрабатываю backend и frontend, REST API, работаю с WebSocket/SSE, базами данных, Redis, Docker-инфраструктурой и автоматизацией процессов. Также занимаюсь интеграцией AI/LLM в разные проекты (чат-системы, ассистенты, генерация контента, обработка данных). Мне интересны создание удобных и рабочих решений, которые можно использовать на практике. Пример одного из проектов вы можете найти по: <a href="https://chat.synvexai.com" target="_blank">chat.synvexai.com</a>.
-                    </p>
-
-                    <p>
-                        Подхожу к задачам внимательно и вдумчиво: разбираюсь в цели проекта, затем предлагаю оптимальный вариант реализации. Стараюсь писать понятный, аккуратный и поддерживаемый код, а также делать результат техническим, рабочим и удобным для пользователя.
-                    </p>
-
-                    <p>
-                        Для меня важны качество, ответственность, адекватная коммуникация и результат, который решает задачу клиента. Я стараюсь вникнуть в проект, соблюдать договорённости и доводить работу до хорошего итогового состояния.
-                    </p>
+                    <p>Здравствуйте! Я занимаюсь разработкой веб-приложений, автоматизацией, созданием Telegram-ботов и Mini Apps, AI-интеграций и программных решений под задачи бизнеса и частных клиентов. Примеры проектов и open-source: <a href="https://github.com/ReNothingg" target="_blank" rel="noopener noreferrer">GitHub</a></p>
+                    <P>Работаю в fullstack-направлении и разрабатываю как отдельные сервисы, так и полноценные решения под ключ. Мой основной стек: React + TypeScript, Python, C#, Node.js, Flask, FastAPI, .NET. Также работаю с backend и frontend-разработкой, REST API, WebSocket/SSE, базами данных PostgreSQL и MySQL, Redis, Docker, Nginx и серверной инфраструктурой.</P>
+                    <p>Занимаюсь созданием Telegram-ботов/Mini Apps, парсеров, desktop-программ, web-сервисов, AI, чат-систем и интеграций с внешними API. Также работаю с AI/LLM-направлением: генерация контента, обработка данных, автоматизация, и интеграция современных моделей в реальные проекты.</p>
+                    <p>У меня есть опыт разработки своих проектов в сферах AI, автоматизации, Telegram и прикладных сервисов, поэтому я хорошо понимаю как сделать решение удобным, рабочим и полезным на практике. Есть опыт настройки и развертывания проектов через Docker и Nginx, а также работы с серверной частью.</p>
 
                     <div>
                         Всегда рад обсудить новые идеи, обменяться опытом или просто пообщаться. Пишите!
@@ -86,7 +83,7 @@
                 </div>
 
                 <div class="about-quote">
-                    <p>You can just start building things.</p>
+                    <p>You can just start building things</p>
                 </div>
             </div>
 
@@ -122,8 +119,7 @@
             <div class="container orders-container">
                 <div class="orders-heading">
                     <div>
-                        <p class="orders-kicker">Коммерческая разработка</p>
-                        <h3 id="orders-title" class="orders-title"><a class="section-permalink" href="?orders" data-section-link="orders">Мои заказы</a></h3>
+                          <h3 id="orders-title" class="orders-title"><a class="section-permalink" href="?orders" data-section-link="orders">Мои заказы</a></h3>
                     </div>
                 </div>
 
@@ -213,23 +209,27 @@
                         <h4 id="small-orders-title">Малые клиентские кейсы</h4>
                         <p>Небольшие задачи, которые закрывались быстро, точечно и под конкретную проблему заказчика</p>
                     </div>
-                    <div class="small-order-list" tabindex="0" aria-label="Малые клиентские кейсы">
-                        <article class="small-order-card"><h5>Разработка ПО для поиска текста из газеты</h5><p>Поиск текста в газетах и автоматическая проверка найденной информации на достоверность</p><span class="small-order-price">15,300 ₽ — 3d — 5⭐</span></article>
-                        <article class="small-order-card"><h5>Оптимизация Go-парсера</h5><p>Рефакторинг кода и улучшения скорости парсера с сетями на Goland</p><span class="small-order-price">702 BYN — 1,2d — 3⭐</span></article>
-                        <article class="small-order-card"><h5>Бот мониторинга институтов</h5><p>Сделал бота для мониторинга институтов и поиска освободившихся мест</p><span class="small-order-price">799,29 BYN — 3d — 🚫⭐</span></article>
-                        <article class="small-order-card"><h5>Создание авто-постера Дзен</h5><p>Создал автоматический постер для публикации в Яндекс Дзен</p><span class="small-order-price">10,000 ₽ — 1d — 5⭐</span></article>
-                        <article class="small-order-card"><h5>Аудит чужого кода</h5><p>Посмотрел архитектуру, нашел узкие места и дал понятный план, что чинить или переписывать первым</p><span class="small-order-price">90$ — 3h — 4⭐</span></article>
-                        <article class="small-order-card"><h5>Реалтайм-уведомления</h5><p>Настроил WebSocket/SSE для стриминга, быстрых обновлений интерфейса и уведомлений без перезагрузки</p><span class="small-order-price">90$ — 4h — 5⭐</span></article>
-                        <article class="small-order-card"><h5>Админ-панель</h5><p>Добавил управление заказами, пользователями, балансами, статусами и базовыми действиями администратора</p><span class="small-order-price">170$ — 1d — 5⭐</span></article>
-                        <article class="small-order-card"><h5>Git после поломки</h5><p>Разобрал конфликт, поправил pull/push, убрал лишние файлы из репозитория и восстановил нормальный workflow</p><span class="small-order-price">40$ — 2h — 3⭐</span></article>
-                        <article class="small-order-card"><h5>AI-чат для сервиса</h5><p>Интегрировал LLM в интерфейс, настроил обработку сообщений и потоковую выдачу ответа</p><span class="small-order-price">90$ — 3h — 5⭐</span></article>
-                        <article class="small-order-card"><h5>Оплата и статусы</h5><p>Подключил прием платежей, проверку оплаты, обновление статусов и автоматическую выдачу после подтверждения</p><span class="small-order-price">140$ — 5h — 4⭐</span></article>
-                        <article class="small-order-card"><h5>Mini App для продаж</h5><p>Собрал интерфейс внутри Telegram, связал его с backend и логикой оформления заказов</p><span class="small-order-price">240$ — 2d — 5⭐</span></article>
-                        <article class="small-order-card"><h5>Telegram-бот для заказов</h5><p>Сделал команды, обработку заявок, админские действия и базовую логику работы с пользователями</p><span class="small-order-price">180$ — 8h — 5⭐</span></article>
-                        <article class="small-order-card"><h5>Срочный фикс багов</h5><p>Нашел причину ошибки, поправил проблемный участок и вернул проект в рабочее состояние</p><span class="small-order-price">30$ — 1h — 4⭐</span></article>
-                        <article class="small-order-card"><h5>Домен и SSL</h5><p>Подключил домен, настроил DNS, HTTPS, редиректы и базовую защиту через Nginx</p><span class="small-order-price">45$ — 1h — 5⭐</span></article>
-                        <article class="small-order-card"><h5>Деплой сайта</h5><p>Собрал frontend, поднял backend, настроил запуск и проверил работу проекта в продакшене</p><span class="small-order-price">25$ — 2h — 5⭐</span></article>
-                        <article class="small-order-card"><h5>Docker для проекта</h5><p>Собрал окружение, настроил Compose и подготовил проект к нормальному запуску на сервере</p><span class="small-order-price">45$ — 4h — 4⭐</span></article>
+                    <div class="small-orders-marquee" tabindex="0" aria-label="Малые клиентские кейсы">
+                        <div class="small-order-track" data-small-orders-track>
+                            <div class="small-order-list" data-small-orders-group>
+                                <article class="small-order-card"><h5>Разработка ПО для поиска текста из газеты</h5><p>Поиск текста в газетах и автоматическая проверка найденной информации на достоверность</p><span class="small-order-price">15,300 ₽ — 3d — 5⭐</span></article>
+                                <article class="small-order-card"><h5>Оптимизация Go-парсера</h5><p>Рефакторинг кода и улучшения скорости парсера с сетями на Goland</p><span class="small-order-price">702 BYN — 1,2d — 3⭐</span></article>
+                                <article class="small-order-card"><h5>Бот мониторинга институтов</h5><p>Сделал бота для мониторинга институтов и поиска освободившихся мест</p><span class="small-order-price">799,29 BYN — 3d — 🚫⭐</span></article>
+                                <article class="small-order-card"><h5>Создание авто-постера Дзен</h5><p>Создал автоматический постер для публикации в Яндекс Дзен</p><span class="small-order-price">10,000 ₽ — 1d — 5⭐</span></article>
+                                <article class="small-order-card"><h5>Аудит чужого кода</h5><p>Посмотрел архитектуру, нашел узкие места и дал понятный план, что чинить или переписывать первым</p><span class="small-order-price">90$ — 3h — 4⭐</span></article>
+                                <article class="small-order-card"><h5>Реалтайм-уведомления</h5><p>Настроил WebSocket/SSE для стриминга, быстрых обновлений интерфейса и уведомлений без перезагрузки</p><span class="small-order-price">90$ — 4h — 5⭐</span></article>
+                                <article class="small-order-card"><h5>Админ-панель</h5><p>Добавил управление заказами, пользователями, балансами, статусами и базовыми действиями администратора</p><span class="small-order-price">170$ — 1d — 5⭐</span></article>
+                                <article class="small-order-card"><h5>Git после поломки</h5><p>Разобрал конфликт, поправил pull/push, убрал лишние файлы из репозитория и восстановил нормальный workflow</p><span class="small-order-price">40$ — 2h — 3⭐</span></article>
+                                <article class="small-order-card"><h5>AI-чат для сервиса</h5><p>Интегрировал LLM в интерфейс, настроил обработку сообщений и потоковую выдачу ответа</p><span class="small-order-price">90$ — 3h — 5⭐</span></article>
+                                <article class="small-order-card"><h5>Оплата и статусы</h5><p>Подключил прием платежей, проверку оплаты, обновление статусов и автоматическую выдачу после подтверждения</p><span class="small-order-price">140$ — 5h — 4⭐</span></article>
+                                <article class="small-order-card"><h5>Mini App для продаж</h5><p>Собрал интерфейс внутри Telegram, связал его с backend и логикой оформления заказов</p><span class="small-order-price">240$ — 2d — 5⭐</span></article>
+                                <article class="small-order-card"><h5>Telegram-бот для заказов</h5><p>Сделал команды, обработку заявок, админские действия и базовую логику работы с пользователями</p><span class="small-order-price">180$ — 8h — 5⭐</span></article>
+                                <article class="small-order-card"><h5>Срочный фикс багов</h5><p>Нашел причину ошибки, поправил проблемный участок и вернул проект в рабочее состояние</p><span class="small-order-price">30$ — 1h — 4⭐</span></article>
+                                <article class="small-order-card"><h5>Домен и SSL</h5><p>Подключил домен, настроил DNS, HTTPS, редиректы и базовую защиту через Nginx</p><span class="small-order-price">45$ — 1h — 5⭐</span></article>
+                                <article class="small-order-card"><h5>Деплой сайта</h5><p>Собрал frontend, поднял backend, настроил запуск и проверил работу проекта в продакшене</p><span class="small-order-price">25$ — 2h — 5⭐</span></article>
+                                <article class="small-order-card"><h5>Docker для проекта</h5><p>Собрал окружение, настроил Compose и подготовил проект к нормальному запуску на сервере</p><span class="small-order-price">45$ — 4h — 4⭐</span></article>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>

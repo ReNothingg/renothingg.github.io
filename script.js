@@ -232,8 +232,24 @@ document.addEventListener('DOMContentLoaded', () => {
     track.appendChild(clone);
   };
 
+  const setupSmallOrdersMarquee = () => {
+    const track = document.querySelector('[data-small-orders-track]');
+    const group = document.querySelector('[data-small-orders-group]');
+
+    if (!track || !group || track.children.length > 1) return;
+
+    const clone = group.cloneNode(true);
+    clone.setAttribute('aria-hidden', 'true');
+    clone.querySelectorAll('[tabindex], a, button').forEach((element) => {
+      element.setAttribute('tabindex', '-1');
+    });
+
+    track.appendChild(clone);
+  };
+
   setupProjectsScene();
   setupDeadProjectsMarquee();
+  setupSmallOrdersMarquee();
 
   const scrollButton = document.getElementById('scrollToTopBtn');
   if (scrollButton) {
