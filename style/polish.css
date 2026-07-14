@@ -197,7 +197,7 @@ section {
   --small-order-gap: 12px;
   position: relative;
   width: 100%;
-  min-height: 188px;
+  min-height: 164px;
   overflow: hidden;
   contain: layout paint;
 }
@@ -224,15 +224,21 @@ section {
 }
 
 .small-order-card {
-  width: clamp(250px, 22vw, 310px);
-  min-height: 174px;
+  width: clamp(235px, 19vw, 280px);
+  height: 166px;
+  min-height: 166px;
   flex: 0 0 auto;
   display: flex;
   flex-direction: column;
+  padding: 15px;
 }
 
 .small-order-card p {
   flex-grow: 1;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+  overflow: hidden;
 }
 
 @keyframes small-orders-scroll {
@@ -373,7 +379,7 @@ footer p {
 
   .small-order-track {
     --small-order-gap: 10px;
-    min-height: 178px;
+    min-height: 180px;
   }
 
   .small-order-list {
@@ -387,8 +393,37 @@ footer p {
   }
 
   .small-order-card {
-    width: min(280px, calc(100vw - 44px));
+    width: min(248px, calc(100vw - 72px));
+    height: 164px;
     min-height: 164px;
+  }
+
+  .small-orders-marquee.is-user-controlled {
+    overflow-x: auto;
+    overscroll-behavior-inline: contain;
+    scroll-snap-type: x proximity;
+    scrollbar-width: thin;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .small-orders-marquee.is-user-controlled .small-order-track {
+    width: max-content;
+    overflow: visible;
+    contain: none;
+  }
+
+  .small-orders-marquee.is-user-controlled .small-order-list {
+    position: static;
+    animation: none !important;
+    transform: none !important;
+  }
+
+  .small-orders-marquee.is-user-controlled .small-order-list[aria-hidden="true"] {
+    display: none;
+  }
+
+  .small-orders-marquee.is-user-controlled .small-order-card {
+    scroll-snap-align: start;
   }
 }
 
