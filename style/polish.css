@@ -171,6 +171,10 @@ section {
   overflow-x: clip;
 }
 
+.orders-container {
+  grid-template-columns: minmax(0, 1fr);
+}
+
 .order-card:hover,
 .order-card:focus-visible,
 .order-card:focus-within,
@@ -182,52 +186,56 @@ section {
 }
 
 .small-orders {
+  position: relative;
+  left: 50%;
+  min-width: 0;
+  width: calc(100vw - 40px);
+  max-width: 1800px;
+  transform: translateX(-50%);
   overflow: visible;
 }
 
 .small-orders-marquee {
   position: relative;
-  width: 100vw;
-  margin-left: calc(50% - 50vw);
-  overflow: hidden;
+  min-width: 0;
+  width: 100%;
+  margin-left: 0;
+  overflow: visible;
   padding: 4px 0 12px;
 }
 
 .small-order-track {
   --small-order-gap: 12px;
   position: relative;
+  min-width: 0;
   width: 100%;
-  min-height: 164px;
-  overflow: hidden;
-  contain: layout paint;
+  min-height: 0;
+  overflow: visible;
 }
 
 .small-order-list {
-  position: absolute;
-  inset: 0 auto auto 0;
-  display: flex;
+  position: static;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+  grid-auto-flow: row;
+  grid-auto-columns: auto;
   gap: var(--small-order-gap);
-  min-width: max-content;
-  padding: 0 var(--small-order-gap) 8px 0;
+  width: 100%;
+  min-width: 0;
+  margin: 0;
+  padding: 0 0 8px;
   overflow: visible;
-  animation: small-orders-scroll 72s linear infinite;
-  will-change: transform;
+  animation: none;
 }
 
 .small-order-list[aria-hidden="true"] {
-  animation-name: small-orders-scroll-copy;
-}
-
-.small-orders-marquee:hover .small-order-list,
-.small-orders-marquee:focus-within .small-order-list {
-  animation-play-state: paused;
+  display: none;
 }
 
 .small-order-card {
-  width: clamp(235px, 19vw, 280px);
-  height: 166px;
+  width: auto;
+  height: auto;
   min-height: 166px;
-  flex: 0 0 auto;
   display: flex;
   flex-direction: column;
   padding: 15px;
@@ -239,15 +247,6 @@ section {
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 3;
   overflow: hidden;
-}
-
-@keyframes small-orders-scroll {
-  to { transform: translateX(-100%); }
-}
-
-@keyframes small-orders-scroll-copy {
-  from { transform: translateX(100%); }
-  to { transform: translateX(0); }
 }
 
 #projects {
@@ -377,53 +376,29 @@ footer p {
     align-items: flex-start;
   }
 
+  .small-orders {
+    left: auto;
+    width: 100%;
+    transform: none;
+  }
+
   .small-order-track {
     --small-order-gap: 10px;
-    min-height: 180px;
+    min-height: 0;
   }
 
   .small-order-list {
-    grid-template-columns: none;
-    grid-auto-flow: initial;
-    grid-auto-columns: auto;
+    grid-template-columns: repeat(auto-fit, minmax(min(230px, 100%), 1fr));
     margin-inline: 0;
-    padding: 0 var(--small-order-gap) 8px 0;
+    padding: 0 0 8px;
     overflow: visible;
     scroll-snap-type: none;
   }
 
   .small-order-card {
-    width: min(248px, calc(100vw - 72px));
-    height: 164px;
+    width: auto;
+    height: auto;
     min-height: 164px;
-  }
-
-  .small-orders-marquee.is-user-controlled {
-    overflow-x: auto;
-    overscroll-behavior-inline: contain;
-    scroll-snap-type: x proximity;
-    scrollbar-width: thin;
-    -webkit-overflow-scrolling: touch;
-  }
-
-  .small-orders-marquee.is-user-controlled .small-order-track {
-    width: max-content;
-    overflow: visible;
-    contain: none;
-  }
-
-  .small-orders-marquee.is-user-controlled .small-order-list {
-    position: static;
-    animation: none !important;
-    transform: none !important;
-  }
-
-  .small-orders-marquee.is-user-controlled .small-order-list[aria-hidden="true"] {
-    display: none;
-  }
-
-  .small-orders-marquee.is-user-controlled .small-order-card {
-    scroll-snap-align: start;
   }
 }
 
@@ -433,23 +408,4 @@ footer p {
 
 @media (prefers-reduced-motion: reduce) {
   .hero-action:hover { transform: none; }
-
-  .small-orders-marquee {
-    overflow-x: auto;
-  }
-
-  .small-order-track {
-    width: max-content;
-    overflow: visible;
-    contain: none;
-  }
-
-  .small-order-list {
-    position: static;
-    animation: none !important;
-  }
-
-  .small-order-list[aria-hidden="true"] {
-    display: none;
-  }
 }

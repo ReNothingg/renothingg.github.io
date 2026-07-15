@@ -232,50 +232,8 @@ document.addEventListener('DOMContentLoaded', () => {
     track.appendChild(clone);
   };
 
-  const setupSmallOrdersMarquee = () => {
-    const track = document.querySelector('[data-small-orders-track]');
-    const group = document.querySelector('[data-small-orders-group]');
-    const marquee = track?.closest('.small-orders-marquee');
-
-    if (!track || !group || !marquee || track.children.length > 1) return;
-
-    const clone = group.cloneNode(true);
-    clone.setAttribute('aria-hidden', 'true');
-    clone.querySelectorAll('[tabindex], a, button').forEach((element) => {
-      element.setAttribute('tabindex', '-1');
-    });
-
-    track.appendChild(clone);
-
-    const enableManualControl = () => {
-      if (!window.matchMedia('(max-width: 768px)').matches) return;
-      marquee.classList.add('is-user-controlled');
-      marquee.setAttribute('data-autoplay', 'off');
-    };
-
-    marquee.addEventListener('pointerdown', enableManualControl, { passive: true });
-    marquee.addEventListener('touchstart', enableManualControl, { passive: true });
-    marquee.addEventListener(
-      'wheel',
-      (event) => {
-        if (Math.abs(event.deltaX) < Math.abs(event.deltaY)) return;
-
-        const wasUserControlled = marquee.classList.contains('is-user-controlled');
-        enableManualControl();
-
-        if (!wasUserControlled && marquee.classList.contains('is-user-controlled')) {
-          requestAnimationFrame(() => {
-            marquee.scrollLeft += event.deltaX;
-          });
-        }
-      },
-      { passive: true }
-    );
-  };
-
   setupProjectsScene();
   setupDeadProjectsMarquee();
-  setupSmallOrdersMarquee();
 
   const scrollButton = document.getElementById('scrollToTopBtn');
   if (scrollButton) {
