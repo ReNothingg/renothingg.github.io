@@ -9,9 +9,9 @@
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="mobile.css" media="(max-width: 768px)">
-    <link rel="stylesheet" href="style/polish.css">
+    <link rel="stylesheet" href="style.css?v=20260725l">
+    <link rel="stylesheet" href="mobile.css?v=20260725j" media="(max-width: 768px)">
+    <link rel="stylesheet" href="style/polish.css?v=20260725b">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css" >
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=Oswald:wght@700&display=swap" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
@@ -139,7 +139,8 @@
                     </div>
                 </div>
 
-                <div class="order-cards" tabindex="0" aria-label="Заказы, горизонтальная прокрутка">
+                <div class="order-cards" tabindex="0" aria-label="Заказы, горизонтальная прокрутка"
+                    data-order-cards-scroll>
                     <article class="order-card" tabindex="0">
                         <div class="order-card-summary">
                             <h4>StellerPay Market</h4>
@@ -228,6 +229,7 @@
                     <div class="small-orders-marquee" tabindex="0" aria-label="Малые клиентские кейсы">
                         <div class="small-order-track" data-small-orders-track>
                             <div class="small-order-list" data-small-orders-group>
+                                <article class="small-order-card"><h5>Объединение Telegram-ботов и доработка системы</h5><p>Добавление новых аккаунтов, объединение заявок с трёх серверов в одного тг-бота и исправление ошибок в существующем софте</p><span class="small-order-price">Цена — срок — оценка</span></article>
                                 <article class="small-order-card"><h5>Разработка бота для автоматической рассылки</h5><p>Мультиаккаунтинг, автоматическая рассылка по чатам, изменение сообщений и управление аккаунтами</p><span class="small-order-price">210 $ — 1d — 5⭐</span></article>
                                 <article class="small-order-card"><h5>Создание сайта для мониторинга доступности</h5><p>Отслеживание работоспособности другого сайта и автоматическая отправка его статуса в Telegram</p><span class="small-order-price">135 BYN — 2h — благодарю⭐</span></article>
                                 <article class="small-order-card"><h5>Разработка ИИ-модуля для торгового бота</h5><p>Анализ рынка и автоматическое формирование торговых решений с расчётом объёма позиции, плеча, Stop Loss и Take Profit</p><span class="small-order-price">8,000 ₽ — 2d</span></article>
@@ -259,186 +261,94 @@
                 <div class="projects-title">
                     <h3 class="section-title"><a class="section-permalink" href="?projects" data-section-link="projects">Мои Проекты</a></h3>
                 </div>
-                <div class="projects-scene" data-projects-scene>
-                    <div class="projects-pin">
-                        <div class="projects-showcase">
-
-                            <div class="projects-frame">
-                                <a href="https://synvexai.github.io" target="_blank" rel="noopener noreferrer"
-                                    class="project-preview is-active" data-project-preview="0"
-                                    style="--project-accent: 188, 209, 202;">
-                                    <div class="project-preview-media">
-                                        <picture>
-                                            <source
-                                                srcset="https://avatars.githubusercontent.com/u/210514589?s=1200&v=4&format=webp"
-                                                type="image/webp">
-                                            <img src="https://avatars.githubusercontent.com/u/210514589?s=1200&v=4"
-                                                alt="SynvexAI" loading="lazy" decoding="async">
-                                        </picture>
-                                    </div>
-                                    <div class="project-preview-chrome">
-                                        <div class="project-preview-mark">
-                                            <h4>SynvexAI</h4>
-                                        </div>
-                                    </div>
-                                </a>
-
-                                <a href="FCube/" target="_blank" rel="noopener noreferrer" class="project-preview"
-                                    data-project-preview="1" style="--project-accent: 242, 184, 91;">
-                                    <div class="project-preview-media">
-                                        <picture>
-                                            <source srcset="FCube/assets/favicon.png" type="image/webp">
-                                            <img src="FCube/assets/favicon.png" alt="[F]CUBE banner" loading="lazy"
-                                                decoding="async">
-                                        </picture>
-                                    </div>
-                                    <div class="project-preview-chrome">
-                                        <div class="project-preview-mark">
-                                            <h4>[F]CUBE</h4>
-                                        </div>
-                                    </div>
-                                </a>
-
-                                <a href="FloppaRun/" target="_blank" rel="noopener noreferrer"
-                                    class="project-preview" data-project-preview="2"
-                                    style="--project-accent: 226, 151, 120;">
-                                    <div class="project-preview-media">
-                                        <picture>
-                                            <source srcset="FloppaRun/assets/favicon.png" type="image/webp">
-                                            <img src="FloppaRun/assets/favicon.png" alt="Floppa Run banner"
-                                                loading="lazy" decoding="async">
-                                        </picture>
-                                    </div>
-                                    <div class="project-preview-chrome">
-                                        <div class="project-preview-mark">
-                                            <h4>Floppa Run</h4>                                        
-                                        </div>
-                                    </div>
-                                </a>
-
-                                <a href="https://t.me/ReSafeBot" target="_blank" rel="noopener noreferrer"
-                                    class="project-preview" data-project-preview="3"
-                                    style="--project-accent: 129, 213, 171;">
-                                    <div class="project-preview-media">
-                                        <picture>
-                                            <img src="public/project/ReSave.jpg" alt="ReSave banner" loading="lazy"
-                                                decoding="async">
-                                        </picture>
-                                    </div>
-                                    <div class="project-preview-chrome">
-                                        <div class="project-preview-mark">
-                                            <h4>ReSave</h4>
-                                        </div>
-                                    </div>
-                                </a>
-
-                                <a href="https://chat.synvexai.com/" target="_blank" rel="noopener noreferrer"
-                                    class="project-preview project-preview--logo project-preview--remind" data-project-preview="4"
-                                    style="--project-accent: 174, 186, 214;">
-                                    <div class="project-preview-media">
-                                        <picture>
-                                            <img src="public/project/ReMind.png" alt="ReMind logo" loading="lazy"
-                                                decoding="async">
-                                        </picture>
-                                    </div>
-                                    <div class="project-preview-chrome">
-                                        <div class="project-preview-mark">
-                                            <h4>ReMind</h4>
-                                        </div>
-                                    </div>
-                                </a>
+                <div class="projects-grid-shell is-at-start" data-projects-scroll-shell>
+                <div class="projects-grid" data-projects-scroll>
+                    <a href="https://synvexai.github.io" target="_blank" rel="noopener noreferrer"
+                        class="project-card" style="--project-accent: 188, 209, 202;">
+                        <img class="project-card-art"
+                            src="https://avatars.githubusercontent.com/u/210514589?s=900&v=4"
+                            alt="" loading="lazy" decoding="async">
+                        <span class="project-card-shade" aria-hidden="true"></span>
+                        <div class="project-card-top">
+                            <span class="project-status project-status--active">Активен</span>
+                        </div>
+                        <div class="project-card-copy">
+                            <p>Мы создаём искусственный интеллект, чтобы технологии лучше работали для человека.</p>
+                            <div class="project-card-heading">
+                                <h4>SynvexAI</h4>
+                                <time datetime="2025-05-05">05.05.2025</time>
                             </div>
                         </div>
-                    </div>
+                    </a>
 
-                    <div class="projects-list">
-                        <article class="project-story is-active" data-project-story="0"
-                            style="--project-accent: 188, 209, 202;">
-                            <a href="https://synvexai.github.io" target="_blank" rel="noopener noreferrer"
-                                class="project-story-card">
-                                <div class="project-story-top">
-                                    <span class="project-status project-status--active">Активен</span>
-                                </div>
-                                <h4>SynvexAI</h4>
-                                <p>Мы создаём искусственный интеллект, чтобы технологии лучше работали для человека.</p>
-                                <div class="project-story-meta">
-                                    <div class="project-story-date">
-                                        <span class="project-meta-label">Начало проекта</span>
-                                        <strong>5 мая 2025</strong>
-                                    </div>
-                                </div>
-                                <span class="project-story-link">Открыть проект</span>
-                            </a>
-                        </article>
-
-                        <article class="project-story" data-project-story="1"
-                            style="--project-accent: 242, 184, 91;">
-                            <a href="FCube/" target="_blank" rel="noopener noreferrer" class="project-story-card">
-                                <div class="project-story-top">
-                                    <span class="project-status project-status--dormant">Приостановлен</span>
-                                </div>
+                    <a href="FCube/" target="_blank" rel="noopener noreferrer"
+                        class="project-card" style="--project-accent: 242, 184, 91;">
+                        <img class="project-card-art" src="FCube/assets/favicon.png" alt="" loading="lazy"
+                            decoding="async">
+                        <span class="project-card-shade" aria-hidden="true"></span>
+                        <div class="project-card-top">
+                            <span class="project-status project-status--dormant">Приостановлен</span>
+                        </div>
+                        <div class="project-card-copy">
+                            <p>Песочница, в которой отсутствуют привычные ограничения, предоставляющая игроку неограниченные возможности для экспериментов и творчества.</p>
+                            <div class="project-card-heading">
                                 <h4>[F]CUBE</h4>
-                                <p>[F]CUBE — уникальная песочница, в которой отсутствуют привычные ограничения, предоставляющая игроку неограниченные возможности для экспериментов и творчества.</p>
-                                <div class="project-story-meta">
-                                    <div class="project-story-date">
-                                        <span class="project-meta-label">Начало проекта</span>
-                                        <strong>2019</strong>
-                                    </div>
-                                </div>
-                                <span class="project-story-link">View archive</span>
-                            </a>
-                        </article>
+                                <time datetime="2019">2019</time>
+                            </div>
+                        </div>
+                    </a>
 
-                        <article class="project-story" data-project-story="2"
-                            style="--project-accent: 226, 151, 120;">
-                            <a href="FloppaRun/" target="_blank" rel="noopener noreferrer" class="project-story-card">
-                                <div class="project-story-top">
-                                    <span class="project-status project-status--active">Завершен</span>
-                                </div>
+                    <a href="FloppaRun/" target="_blank" rel="noopener noreferrer"
+                        class="project-card" style="--project-accent: 226, 151, 120;">
+                        <img class="project-card-art" src="FloppaRun/assets/favicon.png" alt="" loading="lazy"
+                            decoding="async">
+                        <span class="project-card-shade" aria-hidden="true"></span>
+                        <div class="project-card-top">
+                            <span class="project-status project-status--complete">Завершён</span>
+                        </div>
+                        <div class="project-card-copy">
+                            <p>Захватывающий бесконечный раннер, где вы управляете Шлёпой, уворачиваясь от препятствий и собирая пельмени!</p>
+                            <div class="project-card-heading">
                                 <h4>Floppa Run</h4>
-                                <p>Захватывающий мобильный раннер, где нужно отлично чувствовать ритм, чтобы не собирать все препятствия лицом.</p>
-                                <div class="project-story-meta">
-                                    <div class="project-story-date">
-                                        <span class="project-meta-label">Начало проекта</span>
-                                        <strong>2019</strong>
-                                    </div>
-                                </div>
-                                <span class="project-story-link">Открыть проект</span>
-                            </a>
-                        </article>
+                                <time datetime="2019">2019</time>
+                            </div>
+                        </div>
+                    </a>
 
-                        <article class="project-story" data-project-story="3"
-                            style="--project-accent: 129, 213, 171;">
-                            <a href="https://t.me/ReSafeBot" target="_blank" rel="noopener noreferrer" class="project-story-card">
-                                <div class="project-story-top">
-                                    <span class="project-status project-status--active">Активен</span>
-                                </div>
+                    <a href="https://t.me/ReSafeBot" target="_blank" rel="noopener noreferrer"
+                        class="project-card" style="--project-accent: 129, 213, 171;">
+                        <img class="project-card-art" src="public/project/ReSave.jpg" alt="" loading="lazy"
+                            decoding="async">
+                        <span class="project-card-shade" aria-hidden="true"></span>
+                        <div class="project-card-top">
+                            <span class="project-status project-status--active">Активен</span>
+                        </div>
+                        <div class="project-card-copy">
+                            <p>Видео из любой ссылки — сразу файлом в Telegram, без лишних переходов.</p>
+                            <div class="project-card-heading">
                                 <h4>ReSave</h4>
-                                <p>Скачивай видео из любых ссылок прямо в Telegram за 5 секунд. Без переходов, сразу файлом.</p>
-                                <div class="project-story-meta">
-                                    <div class="project-story-date">
-                                        <span class="project-meta-label">Начало проекта</span>
-                                        <strong>2025</strong>
-                                    </div>
-                                </div>
-                                <span class="project-story-link">Открыть проект</span>
-                            </a>
-                        </article>
+                                <time datetime="2025">2025</time>
+                            </div>
+                        </div>
+                    </a>
 
-                        <article class="project-story" data-project-story="4"
-                            style="--project-accent: 174, 186, 214;">
-                            <a href="https://chat.synvexai.com/" target="_blank" rel="noopener noreferrer"
-                                class="project-story-card">
-                                <div class="project-story-top">
-                                    <span class="project-status project-status--active">Активен</span>
-                                </div>
+                    <a href="https://chat.synvexai.com/" target="_blank" rel="noopener noreferrer"
+                        class="project-card" style="--project-accent: 174, 186, 214;">
+                        <img class="project-card-art" src="public/project/ReMind.png" alt="" loading="lazy"
+                            decoding="async">
+                        <span class="project-card-shade" aria-hidden="true"></span>
+                        <div class="project-card-top">
+                            <span class="project-status project-status--active">Активен</span>
+                        </div>
+                        <div class="project-card-copy">
+                            <p>ReMind — для всех. Даже для тех, кто ещё не понял зачем.</p>
+                            <div class="project-card-heading">
                                 <h4>ReMind</h4>
-                                <p>ReMind — для всех. Даже для тех, кто ещё не понял зачем.</p>
-                                <span class="project-story-link">Открыть проект</span>
-                            </a>
-                        </article>
-
-                    </div>
+                                <time datetime="2025">2025</time>
+                            </div>
+                        </div>
+                    </a>
+                </div>
                 </div>
 
                 <div class="dead-projects" aria-labelledby="dead-projects-title">
@@ -450,6 +360,8 @@
                     <div class="dead-projects-marquee" aria-label="Архивные проекты">
                         <div class="dead-projects-track" data-dead-projects-track>
                             <div class="dead-projects-group" data-dead-projects-group>
+                                <article class="dead-project-card"><div class="dead-project-icon"><img src="public/project/dead/tgpt.png" alt="TGpt MCP icon" loading="lazy" decoding="async"></div><span class="dead-project-name">TGpt</span></article>
+                                <article class="dead-project-card"><div class="dead-project-icon"><img src="public/project/dead/repo_hack.jpg" alt="REPO Hack icon" loading="lazy" decoding="async"></div><span class="dead-project-name">RepoHax</span></article>
                                 <article class="dead-project-card"><div class="dead-project-icon"><img src="public/project/dead/BUZZDEN.jpg" alt="BUZZDEN icon" loading="lazy" decoding="async"></div><span class="dead-project-name">BUZZDEN</span></article>
                                 <article class="dead-project-card"><div class="dead-project-icon"><img src="public/project/dead/Aetheris.png" alt="Image icon" loading="lazy" decoding="async"></div><span class="dead-project-name">Aetheris: World Weaver</span></article>
                                 <article class="dead-project-card"><div class="dead-project-icon"><img src="public/project/dead/overbid.jpg" alt="Overbid icon" loading="lazy" decoding="async"></div><span class="dead-project-name">Overbid</span></article>
@@ -462,11 +374,10 @@
                                 <article class="dead-project-card"><div class="dead-project-icon"><img src="public/project/dead/shop.jpg" alt="Nothing shop icon" loading="lazy" decoding="async"></div><span class="dead-project-name">Nothing shop</span></article>
                             </div>
                         </div>
-                        <a href="https://github.com/ReNothingg" class="email-link"    
-                            style="display: block; width: fit-content; margin: 20px auto;">
-                            Больше на GitHub
-                        </a>
                     </div>
+                    <a href="https://github.com/ReNothingg" class="email-link dead-projects-more">
+                        Больше на GitHub
+                    </a>
                 </div>
             </div>
         </section>
@@ -521,27 +432,6 @@
                 </div>
             </div>
         </section>
-
-        <!-- <section id="research">
-            <div class="container">
-                <h3 class="section-title">Исследования</h3>
-                <p style="color: #888; font-style: italic; margin-bottom: 30px;">
-                    <em>Детский сад исследует траву</em>
-                </p>
-                <div class="research-grid">
-                    <div class="research-card">
-                        <h1>Mind 4</h1>
-                        <p>Данная работа посвящена попытке разработки компактной языковой модели Mind 4 силами одного
-                            ученика в условиях ограниченных вычислительных и финансовых ресурсов. В ходе исследования
-                            была частично подтверждена возможность проектирования архитектуры мирового уровня (MoE,
-                            GQA), однако выявлено, что отсутствие огромных массивов качественных данных и инфраструктуры
-                            для RLHF делает такую модель неконкурентоспособной по сравнению с промышленными аналогами.
-                        </p>
-                        <a href="research/mind4/" class="research-link">Посмотреть →</a>
-                    </div>
-                </div>
-            </div>
-        </section> -->
 
         <section id="contact">
             <div class="container">
@@ -606,7 +496,7 @@
         <i class="fa-solid fa-arrow-up"></i>
     </button> -->
 
-    <script src="script.js" defer></script>
+    <script src="script.js?v=20260725m" defer></script>
 </body>
 
 </html>

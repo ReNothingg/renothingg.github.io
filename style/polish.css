@@ -118,6 +118,7 @@ section {
 }
 
 .section-title {
+  margin-top: 0;
   margin-bottom: 62px;
   padding-bottom: 0;
   line-height: 0.9;
@@ -408,4 +409,28 @@ footer p {
 
 @media (prefers-reduced-motion: reduce) {
   .hero-action:hover { transform: none; }
+}
+
+#about,
+#orders,
+#projects,
+#support,
+#contact {
+  padding-top: 92px;
+}
+
+@media (min-width: 769px) {
+  .support-sticky {
+    top: 0;
+  }
+}
+
+@media (max-width: 768px) {
+  #about,
+  #orders,
+  #projects,
+  #support,
+  #contact {
+    padding-top: 62px;
+  }
 }

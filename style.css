@@ -1,11 +1,11 @@
 @import url("style/base.css");
 @import url("style/hero.css");
 @import url("style/about.css");
-@import url("style/projects-layout.css");
+@import url("style/projects-layout.css?v=20260725e");
 @import url("style/project-previews.css");
-@import url("style/project-stories.css");
-@import url("style/project-archive.css");
-@import url("style/orders.css");
+@import url("style/project-stories.css?v=20260725j");
+@import url("style/project-archive.css?v=20260725f");
+@import url("style/orders.css?v=20260725b");
 @import url("style/research.css");
 @import url("style/contact.css");
 @import url("style/support.css");

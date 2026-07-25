@@ -1,5 +1,5 @@
 #projects {
-  padding: 150px 0 140px;
+  padding: 120px 0 120px;
   overflow-x: clip;
 }
 
@@ -27,7 +27,7 @@
 
 .projects-title {
   max-width: min(920px, 100%);
-  margin: 0 auto 90px;
+  margin: 0 auto 62px;
   text-align: center;
 }
 

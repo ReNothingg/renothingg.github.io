@@ -275,7 +275,7 @@ section {
 }
 
 .dead-projects {
-  margin-top: 28px;
+  margin-top: 10px;
   gap: 16px;
 }
 
@@ -296,7 +296,7 @@ section {
 
 .dead-projects-track {
   --dead-project-gap: 12px;
-  min-height: 78px;
+  height: 78px;
 }
 
 .dead-project-card {
@@ -312,6 +312,39 @@ section {
 .dead-project-name {
   font-size: 0.94rem;
 }
+
+.projects-grid {
+  display: flex;
+  gap: 14px;
+  margin: 0;
+  padding: 4px 20px 16px;
+  scroll-padding-inline: 20px;
+}
+
+.project-card {
+  flex: 0 0 min(88vw, 370px);
+  width: min(88vw, 370px);
+  min-height: 0;
+  aspect-ratio: 1 / 1.02;
+  padding: 18px;
+  border-radius: 18px;
+}
+
+.project-card-heading h4 {
+  font-size: clamp(2.25rem, 12vw, 3.25rem);
+}
+
+.project-card-copy > p {
+  max-width: 29ch;
+  font-size: 0.92rem;
+}
+
+.project-card .project-status {
+  padding: 7px 10px;
+  font-size: 0.65rem;
+  letter-spacing: 0.14em;
+}
+
 
 #orders {
   padding: 62px 0 70px;
@@ -340,10 +373,14 @@ section {
   grid-template-columns: none;
   grid-auto-flow: column;
   grid-auto-columns: min(340px, calc(100vw - 46px));
+  left: 50%;
+  width: 100vw;
   overflow-x: auto;
-  margin-inline: -15px;
+  margin-left: -50vw;
+  margin-right: 0;
   padding: 4px 15px 16px;
   scroll-snap-type: x mandatory;
+  scroll-padding-inline: 15px;
   scrollbar-width: thin;
 }
 

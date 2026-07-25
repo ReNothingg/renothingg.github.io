@@ -38,17 +38,35 @@
 }
 
 .order-cards {
+  position: relative;
+  left: 50%;
   display: grid;
   grid-template-columns: none;
   grid-auto-flow: column;
   grid-auto-columns: min(430px, calc(100vw - 60px));
   gap: 12px;
+  width: 100vw;
   overflow-x: auto;
-  margin-inline: calc((100vw - min(100vw, var(--max-content-width))) / -2);
-  padding: 2px max(20px, calc((100vw - var(--max-content-width)) / 2)) 18px;
+  margin-left: -50vw;
+  padding: 2px 14px 18px;
+  box-sizing: border-box;
   scroll-snap-type: x mandatory;
+  scroll-padding-inline: 14px;
   scrollbar-color: rgba(var(--color-text-raw), 0.42) transparent;
   scrollbar-width: thin;
+  overscroll-behavior-inline: contain;
+  cursor: grab;
+  touch-action: pan-x pan-y;
+}
+
+.order-cards.is-dragging,
+.order-cards.is-wheel-scrolling {
+  cursor: grabbing;
+  scroll-snap-type: none;
+}
+
+.order-cards.is-dragging {
+  user-select: none;
 }
 
 .order-card {
