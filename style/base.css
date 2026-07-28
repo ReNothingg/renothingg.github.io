@@ -29,7 +29,6 @@
   --radius-sm: 10px;
   --radius-pill: 999px;
 
-  --space-2: 0.5rem;
   --space-3: 0.75rem;
   --space-4: 1rem;
   --space-6: 1.5rem;
@@ -145,4 +144,3 @@ section {
   outline: 2px solid currentColor;
   outline-offset: 6px;
 }
-

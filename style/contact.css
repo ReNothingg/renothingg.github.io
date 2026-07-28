@@ -18,42 +18,6 @@
   font-size: 1.1em;
 }
 
-.donate-minimal {
-  display: inline-block;
-  margin-bottom: var(--space-8);
-}
-
-.donate-item {
-  display: flex;
-  align-items: center;
-  gap: var(--space-2);
-  text-decoration: none;
-  padding: var(--space-2) var(--space-3);
-  border-radius: var(--radius-sm);
-  transition:
-    background var(--transition-speed) var(--transition-easing),
-    transform var(--transition-speed) var(--transition-easing);
-}
-
-.donate-item:hover {
-  background: rgba(0, 152, 234, 0.1);
-  transform: translateY(-2px);
-}
-
-.ton-address {
-  font-family: "SF Mono", "Fira Code", "Consolas", monospace;
-  font-size: 1.9em;
-  color: #0098ea;
-  background: transparent;
-  border: none;
-  padding: 0;
-  margin: 0;
-}
-
-.ton-address:hover {
-  color: #0078d4;
-}
-
 .email-link {
   font-size: 1.3em;
   font-weight: var(--font-weight-medium);
@@ -156,4 +120,3 @@
   position: relative;
   z-index: 1;
 }
-

@@ -304,44 +304,6 @@ section h3::after {
 }
 
 
-.section-divider {
-    height: 80px;
-    width: 100%;
-    position: relative;
-    overflow: hidden;
-    background-color: var(--primary-accent);
-}
-.section-divider::before,
-.section-divider::after {
-    content: '';
-    position: absolute;
-    left: 50%;
-    width: 200%;
-    height: 100px;
-    background-color: var(--background-color);
-}
-.section-divider::before {
-    top: -50px;
-    transform: translateX(-50%) skewY(-1.5deg);
-}
-
-.section-divider.alt {
-    background-color: var(--background-color);
-}
-.section-divider.alt::before {
-    background-color: var(--primary-accent);
-    transform: translateX(-50%) skewY(1.5deg);
-}
-
-.section-divider + section,
-.section-divider.alt + section {
-    padding-top: 0;
-}
-section + .section-divider,
-section + .section-divider.alt {
-    margin-top: 0;
-}
-
 #about p {
     font-size: 1.1em;
     text-align: center;
@@ -425,64 +387,6 @@ section + .section-divider.alt {
 }
 
 
-.trailer-container {
-    text-align: center;
-    margin-top: 50px;
-}
-.trailer-container h4 {
-    font-size: 1.5em;
-    margin-bottom: 25px;
-    color: var(--text-color);
-}
-.video-wrapper {
-    position: relative;
-    padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
-    height: 0;
-    overflow: hidden;
-    max-width: 800px;
-    margin: 0 auto;
-    border-radius: var(--global-radius);
-    border: 1px solid var(--border-color);
-    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-}
-.video-wrapper iframe {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    filter: grayscale(50%) contrast(1.1); /* Slight desaturation for style */
-}
-
-
-#news .news-list {
-    list-style: none;
-    padding: 0;
-    max-width: 750px;
-    margin: 0 auto;
-}
-
-#news .news-list li {
-    background-color: var(--primary-accent);
-    padding: 25px;
-    margin-bottom: 20px;
-    border-left: 3px solid var(--tertiary-accent);
-    border-radius: 0 var(--global-radius) var(--global-radius) 0;
-    transition: border-left-color var(--transition-speed) ease, background-color var(--transition-speed) ease, transform var(--transition-speed) ease;
-}
-
-#news .news-list li:hover {
-    border-left-color: var(--light-accent);
-    background-color: var(--secondary-accent);
-    transform: translateX(5px);
-}
-
-.news-date { display: block; font-size: 0.85em; color: var(--tertiary-accent); margin-bottom: 8px; font-weight: 400; }
-.news-title { font-size: 1.2em; margin-bottom: 10px; margin-top: 0; font-weight: 700; }
-#news .news-list li p { margin-bottom: 0; font-weight: 300; color: var(--light-accent); font-size: 0.95em; }
-#news .news-list li p a { color: var(--text-color); font-weight: 500; text-decoration: underline; text-decoration-color: var(--tertiary-accent); text-underline-offset: 3px; }
-#news .news-list li p a:hover { text-decoration-color: var(--light-accent); }
-
 #community { text-align: center; }
 #community p { font-size: 1.1em; color: var(--light-accent); margin-bottom: 25px; max-width: 600px; margin-left:auto; margin-right:auto;}
 
@@ -503,11 +407,6 @@ section + .section-divider.alt {
     color: var(--text-color);
     transform: translateY(-2px);
 }
-
-.social-links { margin-top: 30px; margin-bottom: 20px; }
-.social-links a { margin: 0 12px; display: inline-block; color: var(--tertiary-accent); transition: color var(--transition-speed) ease, transform var(--transition-speed) ease; }
-.social-links a svg { width: 26px; height: 26px; vertical-align: middle; }
-.social-links a:hover { color: var(--text-color); transform: scale(1.15); }
 
 #scrollToTopBtn {
     display: none;
@@ -647,13 +546,8 @@ footer .heart {
     #hero .subtitle { font-size: 1.1em; }
 
     section { padding: 60px 0; }
-    .section-divider { height: 60px; }
-    .section-divider::before, .section-divider::after { height: 80px; }
-    .section-divider::before { top: -40px; }
-
     section h3 { font-size: 1.9em; margin-bottom: 40px; padding-bottom: 15px; }
     .features-grid, .media-grid { grid-template-columns: 1fr; }
-    .social-links a svg { width: 24px; height: 24px; }
     #scrollToTopBtn { bottom: 20px; right: 20px; padding: 10px; }
 }
 
@@ -667,10 +561,6 @@ footer .heart {
     .feature-card h4 { font-size: 1.15em; }
     .feature-card p { font-size: 0.9em; }
     .email-link { font-size: 1.1em; padding: 12px 25px; }
-    .social-links a svg { width: 22px; height: 22px; }
-    .section-divider { height: 50px; }
-    .section-divider::before, .section-divider::after { height: 70px; }
-    .section-divider::before { top: -35px; }
 }
 
 :focus-visible {

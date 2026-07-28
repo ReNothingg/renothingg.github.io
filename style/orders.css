@@ -16,25 +16,10 @@
   gap: 28px;
 }
 
-.orders-kicker {
-  margin: 0 0 9px;
-  color: rgba(var(--color-text-raw), 0.52);
-  font-size: 0.7rem;
-  letter-spacing: 0.24em;
-  text-transform: uppercase;
-}
-
 .orders-title {
   margin: 0;
   font-size: clamp(2.5rem, 6vw, 4.8rem);
   line-height: 0.92;
-}
-
-.orders-intro {
-  max-width: 42ch;
-  margin: 0;
-  color: var(--color-text-muted);
-  font-size: 0.98rem;
 }
 
 .order-cards {
@@ -263,4 +248,3 @@
     grid-template-columns: none;
   }
 }
-

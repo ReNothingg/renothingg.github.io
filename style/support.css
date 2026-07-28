@@ -56,39 +56,6 @@
   margin: 0 0 var(--space-8);
 }
 
-.support-scroll-hint {
-  display: inline-flex;
-  align-items: center;
-  gap: var(--space-3);
-  text-transform: uppercase;
-  letter-spacing: 0.25em;
-  font-size: 0.75rem;
-  color: rgba(255, 255, 255, 0.5);
-}
-
-.support-scroll-hint span {
-  display: block;
-  width: 70px;
-  height: 1px;
-  background: rgba(255, 255, 255, 0.8);
-  position: relative;
-  overflow: hidden;
-}
-
-.support-scroll-hint span::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  transform: translateX(-100%);
-  animation: supportPulse 2.2s ease-in-out infinite;
-}
-
-@keyframes supportPulse {
-  50% {
-    transform: translateX(100%);
-  }
-}
-
 .support-cards {
   display: grid;
   gap: var(--space-6);
@@ -193,4 +160,3 @@
   border-color: rgba(255, 255, 255, 0.7);
   color: #fff;
 }
-

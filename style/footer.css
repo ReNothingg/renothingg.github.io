@@ -11,42 +11,6 @@ footer p {
   font-size: 1.1em;
 }
 
-#scrollToTopBtn {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  opacity: 0;
-  pointer-events: none;
-  position: fixed;
-  bottom: 30px;
-  right: 30px;
-  z-index: 999;
-  border: 2px solid var(--color-border);
-  background-color: rgba(var(--color-bg-raw), 0.8);
-  backdrop-filter: blur(10px);
-  color: var(--color-text);
-  width: 60px;
-  height: 60px;
-  border-radius: 50%;
-  transition:
-    opacity 0.2s ease,
-    transform 0.2s ease;
-  transform: scale(0.9);
-}
-
-#scrollToTopBtn:hover {
-  background-color: var(--color-text);
-  color: var(--color-bg);
-  transform: translateY(-4px) scale(1);
-  border-color: var(--color-text);
-}
-
-#scrollToTopBtn.visible {
-  opacity: 1;
-  pointer-events: auto;
-  transform: scale(1);
-}
-
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,
