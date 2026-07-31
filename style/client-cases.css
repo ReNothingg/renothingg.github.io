@@ -38,22 +38,11 @@
 .client-case-card {
   min-width: 0;
   overflow: hidden;
-  border: 1px solid rgba(var(--color-border-raw), 0.68);
+  border: 1px solid var(--color-border);
   border-radius: var(--global-radius);
   background: var(--color-bg);
   color: var(--color-text);
   text-align: left;
-  transition:
-    transform var(--transition-speed) var(--transition-easing),
-    border-color var(--transition-speed) var(--transition-easing),
-    box-shadow var(--transition-speed) var(--transition-easing);
-}
-
-.client-case-card:hover,
-.client-case-card:focus-within {
-  transform: translateY(-3px);
-  border-color: rgba(var(--color-text-raw), 0.48);
-  box-shadow: 0 7px 0 rgba(27, 29, 26, 0.07);
 }
 
 .client-case-visual {
@@ -74,14 +63,6 @@
 .client-case-media video {
   display: block;
   object-fit: cover;
-}
-
-.client-case-media img {
-  transition: transform 320ms var(--transition-easing);
-}
-
-.client-case-card:hover .client-case-media img {
-  transform: scale(1.025);
 }
 
 .client-case-arrow {
@@ -170,7 +151,7 @@
 .client-portfolio-toggle {
   min-width: 170px;
   padding: 11px 18px;
-  border: 1px solid rgba(var(--color-border-raw), 0.8);
+  border: 1px solid var(--color-border);
   border-radius: 999px;
   background: var(--color-bg);
   color: var(--color-text);

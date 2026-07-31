@@ -1,22 +1,19 @@
 .dead-projects {
-  margin-top: clamp(16px, 1.8vw, 28px);
   display: grid;
   gap: 22px;
+  margin-top: clamp(16px, 1.8vw, 28px);
 }
 
 .dead-projects-marquee {
   position: relative;
-  overflow: hidden;
-  padding: 6px 0;
   margin-inline: calc(50% - 50vw);
-  padding-inline: clamp(16px, 3vw, 36px);
+  padding: 6px clamp(16px, 3vw, 36px);
+  overflow: hidden;
 }
 
 .dead-projects-track {
   --dead-project-gap: 16px;
   position: relative;
-  display: block;
-  width: 100%;
   height: 90px;
   overflow: hidden;
   contain: layout paint;
@@ -44,66 +41,85 @@
 .dead-projects-more {
   display: block;
   width: fit-content;
-  margin: 0 auto;
+  margin-inline: auto;
 }
 
 .dead-project-card {
-  width: clamp(260px, 22vw, 320px);
-  flex: 0 0 auto;
   display: flex;
+  flex: 0 0 auto;
   align-items: center;
   gap: 16px;
+  width: clamp(260px, 22vw, 320px);
   padding: 14px 20px;
+  border: 1px solid var(--color-border);
   border-radius: 18px;
-  border: 1px solid rgba(var(--color-border-raw), 0.72);
-  background: rgba(var(--color-bg-raw), 0.86);
-  box-shadow: 0 12px 30px rgba(20, 20, 19, 0.06);
-  backdrop-filter: blur(12px);
+  background: var(--color-bg);
 }
 
 .dead-project-icon {
+  flex-shrink: 0;
   width: 56px;
   aspect-ratio: 1;
-  flex-shrink: 0;
   overflow: hidden;
+  border: 1px solid var(--color-border);
   border-radius: 14px;
-  border: 1px solid rgba(var(--color-border-raw), 0.7);
-  background: rgba(255, 255, 255, 0.82);
+  background: #fff;
 }
 
 .dead-project-icon img {
-  display: block;
   width: 100%;
   height: 100%;
   object-fit: cover;
 }
 
 .dead-project-name {
-  display: block;
+  color: var(--color-text);
   font-size: clamp(0.96rem, 1.2vw, 1.08rem);
   font-weight: 600;
   letter-spacing: 0.02em;
-  color: var(--color-text);
 }
 
 @keyframes dead-projects-scroll {
-  to {
-    transform: translateX(-100%);
-  }
+  to { transform: translateX(-100%); }
 }
 
 @keyframes dead-projects-scroll-copy {
-  from {
-    transform: translateX(100%);
+  from { transform: translateX(100%); }
+  to { transform: translateX(0); }
+}
+
+@media (max-width: 768px) {
+  .dead-projects {
+    gap: 16px;
+    margin-top: 10px;
   }
 
-  to {
-    transform: translateX(0);
+  .dead-projects-marquee {
+    padding: 4px 16px;
+  }
+
+  .dead-projects-track {
+    --dead-project-gap: 12px;
+    height: 78px;
+  }
+
+  .dead-project-card {
+    gap: 12px;
+    width: 220px;
+    padding: 12px 14px;
+  }
+
+  .dead-project-icon {
+    width: 52px;
+  }
+
+  .dead-project-name {
+    font-size: 0.94rem;
   }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .dead-projects-track {
+  .dead-projects-group {
     animation: none;
   }
 }

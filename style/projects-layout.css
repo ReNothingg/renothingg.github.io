@@ -1,18 +1,23 @@
 #projects {
-  padding: 120px 0 120px;
   overflow-x: clip;
 }
 
 .projects-container {
-  max-width: 1440px;
-  margin: 0 auto;
-  padding: 0 var(--space-4);
   position: relative;
   z-index: 1;
+  max-width: 1440px;
+  margin-inline: auto;
+  padding-inline: var(--space-4);
 }
 
 .projects-title {
   max-width: min(920px, 100%);
   margin: 0 auto 62px;
   text-align: center;
+}
+
+@media (max-width: 768px) {
+  .projects-title {
+    margin-bottom: 50px;
+  }
 }

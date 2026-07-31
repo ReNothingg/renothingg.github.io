@@ -4,16 +4,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#fbfcfb">
     
     <link rel="canonical" href="https://renothingg.github.io/" />
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="stylesheet" href="style.css?v=20260731e">
-    <link rel="stylesheet" href="mobile.css?v=20260728a" media="(max-width: 768px)">
-    <link rel="stylesheet" href="style/polish.css?v=20260728a">
+    <script>
+      const browserUA = navigator.userAgent;
+      const isSafari = /Safari/i.test(browserUA) && !/(Chrome|Chromium|CriOS|FxiOS|EdgiOS|OPiOS|Android)/i.test(browserUA);
+      if (isSafari) document.documentElement.classList.add('is-safari');
+    </script>
+    <link rel="stylesheet" href="style.css?v=20260731m">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css" >
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=Oswald:wght@700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
     
     <title>ReNothingg</title>
@@ -265,7 +269,7 @@
                 <div class="projects-grid-shell is-at-start" data-projects-scroll-shell>
                 <div class="projects-grid" data-projects-scroll>
                     <a href="https://synvexai.github.io" target="_blank" rel="noopener noreferrer"
-                        class="project-card" style="--project-accent: 188, 209, 202;">
+                        class="project-card">
                         <img class="project-card-art"
                             src="https://avatars.githubusercontent.com/u/210514589?s=900&v=4"
                             alt="" loading="lazy" decoding="async">
@@ -283,7 +287,7 @@
                     </a>
 
                     <a href="FCube/" target="_blank" rel="noopener noreferrer"
-                        class="project-card" style="--project-accent: 242, 184, 91;">
+                        class="project-card">
                         <img class="project-card-art" src="FCube/assets/favicon.png" alt="" loading="lazy"
                             decoding="async">
                         <span class="project-card-shade" aria-hidden="true"></span>
@@ -300,7 +304,7 @@
                     </a>
 
                     <a href="FloppaRun/" target="_blank" rel="noopener noreferrer"
-                        class="project-card" style="--project-accent: 226, 151, 120;">
+                        class="project-card">
                         <img class="project-card-art" src="FloppaRun/assets/favicon.png" alt="" loading="lazy"
                             decoding="async">
                         <span class="project-card-shade" aria-hidden="true"></span>
@@ -317,7 +321,7 @@
                     </a>
 
                     <a href="https://t.me/ReSafeBot" target="_blank" rel="noopener noreferrer"
-                        class="project-card" style="--project-accent: 129, 213, 171;">
+                        class="project-card">
                         <img class="project-card-art" src="public/project/ReSave.jpg" alt="" loading="lazy"
                             decoding="async">
                         <span class="project-card-shade" aria-hidden="true"></span>
@@ -334,7 +338,7 @@
                     </a>
 
                     <a href="https://chat.synvexai.com/" target="_blank" rel="noopener noreferrer"
-                        class="project-card" style="--project-accent: 174, 186, 214;">
+                        class="project-card">
                         <img class="project-card-art" src="public/project/ReMind.png" alt="" loading="lazy"
                             decoding="async">
                         <span class="project-card-shade" aria-hidden="true"></span>
