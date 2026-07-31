@@ -44,8 +44,7 @@
   touch-action: pan-x pan-y;
 }
 
-.order-cards.is-dragging,
-.order-cards.is-wheel-scrolling {
+.order-cards.is-dragging {
   cursor: grabbing;
   scroll-snap-type: none;
 }

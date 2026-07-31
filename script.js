@@ -4,6 +4,7 @@ document.addEventListener('DOMContentLoaded', () => {
     about: 'about',
     projects: 'projects',
     orders: 'orders',
+    cases: 'orders',
     support: 'support',
     contact: 'contact',
   };
@@ -101,85 +102,14 @@ document.addEventListener('DOMContentLoaded', () => {
     track.appendChild(clone);
   };
 
-  const setupHorizontalScrollControls = (scroller, options = {}) => {
+  const setupHorizontalDrag = (scroller) => {
     if (!scroller) return;
 
-    const wheelScale = options.wheelScale || 1.8;
     let dragPointerId = null;
     let dragStartX = 0;
     let dragStartScroll = 0;
     let dragged = false;
     let suppressClick = false;
-    let wheelTarget = scroller.scrollLeft;
-    let wheelFrame = 0;
-    let wheelIdleTimer = 0;
-
-    const cancelWheelAnimation = () => {
-      if (wheelFrame) {
-        window.cancelAnimationFrame(wheelFrame);
-        wheelFrame = 0;
-      }
-    };
-
-    const finishWheelAnimation = () => {
-      wheelFrame = 0;
-      window.clearTimeout(wheelIdleTimer);
-      wheelIdleTimer = window.setTimeout(() => {
-        scroller.classList.remove('is-wheel-scrolling');
-      }, 90);
-    };
-
-    const animateWheel = () => {
-      const distance = wheelTarget - scroller.scrollLeft;
-
-      if (Math.abs(distance) < 2.5) {
-        scroller.scrollLeft = wheelTarget;
-        finishWheelAnimation();
-        return;
-      }
-
-      scroller.scrollLeft += distance * 0.18;
-      wheelFrame = window.requestAnimationFrame(animateWheel);
-    };
-
-    scroller.addEventListener(
-      'wheel',
-      (event) => {
-        if (Math.abs(event.deltaY) <= Math.abs(event.deltaX)) return;
-
-        const maxScroll = Math.max(scroller.scrollWidth - scroller.clientWidth, 0);
-        if (maxScroll <= 0) return;
-
-        event.preventDefault();
-
-        const modeMultiplier =
-          event.deltaMode === 1
-            ? 36
-            : event.deltaMode === 2
-              ? scroller.clientWidth
-              : 1;
-        const wheelDistance = event.deltaY * modeMultiplier * wheelScale;
-
-        scroller.classList.add('is-wheel-scrolling');
-        window.clearTimeout(wheelIdleTimer);
-        wheelTarget = Math.min(Math.max(wheelTarget + wheelDistance, 0), maxScroll);
-
-        if (!wheelFrame) {
-          wheelFrame = window.requestAnimationFrame(animateWheel);
-        }
-      },
-      { passive: false }
-    );
-
-    scroller.addEventListener(
-      'scroll',
-      () => {
-        if (!wheelFrame && dragPointerId === null) {
-          wheelTarget = scroller.scrollLeft;
-        }
-      },
-      { passive: true }
-    );
 
     scroller.addEventListener('pointerdown', (event) => {
       if (event.pointerType !== 'mouse' || event.button !== 0) return;
@@ -188,8 +118,6 @@ document.addEventListener('DOMContentLoaded', () => {
       dragStartX = event.clientX;
       dragStartScroll = scroller.scrollLeft;
       dragged = false;
-      cancelWheelAnimation();
-      scroller.classList.remove('is-wheel-scrolling');
     });
 
     scroller.addEventListener('pointermove', (event) => {
@@ -204,7 +132,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
       if (!dragged) return;
       scroller.scrollLeft = dragStartScroll - distance;
-      wheelTarget = scroller.scrollLeft;
     });
 
     const finishDrag = (event) => {
@@ -261,7 +188,7 @@ document.addEventListener('DOMContentLoaded', () => {
       window.requestAnimationFrame(updateShadows);
     };
 
-    setupHorizontalScrollControls(scroller, { wheelScale: 2.6 });
+    setupHorizontalDrag(scroller);
     scroller.addEventListener('scroll', requestShadowUpdate, { passive: true });
 
     window.addEventListener('resize', requestShadowUpdate);
@@ -270,7 +197,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   const setupOrderCardsScroll = () => {
     const scroller = document.querySelector('[data-order-cards-scroll]');
-    setupHorizontalScrollControls(scroller, { wheelScale: 3.2 });
+    setupHorizontalDrag(scroller);
   };
 
   setupProjectsScrollShadows();

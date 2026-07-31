@@ -93,13 +93,9 @@
   touch-action: pan-x pan-y;
 }
 
-.projects-grid.is-dragging,
-.projects-grid.is-wheel-scrolling {
+.projects-grid.is-dragging {
   cursor: grabbing;
   scroll-snap-type: none;
-}
-
-.projects-grid.is-dragging {
   user-select: none;
 }
 
