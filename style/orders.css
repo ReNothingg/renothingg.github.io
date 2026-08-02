@@ -5,6 +5,7 @@
 .orders-container {
   display: grid;
   gap: 34px;
+  max-width: 1640px;
 }
 
 .orders-heading,
@@ -24,20 +25,19 @@
 
 .order-cards {
   position: relative;
-  left: 50%;
   display: grid;
   grid-auto-flow: column;
   grid-auto-columns: min(430px, calc(100vw - 60px));
   gap: 12px;
-  width: 100vw;
-  margin-left: -50vw;
-  padding: 2px 14px 18px;
+  width: 100%;
+  min-width: 0;
+  padding: 2px 0 18px;
   overflow-x: auto;
   box-sizing: border-box;
   cursor: grab;
   scrollbar-color: rgba(var(--color-text-raw), 0.42) transparent;
   scrollbar-width: thin;
-  scroll-padding-inline: 14px;
+  scroll-padding-inline: 0;
   scroll-snap-type: x mandatory;
   overscroll-behavior-inline: contain;
   touch-action: pan-x pan-y;
@@ -125,16 +125,13 @@
 }
 
 .small-orders {
-  position: relative;
-  left: 50%;
   display: grid;
   gap: 17px;
-  width: calc(100vw - 40px);
-  max-width: 1800px;
+  width: 100%;
+  min-width: 0;
   margin-top: 12px;
   padding-top: 26px;
   border-top: 1px solid var(--color-border);
-  transform: translateX(-50%);
 }
 
 .small-orders-heading {
@@ -228,8 +225,8 @@
 
   .order-cards {
     grid-auto-columns: min(340px, calc(100vw - 46px));
-    padding: 4px 15px 16px;
-    scroll-padding-inline: 15px;
+    padding: 4px 0 16px;
+    scroll-padding-inline: 0;
   }
 
   .order-card {
@@ -242,12 +239,9 @@
   }
 
   .small-orders {
-    position: static;
-    left: auto;
     width: 100%;
     margin-top: 2px;
     padding-top: 22px;
-    transform: none;
   }
 
   .small-order-track {
