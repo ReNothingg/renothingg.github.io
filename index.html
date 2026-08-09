@@ -4,20 +4,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="theme-color" content="#fbfcfb">
     
     <link rel="canonical" href="https://renothingg.github.io/" />
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <script>
-      const browserUA = navigator.userAgent;
-      const isSafari = /Safari/i.test(browserUA) && !/(Chrome|Chromium|CriOS|FxiOS|EdgiOS|OPiOS|Android)/i.test(browserUA);
-      if (isSafari) document.documentElement.classList.add('is-safari');
-    </script>
-    <link rel="stylesheet" href="style.css?v=20260731m">
+    <link rel="stylesheet" href="style.css?v=20260731e">
+    <link rel="stylesheet" href="mobile.css?v=20260728a" media="(max-width: 768px)">
+    <link rel="stylesheet" href="style/polish.css?v=20260728a">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css" >
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=Oswald:wght@700&display=swap" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
     
     <title>ReNothingg</title>
@@ -232,8 +228,6 @@
                     <div class="small-orders-marquee" tabindex="0" aria-label="Небольшие клиентские задачи">
                         <div class="small-order-track" data-small-orders-track>
                             <div class="small-order-list" data-small-orders-group>
-                                <article class="small-order-card"><h5>Автоматизация обработки документов и заявок</h5><p>Сделал пк апку для авто. обработки PDF, Word и Excel файлов, заполнения шаблонов, создания документов, интеграции с DaData и управления заявками</p><span class="small-order-price">12800 ₽ — 7d — 5⭐</span></article>  
-                                <article class="small-order-card"><h5>Разработка ИИ-агента для проверки игровых спрайтов</h5><p>Автоматический поиск повреждённых и некачественных спрайтов, выявление неровностей и отправка результатов проверки в бота</p><span class="small-order-price">5600 ₽ — 1d</span></article>
                                 <article class="small-order-card"><h5>Разработка бота для отслеживания цен Ozon и Wildberries</h5><p>Автоматический мониторинг стоимости товаров, отслеживание изменений цен и уведомления о снижении</p><span class="small-order-price">5900 ₽ — 2d — 5⭐</span></article>
                                 <article class="small-order-card"><h5>Объединение Telegram-ботов и доработка системы</h5><p>Добавление новых аккаунтов, объединение заявок с трёх серверов в одного тг-бота и исправление ошибок в существующем софте</p><span class="small-order-price">100BYN — 1h</span></article> <!--  Я забыл добавить инфу вхвххвх -->
                                 <article class="small-order-card"><h5>Разработка бота для автоматической рассылки</h5><p>Мультиаккаунтинг, автоматическая рассылка по чатам, изменение сообщений и управление аккаунтами</p><span class="small-order-price">210 $ — 1d — 5⭐</span></article>
@@ -271,7 +265,7 @@
                 <div class="projects-grid-shell is-at-start" data-projects-scroll-shell>
                 <div class="projects-grid" data-projects-scroll>
                     <a href="https://synvexai.github.io" target="_blank" rel="noopener noreferrer"
-                        class="project-card">
+                        class="project-card" style="--project-accent: 188, 209, 202;">
                         <img class="project-card-art"
                             src="https://avatars.githubusercontent.com/u/210514589?s=900&v=4"
                             alt="" loading="lazy" decoding="async">
@@ -289,7 +283,7 @@
                     </a>
 
                     <a href="FCube/" target="_blank" rel="noopener noreferrer"
-                        class="project-card">
+                        class="project-card" style="--project-accent: 242, 184, 91;">
                         <img class="project-card-art" src="FCube/assets/favicon.png" alt="" loading="lazy"
                             decoding="async">
                         <span class="project-card-shade" aria-hidden="true"></span>
@@ -306,7 +300,7 @@
                     </a>
 
                     <a href="FloppaRun/" target="_blank" rel="noopener noreferrer"
-                        class="project-card">
+                        class="project-card" style="--project-accent: 226, 151, 120;">
                         <img class="project-card-art" src="FloppaRun/assets/favicon.png" alt="" loading="lazy"
                             decoding="async">
                         <span class="project-card-shade" aria-hidden="true"></span>
@@ -323,7 +317,7 @@
                     </a>
 
                     <a href="https://t.me/ReSafeBot" target="_blank" rel="noopener noreferrer"
-                        class="project-card">
+                        class="project-card" style="--project-accent: 129, 213, 171;">
                         <img class="project-card-art" src="public/project/ReSave.jpg" alt="" loading="lazy"
                             decoding="async">
                         <span class="project-card-shade" aria-hidden="true"></span>
@@ -340,7 +334,7 @@
                     </a>
 
                     <a href="https://chat.synvexai.com/" target="_blank" rel="noopener noreferrer"
-                        class="project-card">
+                        class="project-card" style="--project-accent: 174, 186, 214;">
                         <img class="project-card-art" src="public/project/ReMind.png" alt="" loading="lazy"
                             decoding="async">
                         <span class="project-card-shade" aria-hidden="true"></span>
@@ -362,7 +356,7 @@
                     aria-labelledby="client-portfolio-title">
                     <div class="client-portfolio-heading">
                         <h4 id="client-portfolio-title">Портфолио</h4>
-                        <p>26 проектов</p>
+                        <p>27 проектов</p>
                     </div>
 
                     <div class="client-case-reveal">
@@ -513,7 +507,7 @@
     </footer>
 
     <script src="script.js?v=20260731d" defer></script>
-    <script src="portfolio.js?v=20260731c" defer></script>
+    <script src="portfolio.js?v=20260809b" defer></script>
 </body>
 
 </html>

@@ -1,6 +1,14 @@
 (() => {
   const portfolioItems = [
     {
+      title: 'Работа №31',
+      category: 'Создание сайта',
+      media: [
+        'public/client-cases/23495367-01.webp',
+        'public/client-cases/23495367-02.webp',
+      ],
+    },
+    {
       title: 'Приложение под macOS и Windows',
       category: 'Создание сайта',
       cover: 'public/client-cases/23389778-02.webp',
