@@ -45,14 +45,7 @@
   --transition-speed: 0.28s;
   --transition-easing: cubic-bezier(0.2, 0.9, 0.3, 1);
 
-  accent-color: auto;
-}
-
-@supports (color: AccentColor) {
-  :root {
-    --color-accent: AccentColor;
-    --color-accent-text: AccentColorText;
-  }
+  accent-color: var(--color-accent);
 }
 
 :root.is-safari {
