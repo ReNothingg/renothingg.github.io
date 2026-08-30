@@ -1,7 +1,7 @@
 footer {
   display: grid;
-  gap: 24px;
-  padding: 24px 20px 36px;
+  gap: 12px;
+  padding: 0 20px 24px;
   border: 0;
   background: rgb(20, 24, 21);
   color: rgba(255, 255, 255, 0.4);
@@ -28,7 +28,7 @@ footer a:hover img {
 
 @media (max-width: 768px) {
   footer {
-    padding: 20px 16px 30px;
+    padding: 0 16px 20px;
   }
 }
 
