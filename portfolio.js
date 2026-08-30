@@ -1,6 +1,18 @@
 (() => {
   const portfolioItems = [
     {
+      title: 'Flowex',
+      category: 'Создание сайта',
+      media: [
+        'public/client-cases/23732913-01.webp',
+        'public/client-cases/23732913-02.webp',
+        'public/client-cases/23732913-03.webp',
+        'public/client-cases/23732913-04.webp',
+        'public/client-cases/23732913-05.webp',
+        'public/client-cases/23732913-06.webp',
+      ],
+    },
+    {
       title: 'Работа №34',
       category: 'Создание сайта',
       media: [
