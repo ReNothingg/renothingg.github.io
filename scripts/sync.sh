@@ -133,7 +133,7 @@ const cards = additions.map(project => [
 ].join('\n')).join('\n');
 portfolio = portfolio.replace('const portfolioItems = [\n', `const portfolioItems = [\n${cards}\n`);
 fs.writeFileSync(portfolioPath, portfolio);
-const total = new Set([...portfolio.matchAll(/public\/client-cases\/(\d+)-\d+\.[a-z0-9]+/gi)].map(m => Number(m[1]))).size;
+const total = [...portfolio.matchAll(/^      title:/gm)].length;
 const word = total % 10 === 1 && total % 100 !== 11 ? 'проект' : total % 10 >= 2 && total % 10 <= 4 && (total % 100 < 10 || total % 100 >= 20) ? 'проекта' : 'проектов';
 index = index.replace(/(<div class="client-portfolio-heading">[\s\S]*?<p>)\d+ проект(?:ов|а)?<\/p>/, `$1${total} ${word}</p>`);
 index = index.replace(/(portfolio\.js\?v=)[^"']+/, `$1${Date.now()}`);

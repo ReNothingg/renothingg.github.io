@@ -41,7 +41,8 @@ document.addEventListener('DOMContentLoaded', () => {
     currentYearElement.textContent = new Date().getFullYear();
   }
 
-  const copyCards = document.querySelectorAll('.support-card--copy');
+  const copyCards = document.querySelectorAll('.support-card--copy, .crypto-segment');
+  const copyStatus = document.querySelector('.copy-status');
   const fallbackCopy = (text) => {
     const textarea = document.createElement('textarea');
     textarea.value = text;
@@ -55,8 +56,11 @@ document.addEventListener('DOMContentLoaded', () => {
   };
 
   copyCards.forEach((card) => {
-    const button = card.querySelector('.copy-btn');
+    const button = card.querySelector('.copy-feedback, .copy-btn');
     if (!button) return;
+
+    const original = button.textContent;
+    let resetTimer;
 
     const handleCopy = async (event) => {
       event.preventDefault();
@@ -73,11 +77,12 @@ document.addEventListener('DOMContentLoaded', () => {
         fallbackCopy(value);
       }
 
-      const original = button.textContent;
       button.textContent = 'Скопировано';
       card.classList.add('is-copied');
+      if (copyStatus) copyStatus.textContent = `${card.querySelector('.crypto-name')?.textContent || 'Адрес'}: скопировано`;
 
-      window.setTimeout(() => {
+      window.clearTimeout(resetTimer);
+      resetTimer = window.setTimeout(() => {
         button.textContent = original;
         card.classList.remove('is-copied');
       }, 1800);

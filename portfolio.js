@@ -18,6 +18,44 @@
       ],
     },
     {
+      title: 'Liquid Glass — React / WebGL',
+      category: 'Интерактивная графика',
+      fit: 'contain',
+      cover: 'public/client-cases/liquid-glass-metaballs-three.jpg',
+      media: [
+        'public/client-cases/liquid-glass-optics.jpg',
+        'public/client-cases/liquid-glass-refraction-08.jpg',
+        'public/client-cases/liquid-glass-refraction-32.jpg',
+        'public/client-cases/liquid-glass-refraction-64.jpg',
+        'public/client-cases/liquid-glass-metaballs-two.jpg',
+        'public/client-cases/liquid-glass-metaballs-three.jpg',
+        'public/client-cases/liquid-glass-specular.jpg',
+        'public/client-cases/liquid-glass-geometry.jpg',
+      ],
+    },
+    {
+      title: 'Aurus',
+      category: 'Telegram-бот и Mini App',
+      media: [
+        'public/client-cases/aurus-home.jpg',
+        'public/client-cases/aurus-orders.jpg',
+        'public/client-cases/aurus-withdrawal.jpg',
+        'public/client-cases/aurus-history.jpg',
+        'public/client-cases/aurus-bot.jpg',
+      ],
+    },
+    {
+      title: 'Зубрык',
+      category: 'Telegram-бот и Mini App',
+      media: [
+        'public/client-cases/zubryk-home.jpg',
+        'public/client-cases/zubryk-tests.jpg',
+        'public/client-cases/zubryk-grammar.jpg',
+        'public/client-cases/zubryk-bot.jpg',
+        'public/client-cases/zubryk-settings.jpg',
+      ],
+    },
+    {
       title: "Работа №37",
       category: "Игры",
       media: [
