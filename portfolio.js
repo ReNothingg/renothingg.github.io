@@ -3,7 +3,7 @@
     {
       title: 'AutoAdd — каталог товаров с ИИ',
       category: 'Веб-приложение · МойСклад',
-      description: 'Импорт прайсов, поиск описаний и фото, массовые правки и объединение товаров в модификации. Конфиденциальные поля на скриншотах скрыты.',
+      openFullImage: true,
       fit: 'contain',
       cover: 'public/client-cases/autoadd-import.jpg',
       media: [
@@ -362,20 +362,6 @@
 
     card.append(visual);
 
-    if (item.description) {
-      const caption = document.createElement('div');
-      caption.className = 'client-case-caption';
-      const title = document.createElement('h5');
-      title.textContent = item.title;
-      const category = document.createElement('p');
-      category.className = 'client-case-category';
-      category.textContent = item.category;
-      const description = document.createElement('p');
-      description.textContent = item.description;
-      caption.append(title, category, description);
-      card.append(caption);
-    }
-
     let activeIndex = Math.max(item.media.indexOf(item.cover), 0);
     const counter = document.createElement('span');
     counter.className = 'client-case-count';
@@ -384,7 +370,7 @@
       const source = item.media[activeIndex];
       const media = createMediaElement(source, item.title, activeIndex + 1, item.media.length);
       if (item.fit) media.style.objectFit = item.fit;
-      if (item.description) {
+      if (item.openFullImage) {
         const fullImage = document.createElement('a');
         fullImage.href = source;
         fullImage.target = '_blank';
