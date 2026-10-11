@@ -1,6 +1,23 @@
 (() => {
   const portfolioItems = [
     {
+      title: 'AutoAdd — каталог товаров с ИИ',
+      category: 'Веб-приложение · МойСклад',
+      description: 'Импорт прайсов, поиск описаний и фото, массовые правки и объединение товаров в модификации. Конфиденциальные поля на скриншотах скрыты.',
+      fit: 'contain',
+      cover: 'public/client-cases/autoadd-import.jpg',
+      media: [
+        'public/client-cases/autoadd-import.jpg',
+        'public/client-cases/autoadd-catalogue.jpg',
+        'public/client-cases/autoadd-editor.jpg',
+        'public/client-cases/autoadd-bulk.jpg',
+        'public/client-cases/autoadd-ai-search.jpg',
+        'public/client-cases/autoadd-variants.jpg',
+        'public/client-cases/autoadd-journal.jpg',
+        'public/client-cases/autoadd-search-options.jpg',
+      ],
+    },
+    {
       title: "Работа №37",
       category: "Игры",
       media: [
@@ -345,6 +362,20 @@
 
     card.append(visual);
 
+    if (item.description) {
+      const caption = document.createElement('div');
+      caption.className = 'client-case-caption';
+      const title = document.createElement('h5');
+      title.textContent = item.title;
+      const category = document.createElement('p');
+      category.className = 'client-case-category';
+      category.textContent = item.category;
+      const description = document.createElement('p');
+      description.textContent = item.description;
+      caption.append(title, category, description);
+      card.append(caption);
+    }
+
     let activeIndex = Math.max(item.media.indexOf(item.cover), 0);
     const counter = document.createElement('span');
     counter.className = 'client-case-count';
@@ -352,7 +383,18 @@
     const render = () => {
       const source = item.media[activeIndex];
       const media = createMediaElement(source, item.title, activeIndex + 1, item.media.length);
-      mediaSlot.replaceChildren(media);
+      if (item.fit) media.style.objectFit = item.fit;
+      if (item.description) {
+        const fullImage = document.createElement('a');
+        fullImage.href = source;
+        fullImage.target = '_blank';
+        fullImage.rel = 'noopener noreferrer';
+        fullImage.setAttribute('aria-label', `Открыть скриншот ${activeIndex + 1} из ${item.media.length}: ${item.title}`);
+        fullImage.append(media);
+        mediaSlot.replaceChildren(fullImage);
+      } else {
+        mediaSlot.replaceChildren(media);
+      }
       counter.textContent = `${activeIndex + 1} / ${item.media.length}`;
     };
 
@@ -391,6 +433,15 @@
     const toggle = portfolio?.querySelector('[data-client-portfolio-toggle]');
 
     if (!portfolio || !grid || !toggle) return;
+
+    const count = portfolio.querySelector('.client-portfolio-heading > p');
+    if (count) {
+      const total = portfolioItems.length;
+      const last = total % 10;
+      const word = total % 100 >= 11 && total % 100 <= 14 ? 'проектов'
+        : last === 1 ? 'проект' : last >= 2 && last <= 4 ? 'проекта' : 'проектов';
+      count.textContent = `${total} ${word}`;
+    }
 
     const cards = portfolioItems.map(createPortfolioCard);
     grid.replaceChildren(...cards);
