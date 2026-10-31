@@ -1,10 +1,11 @@
 #orders {
   overflow-x: clip;
+  background: var(--canvas);
 }
 
 .orders-container {
   display: grid;
-  gap: 34px;
+  gap: var(--space-xl);
   max-width: 1640px;
 }
 
@@ -13,31 +14,28 @@
   display: flex;
   align-items: flex-end;
   justify-content: space-between;
-  gap: 28px;
+  gap: var(--space-lg);
 }
 
 .orders-title {
   margin: 0;
-  font-size: clamp(2.5rem, 6vw, 4.8rem);
-  line-height: 0.92;
-  letter-spacing: -0.045em;
+  font-size: clamp(2.5rem, 5vw, 3.5rem);
+  line-height: 1.05;
 }
 
 .order-cards {
   position: relative;
   display: grid;
   grid-auto-flow: column;
-  grid-auto-columns: min(430px, calc(100vw - 60px));
-  gap: 12px;
+  grid-auto-columns: min(430px, calc(100vw - 56px));
+  gap: var(--space-md);
   width: 100%;
   min-width: 0;
-  padding: 2px 0 18px;
+  padding: 0 0 var(--space-md);
   overflow-x: auto;
-  box-sizing: border-box;
   cursor: grab;
-  scrollbar-color: rgba(var(--color-text-raw), 0.42) transparent;
+  scrollbar-color: var(--surface-cream-strong) transparent;
   scrollbar-width: thin;
-  scroll-padding-inline: 0;
   scroll-snap-type: x mandatory;
   overscroll-behavior-inline: contain;
   touch-action: pan-x pan-y;
@@ -50,40 +48,38 @@
 }
 
 .order-card {
-  position: relative;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  gap: 22px;
-  min-height: 360px;
-  padding: 24px;
+  gap: var(--space-lg);
+  min-height: 380px;
+  padding: var(--space-xl);
   overflow: hidden;
-  border: 1px solid var(--color-border);
-  border-radius: var(--global-radius);
-  background: var(--color-bg);
+  border-radius: var(--radius-lg);
+  background: var(--surface-card);
+  color: var(--body);
   scroll-snap-align: start;
 }
 
 .order-card-summary,
 .order-card-details {
   display: grid;
-  gap: 12px;
+  gap: var(--space-sm);
 }
 
 .order-card h4 {
   margin: 0;
-  font-size: clamp(1.55rem, 2.5vw, 2.1rem);
-  line-height: 1;
+  font-size: 28px;
+  line-height: 1.2;
 }
 
 .order-card-summary p {
   margin: 0;
-  color: var(--color-text-muted);
-  font-size: 0.9rem;
+  color: var(--body);
+  font-size: 14px;
   line-height: 1.55;
 }
 
-/* Кейсы без отзыва могут использовать свободную высоту карточки полностью. */
 .order-card:has(blockquote) .order-card-summary p {
   display: -webkit-box;
   overflow: hidden;
@@ -94,72 +90,72 @@
 .order-facts {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: 8px;
+  gap: var(--space-xs);
   margin: 0;
 }
 
 .order-facts div {
-  padding: 10px 11px;
-  border: 1px solid var(--color-border);
-  border-radius: var(--radius-sm);
-  background: rgba(var(--color-surface-raw), 0.72);
+  padding: 10px 12px;
+  border-radius: var(--radius-md);
+  background: var(--canvas);
 }
 
 .order-facts dt {
-  color: rgba(var(--color-text-raw), 0.5);
-  font-size: 0.62rem;
-  letter-spacing: 0.12em;
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 1.5px;
+  line-height: 1.4;
   text-transform: uppercase;
 }
 
 .order-facts dd {
   margin: 2px 0 0;
-  font-size: 0.9rem;
-  font-weight: var(--font-weight-bold);
+  color: var(--ink);
+  font-size: 16px;
+  font-weight: 500;
 }
 
 .order-card blockquote {
   margin: 0;
-  padding-left: 12px;
-  border-left: 2px solid var(--color-border);
-  color: rgba(var(--color-text-raw), 0.68);
-  font-size: 0.78rem;
+  padding-left: var(--space-sm);
+  border-left: 2px solid var(--surface-cream-strong);
+  color: var(--muted);
+  font-family: var(--font-serif);
+  font-size: 17px;
   font-style: italic;
-  line-height: 1.45;
+  line-height: 1.35;
 }
 
 .small-orders {
   display: grid;
-  gap: 17px;
+  gap: var(--space-md);
   width: 100%;
   min-width: 0;
-  margin-top: 12px;
-  padding-top: 26px;
-  border-top: 1px solid var(--color-border);
+  margin-top: var(--space-lg);
+  padding-top: var(--space-xl);
+  border-top: 1px solid var(--hairline);
 }
 
 .small-orders-heading {
   align-items: baseline;
-  gap: 20px;
 }
 
 .small-orders-heading h4 {
   margin: 0;
-  font-size: 1.35rem;
+  font-size: 28px;
+  line-height: 1.2;
 }
 
 .small-orders-heading p {
+  max-width: 48ch;
   margin: 0;
-  color: rgba(var(--color-text-raw), 0.5);
-  font-size: 0.82rem;
-}
-
-.small-orders-marquee {
-  padding: 4px 0 12px;
+  color: var(--muted);
+  font-size: 14px;
 }
 
 .small-order-track {
-  --small-order-gap: 12px;
+  --small-order-gap: var(--space-sm);
 }
 
 .small-order-list {
@@ -168,7 +164,7 @@
   gap: var(--small-order-gap);
   width: 100%;
   margin: 0;
-  padding: 0 0 8px;
+  padding: 0;
 }
 
 .small-order-list[aria-hidden="true"] {
@@ -178,17 +174,27 @@
 .small-order-card {
   display: flex;
   flex-direction: column;
-  min-height: 166px;
-  padding: 15px;
-  border: 1px solid var(--color-border);
-  border-radius: var(--global-radius);
-  background: var(--color-bg);
+  min-height: 170px;
+  padding: 20px;
+  border: 1px solid var(--hairline);
+  border-radius: var(--radius-lg);
+  background: var(--canvas);
 }
 
 .small-order-card h5 {
-  margin: 0 0 6px;
-  font-size: 0.9rem;
-  line-height: 1.2;
+  margin: 0 0 var(--space-xs);
+  color: var(--ink);
+  font-family: var(--font-sans);
+  font-size: 16px;
+  font-weight: 500;
+  letter-spacing: 0;
+  line-height: 1.4;
+}
+
+.small-order-card h5 small {
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 400;
 }
 
 .small-order-card p {
@@ -196,71 +202,56 @@
   flex-grow: 1;
   margin: 0;
   overflow: hidden;
-  color: rgba(var(--color-text-raw), 0.56);
-  font-size: 0.72rem;
-  line-height: 1.4;
+  color: var(--muted);
+  font-size: 14px;
+  line-height: 1.5;
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 3;
 }
 
 .small-order-price {
   display: block;
-  margin-top: 16px;
-  padding-top: 12px;
-  border-top: 1px solid var(--color-border);
-  font-size: 0.78rem;
-  font-weight: var(--font-weight-bold);
+  margin-top: var(--space-md);
+  padding-top: var(--space-sm);
+  border-top: 1px solid var(--hairline-soft);
+  color: var(--ink);
+  font-size: 13px;
+  font-weight: 500;
 }
 
 @media (max-width: 768px) {
-  .orders-container {
-    gap: 26px;
-  }
-
   .orders-heading,
   .small-orders-heading {
     display: grid;
-    gap: 12px;
+    gap: var(--space-xs);
   }
 
   .orders-title {
-    font-size: 2.8rem;
+    font-size: 2.25rem;
   }
 
   .order-cards {
-    grid-auto-columns: min(340px, calc(100vw - 46px));
-    padding: 4px 0 16px;
-    scroll-padding-inline: 0;
+    grid-auto-columns: min(340px, calc(100vw - 48px));
   }
 
   .order-card {
     min-height: 0;
-    padding: 20px;
+    padding: var(--space-lg);
   }
 
   .order-card h4 {
-    font-size: 1.7rem;
+    font-size: 26px;
   }
 
-  .small-orders {
-    width: 100%;
-    margin-top: 2px;
-    padding-top: 22px;
-  }
-
-  .small-order-track {
-    --small-order-gap: 10px;
+  .small-orders-heading h4 {
+    font-size: 24px;
   }
 
   .small-order-list {
-    grid-template-columns: repeat(auto-fit, minmax(min(230px, 100%), 1fr));
+    grid-template-columns: 1fr;
   }
 
   .small-order-card {
-    min-height: 164px;
-  }
-
-  .small-order-price {
-    margin-top: 14px;
+    min-height: 0;
   }
 }

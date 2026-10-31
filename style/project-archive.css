@@ -1,20 +1,21 @@
 .dead-projects {
   display: grid;
-  gap: 22px;
-  margin-top: clamp(16px, 1.8vw, 28px);
+  gap: var(--space-lg);
+  margin-top: var(--space-xxl);
+  padding-top: var(--space-xl);
+  border-top: 1px solid rgba(250, 249, 245, 0.08);
 }
 
 .dead-projects-marquee {
   position: relative;
   margin-inline: calc(50% - 50vw);
-  padding: 6px clamp(16px, 3vw, 36px);
   overflow: hidden;
 }
 
 .dead-projects-track {
-  --dead-project-gap: 16px;
+  --dead-project-gap: var(--space-sm);
   position: relative;
-  height: 90px;
+  height: 80px;
   overflow: hidden;
   contain: layout paint;
 }
@@ -26,7 +27,7 @@
   gap: var(--dead-project-gap);
   min-width: max-content;
   padding-right: var(--dead-project-gap);
-  animation: dead-projects-scroll 32s linear infinite;
+  animation: dead-projects-scroll 40s linear infinite;
   will-change: transform;
 }
 
@@ -39,31 +40,27 @@
 }
 
 .dead-projects-more {
-  display: block;
-  width: fit-content;
-  margin-inline: auto;
+  justify-self: center;
 }
 
 .dead-project-card {
   display: flex;
   flex: 0 0 auto;
   align-items: center;
-  gap: 16px;
-  width: clamp(260px, 22vw, 320px);
-  padding: 14px 20px;
-  border: 1px solid var(--color-border);
-  border-radius: 18px;
-  background: var(--color-bg);
+  gap: var(--space-sm);
+  width: 260px;
+  padding: var(--space-sm) var(--space-md);
+  border-radius: var(--radius-lg);
+  background: var(--surface-dark-elevated);
 }
 
 .dead-project-icon {
   flex-shrink: 0;
-  width: 56px;
+  width: 52px;
   aspect-ratio: 1;
   overflow: hidden;
-  border: 1px solid var(--color-border);
-  border-radius: 14px;
-  background: #fff;
+  border-radius: var(--radius-md);
+  background: var(--surface-dark-soft);
 }
 
 .dead-project-icon img {
@@ -73,10 +70,10 @@
 }
 
 .dead-project-name {
-  color: var(--color-text);
-  font-size: clamp(0.96rem, 1.2vw, 1.08rem);
-  font-weight: 600;
-  letter-spacing: 0.02em;
+  color: var(--on-dark);
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 1.4;
 }
 
 @keyframes dead-projects-scroll {
@@ -89,32 +86,20 @@
 }
 
 @media (max-width: 768px) {
-  .dead-projects {
-    gap: 16px;
-    margin-top: 10px;
-  }
-
-  .dead-projects-marquee {
-    padding: 4px 16px;
-  }
-
   .dead-projects-track {
-    --dead-project-gap: 12px;
-    height: 78px;
+    height: 72px;
   }
 
   .dead-project-card {
-    gap: 12px;
     width: 220px;
-    padding: 12px 14px;
   }
 
   .dead-project-icon {
-    width: 52px;
+    width: 46px;
   }
 
   .dead-project-name {
-    font-size: 0.94rem;
+    font-size: 14px;
   }
 }
 

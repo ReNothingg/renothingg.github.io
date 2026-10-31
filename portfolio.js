@@ -401,7 +401,24 @@
     mediaSlot.className = 'client-case-media';
     visual.appendChild(mediaSlot);
 
-    card.append(visual);
+    const caption = document.createElement('div');
+    caption.className = 'client-case-caption';
+
+    const captionText = document.createElement('div');
+    captionText.className = 'client-case-text';
+    const titleEl = document.createElement('h5');
+    titleEl.className = 'client-case-title';
+    titleEl.textContent = item.title;
+    captionText.append(titleEl);
+    if (item.category) {
+      const categoryEl = document.createElement('p');
+      categoryEl.className = 'client-case-category';
+      categoryEl.textContent = item.category;
+      captionText.append(categoryEl);
+    }
+    caption.append(captionText);
+
+    card.append(visual, caption);
 
     let activeIndex = Math.max(item.media.indexOf(item.cover), 0);
     const counter = document.createElement('span');
@@ -447,7 +464,10 @@
 
       previous.addEventListener('click', () => move(-1));
       next.addEventListener('click', () => move(1));
-      visual.append(previous, next, counter);
+      const controls = document.createElement('div');
+      controls.className = 'client-case-controls';
+      controls.append(previous, counter, next);
+      caption.append(controls);
     }
 
     render();
