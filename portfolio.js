@@ -1,6 +1,18 @@
 (() => {
   const portfolioItems = [
     {
+      title: 'IGROSHOP — магазин цифровых игр',
+      category: 'Веб-сайт · PlayStation и Xbox',
+      fit: 'contain',
+      cover: 'public/client-cases/igroshop-01.webp',
+      media: [
+        'public/client-cases/igroshop-01.webp',
+        'public/client-cases/igroshop-02.webp',
+        'public/client-cases/igroshop-03.webp',
+        'public/client-cases/igroshop-04.webp',
+      ],
+    },
+    {
       title: 'AutoAdd — каталог товаров с ИИ',
       category: 'Веб-приложение · МойСклад',
       openFullImage: true,

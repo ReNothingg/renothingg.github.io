@@ -209,3 +209,25 @@ document.addEventListener('DOMContentLoaded', () => {
   setupOrderCardsScroll();
   setupDeadProjectsMarquee();
 });
+
+(() => {
+  if (!window.matchMedia('(hover: hover)').matches) return;
+  document.querySelectorAll('[data-cursor-note]').forEach((card) => {
+    const note = card.querySelector('.cursor-note');
+    if (!note) return;
+    document.body.append(note);
+    const place = (x, y) => {
+      const gap = 18;
+      const w = note.offsetWidth;
+      const h = note.offsetHeight;
+      let left = x + gap;
+      let top = y + gap;
+      if (left + w > window.innerWidth - 8) left = x - w - gap;
+      if (top + h > window.innerHeight - 8) top = Math.max(8, y - h - gap);
+      note.style.transform = `translate(${Math.max(8, left)}px, ${top}px)`;
+    };
+    card.addEventListener('mouseenter', (e) => { place(e.clientX, e.clientY); note.classList.add('is-visible'); });
+    card.addEventListener('mousemove', (e) => place(e.clientX, e.clientY));
+    card.addEventListener('mouseleave', () => note.classList.remove('is-visible'));
+  });
+})();
