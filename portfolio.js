@@ -48,6 +48,16 @@
       ],
     },
     {
+      title: 'StellerPay Market',
+      category: 'Telegram-бот и Mini App',
+      media: [
+        'public/client-cases/stellerpay-stars.jpg',
+        'public/client-cases/stellerpay-premium.jpg',
+        'public/client-cases/stellerpay-vpn.jpg',
+        'public/client-cases/stellerpay-balance.jpg',
+      ],
+    },
+    {
       title: 'Зубрык',
       category: 'Telegram-бот и Mini App',
       media: [
