@@ -54,9 +54,10 @@
       media: [
         'public/client-cases/aurus-home.jpg',
         'public/client-cases/aurus-orders.jpg',
-        'public/client-cases/aurus-withdrawal.jpg',
         'public/client-cases/aurus-history.jpg',
-        'public/client-cases/aurus-bot.jpg',
+        'public/client-cases/aurus-admin-overview.jpg',
+        'public/client-cases/aurus-admin-orders.jpg',
+        'public/client-cases/aurus-admin-more.jpg',
       ],
     },
     {
