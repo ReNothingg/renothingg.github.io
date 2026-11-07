@@ -71,6 +71,17 @@
       ],
     },
     {
+      title: 'Ловец выплат 911pay',
+      category: 'Telegram-бот · Go',
+      media: [
+        'public/client-cases/catcher911-dashboard.jpg',
+        'public/client-cases/catcher911-history.jpg',
+        'public/client-cases/catcher911-history-2.jpg',
+        'public/client-cases/catcher911-settings.jpg',
+        'public/client-cases/catcher911-stats.jpg',
+      ],
+    },
+    {
       title: 'Зубрык',
       category: 'Telegram-бот и Mini App',
       media: [
