@@ -499,6 +499,13 @@ export function mountMelon(host, hit, options = {}) {
     setPhase('charge');
   };
 
+  const gaze = {
+    source: small ? 'wander' : 'mouse',
+    touchUntil: 0,
+    tilt: new THREE.Vector2(),
+    tiltBase: null,
+  };
+
   const onPointerMove = (event) => {
     const rect = hit.getBoundingClientRect();
     const cx = rect.left + rect.width / 2;
@@ -507,9 +514,58 @@ export function mountMelon(host, hit, options = {}) {
       THREE.MathUtils.clamp((event.clientX - cx) / (window.innerWidth / 2), -1, 1),
       THREE.MathUtils.clamp((event.clientY - cy) / (window.innerHeight / 2), -1, 1)
     );
+    if (event.pointerType === 'mouse') gaze.source = 'mouse';
+    else gaze.touchUntil = state.time + 1.2;
+  };
+
+  const onOrientation = (event) => {
+    if (event.beta === null || event.gamma === null) return;
+    const portrait = window.innerHeight >= window.innerWidth;
+    const x = portrait ? event.gamma : event.beta;
+    const y = portrait ? event.beta : -event.gamma;
+    if (!gaze.tiltBase) gaze.tiltBase = new THREE.Vector2(x, y);
+    gaze.tiltBase.lerp(new THREE.Vector2(x, y), 0.004);
+    gaze.tilt.set(
+      THREE.MathUtils.clamp((x - gaze.tiltBase.x) / 22, -1, 1),
+      THREE.MathUtils.clamp((y - gaze.tiltBase.y) / 22, -1, 1)
+    );
+    if (gaze.source !== 'mouse') gaze.source = 'tilt';
+  };
+
+  const listenOrientation = () => {
+    if (!('DeviceOrientationEvent' in window)) return;
+    const Orientation = window.DeviceOrientationEvent;
+    if (typeof Orientation.requestPermission === 'function') {
+      const ask = () => {
+        Orientation.requestPermission()
+          .then((result) => {
+            if (result === 'granted') window.addEventListener('deviceorientation', onOrientation, { passive: true });
+          })
+          .catch(() => {});
+      };
+      window.addEventListener('touchend', ask, { once: true, passive: true });
+    } else {
+      window.addEventListener('deviceorientation', onOrientation, { passive: true });
+    }
+  };
+
+  const updateGaze = (t) => {
+    if (gaze.source === 'mouse') return;
+    if (state.time < gaze.touchUntil) return;
+    if (gaze.source === 'tilt') {
+      state.pointer.copy(gaze.tilt);
+      return;
+    }
+    const glance = Math.sin(t * 0.23) > 0.75 ? 0.55 : 0;
+    state.pointer.set(
+      Math.sin(t * 0.45) * 0.55 + Math.sin(t * 1.17) * 0.18,
+      Math.sin(t * 0.31) * 0.2 + glance
+    );
   };
 
   window.addEventListener('pointermove', onPointerMove, { passive: true });
+  window.addEventListener('pointerdown', onPointerMove, { passive: true });
+  if (small) listenOrientation();
   hit.addEventListener('click', trigger);
   hit.addEventListener('pointerenter', () => {
     if (state.phase === 'idle') state.squashVelocity += 1.4;
@@ -558,6 +614,7 @@ export function mountMelon(host, hit, options = {}) {
     const t = state.time;
     const idle = reduceMotion ? 0 : 1;
 
+    updateGaze(t);
     state.look.lerp(state.pointer, 1 - Math.pow(0.003, dt));
     root.rotation.y = state.look.x * 0.5 + Math.sin(t * 0.6) * 0.05 * idle;
     root.rotation.x = state.look.y * 0.3 + Math.sin(t * 0.8) * 0.03 * idle;
