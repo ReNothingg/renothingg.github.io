@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://renothingg.github.io/sitemap.xml
+Sitemap: https://renot.dev/sitemap.xml
