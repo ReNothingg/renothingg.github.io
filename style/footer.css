@@ -48,3 +48,26 @@ footer img {
     display: grid;
   }
 }
+
+footer:has(.footer-word) {
+  grid-template-columns: minmax(0, 1fr);
+  padding-bottom: 0;
+  overflow: hidden;
+}
+
+footer .footer-word {
+  margin: 8px 0 0;
+  font-family: "Unbounded", "Arial Black", sans-serif;
+  font-weight: 900;
+  font-size: 19.4vw;
+  line-height: 0.74;
+  letter-spacing: -0.06em;
+  min-width: 0;
+  padding-left: 1.1vw;
+  white-space: nowrap;
+  text-align: left;
+  color: transparent;
+  -webkit-text-stroke: 1.5px rgba(244, 240, 230, 0.22);
+  translate: 0 8%;
+  user-select: none;
+}

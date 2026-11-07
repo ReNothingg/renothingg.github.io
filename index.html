@@ -9,28 +9,37 @@
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="stylesheet" href="style.css?v=20261031-editorial2">
+    <link rel="stylesheet" href="style.css?v=20261107-melon3">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css" >
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;1,500&family=Inter:wght@400;500&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;1,500&family=Inter:wght@400;500&family=JetBrains+Mono:wght@400&family=Unbounded:wght@500;700;900&display=swap" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
     
     <title>ReNothingg</title>
     <link rel="icon" href="public/icon.ico" sizes="any">
 
-    <meta name="title" content="ReNothingg — Доступные технологии для каждого" />
-    <meta name="description" content="Я просто хочу, чтобы технологии были ближе каждому — доступные, понятные и гибкие. Чтобы каждый мог использовать их для своих идей." />
+    <meta name="title" content="ReNothingg" />
+    <meta name="description" content="You Сan Just Start Building Things" />
 
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://renot.dev/" />
-    <meta property="og:title" content="ReNothingg — Доступные технологии для каждого" />
-    <meta property="og:description" content="Я просто хочу, чтобы технологии были ближе каждому — доступные, понятные и гибкие. Чтобы каждый мог использовать их для своих идей." />
+    <meta property="og:title" content="ReNothingg" />
+    <meta property="og:description" content="You Сan Just Start Building Things" />
     <meta property="og:image" content="https://github.io" />
 
     <meta property="twitter:card" content="summary_large_image" />
     <meta property="twitter:url" content="https://renot.dev/" />
-    <meta property="twitter:title" content="ReNothingg — Доступные технологии для каждого" />
-    <meta property="twitter:description" content="Я просто хочу, чтобы технологии были ближе каждому — доступные, понятные и гибкие. Чтобы каждый мог использовать их для своих идей." />
+    <meta property="twitter:title" content="ReNothingg" />
+    <meta property="twitter:description" content="You Сan Just Start Building Things" />
     <meta property="twitter:image" content="https://github.io" />
+
+    <script type="importmap">
+    {
+        "imports": {
+            "three": "https://cdn.jsdelivr.net/npm/three@0.170.0/build/three.module.js",
+            "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.170.0/examples/jsm/"
+        }
+    }
+    </script>
 
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-4SBTELZLFG"></script>
     <script>
@@ -45,19 +54,26 @@
 
 <body>
     <main>
-        <section id="hero">
-            <div class="container hero-container-new">
-                <div class="hero-text-content">
-                    <h1 class="hero-title"><a class="section-permalink" href="?home" data-section-link="hero">ReNothingg</a></h1>
-                    <p class="hero-description">You Сan Just Start Building Things</p>
-                    <div class="hero-actions">
-                        <a class="btn hero-action" href="?projects" data-section-link="projects">Смотреть проекты</a>
-                        <a class="btn btn--secondary hero-action" href="?contact" data-section-link="contact">Обсудить задачу</a>
-                    </div>
-                </div>
-                <div class="hero-visual">
-                    <img src="public/main.svg" alt="Арбуз в красных очках — персонаж ReNothingg" class="hero-container-img" fetchpriority="high"
-                        decoding="async" />
+        <section id="hero" class="hero" aria-labelledby="hero-title">
+            <div class="hero-grid" aria-hidden="true"></div>
+
+
+            <h1 id="hero-title" class="hero-title" aria-label="ReNothingg">
+                <span class="hero-word" aria-hidden="true"><span>R</span><span>e</span><span>N</span><span>o</span><span>t</span><span>h</span><span>i</span><span>n</span><span>g</span><span>g</span></span>
+                <span class="hero-67" aria-hidden="true">67</span>
+            </h1>
+
+            <div class="hero-melon" data-melon>
+                <img class="hero-melon-fallback" src="public/main.svg" alt="Арбуз в красных очках — персонаж ReNothingg"
+                    fetchpriority="high" decoding="async">
+                <button class="hero-melon-hit" type="button" data-melon-hit aria-label="Взорвать арбуз"></button>
+            </div>
+
+            <div class="hero-bottom">
+                <p class="hero-description">You Сan Just Start Building Things</p>
+                <div class="hero-actions">
+                    <a class="hero-btn hero-btn--ink" href="?cases" data-section-link="orders">Смотреть кейсы</a>
+                    <a class="hero-btn hero-btn--ghost" href="?contact" data-section-link="contact">Обсудить задачу</a>
                 </div>
             </div>
         </section>
@@ -623,10 +639,35 @@
           </a>
         </div>
 
+        <p class="footer-word" aria-hidden="true">ReNothingg</p>
     </footer>
 
     <script src="script.js?v=20261103-note" defer></script>
     <script src="portfolio.js?v=20261103-igroshop" defer></script>
+    <script type="module">
+        import { mountMelon } from './melon.js?v=20261107-boom13';
+
+        const hero = document.getElementById('hero');
+        const host = hero?.querySelector('[data-melon]');
+        const hit = hero?.querySelector('[data-melon-hit]');
+        const canRender = (() => {
+            try {
+                const probe = document.createElement('canvas');
+                return Boolean(probe.getContext('webgl2') || probe.getContext('webgl'));
+            } catch (error) {
+                return false;
+            }
+        })();
+
+        if (host && hit && canRender) {
+            mountMelon(host, hit, {
+                onState: (state) => {
+                    hero.classList.toggle('is-charging', state === 'charge');
+                    hero.classList.toggle('is-67', state === 'boom');
+                },
+            });
+        }
+    </script>
 </body>
 
 </html>
