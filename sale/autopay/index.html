@@ -5,18 +5,74 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>PayTalon AutoPay — автооплата СБП-заявок с телефона</title>
-    <meta name="description" content="Телефон сам оплачивает СБП-заявки: открывает банк, вводит код, проверяет, платит и отправляет чек. 6 банков, 100 $ за банк, обновления бесплатно.">
+    <title>Автооплата СБП по QR с телефона — PayTalon AutoPay</title>
+    <meta name="description" content="Автооплата СБП-заявок с Android: телефон сам открывает банк, вводит код, проверяет сумму, оплачивает QR и отправляет чек. Т-Банк, Ozon, ЮMoney, МТС, Яндекс, ВБ. 100 $ за банк, обновления бесплатно.">
+    <meta name="robots" content="index, follow, max-image-preview:large">
     <link rel="canonical" href="https://renot.dev/sale/autopay/">
     <link rel="icon" href="media/icon.png" type="image/png">
 
-    <meta property="og:type" content="website">
+    <meta property="og:type" content="product">
+    <meta property="og:locale" content="ru_RU">
+    <meta property="og:site_name" content="ReNothingg">
     <meta property="og:url" content="https://renot.dev/sale/autopay/">
-    <meta property="og:title" content="PayTalon AutoPay — автооплата СБП-заявок">
-    <meta property="og:description" content="Телефон сам оплачивает СБП-заявки и отправляет чек. 6 банков, 100 $ за банк.">
-    <meta property="twitter:card" content="summary">
-    <meta property="twitter:title" content="PayTalon AutoPay — автооплата СБП-заявок">
-    <meta property="twitter:description" content="Телефон сам оплачивает СБП-заявки и отправляет чек. 6 банков, 100 $ за банк.">
+    <meta property="og:title" content="Автооплата СБП по QR с телефона — PayTalon AutoPay">
+    <meta property="og:description" content="Телефон сам оплачивает СБП-заявки и отправляет чек. 6 банков, 100 $ за банк, обновления бесплатно.">
+    <meta property="og:image" content="https://renot.dev/sale/autopay/media/icon.png">
+    <meta property="og:image:width" content="256">
+    <meta property="og:image:height" content="256">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Автооплата СБП по QR с телефона — PayTalon AutoPay">
+    <meta name="twitter:description" content="Телефон сам оплачивает СБП-заявки и отправляет чек. 6 банков, 100 $ за банк.">
+    <meta name="twitter:image" content="https://renot.dev/sale/autopay/media/icon.png">
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "SoftwareApplication",
+          "@id": "https://renot.dev/sale/autopay/#app",
+          "name": "PayTalon AutoPay",
+          "alternateName": ["PayTalon", "Автооплата СБП", "Автооплата QR"],
+          "description": "Android-приложение для автоматической оплаты СБП-заявок по QR: само открывает банк, вводит код, сверяет сумму, оплачивает и отправляет чек на сервер.",
+          "url": "https://renot.dev/sale/autopay/",
+          "image": "https://renot.dev/sale/autopay/media/icon.png",
+          "applicationCategory": "FinanceApplication",
+          "operatingSystem": "Android",
+          "inLanguage": "ru",
+          "featureList": [
+            "Автооплата СБП-заявок по QR",
+            "Т-Банк, Ozon Банк, ЮMoney, МТС Деньги, Яндекс Банк, ВБ Банк",
+            "Копии банковских приложений как отдельные слоты",
+            "Контроль баланса и минимального остатка",
+            "Несколько телефонов в одном круге",
+            "Сверка суммы и защита от повторной оплаты",
+            "Интеграция через HTTP API: poll, accept, events"
+          ],
+          "offers": {
+            "@type": "Offer",
+            "price": "100",
+            "priceCurrency": "USD",
+            "description": "Цена за один банк. Обновления и исправления бесплатно.",
+            "availability": "https://schema.org/InStock",
+            "url": "https://renot.dev/sale/autopay/#pricing"
+          },
+          "author": {
+            "@type": "Person",
+            "name": "ReNothingg",
+            "url": "https://renot.dev/"
+          }
+        },
+        {
+          "@type": "BreadcrumbList",
+          "itemListElement": [
+            { "@type": "ListItem", "position": 1, "name": "ReNothingg", "item": "https://renot.dev/" },
+            { "@type": "ListItem", "position": 2, "name": "Автооплата PayTalon", "item": "https://renot.dev/sale/autopay/" }
+          ]
+        }
+      ]
+    }
+    </script>
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -393,7 +449,28 @@
     <script>
         document.querySelectorAll('[data-year]').forEach((node) => { node.textContent = new Date().getFullYear(); });
 
+        const track = (name, params) => { if (typeof window.gtag === 'function') window.gtag('event', name, params); };
+
+        document.addEventListener('click', (event) => {
+            const link = event.target.closest('a[href^="https://t.me/"]');
+            if (!link) return;
+            const place = link.closest('[data-price-calc]') ? 'calculator' : (link.closest('section')?.id || link.closest('section')?.className.split(' ')[0] || 'page');
+            const picked = document.querySelectorAll('[data-price-calc] input:checked').length;
+            track('generate_lead', { method: 'telegram', placement: place, value: picked * 100, currency: 'USD' });
+        });
+
+        document.querySelectorAll('.sale-faq details').forEach((item) => {
+            item.addEventListener('toggle', () => {
+                if (item.open) track('faq_open', { question: item.querySelector('summary').textContent.trim() });
+            });
+        });
+
         const demos = [...document.querySelectorAll('[data-demo]')];
+        demos.forEach((video) => {
+            video.addEventListener('playing', () => {
+                track('demo_video_play', { video: video.getAttribute('src').split('/').pop() });
+            }, { once: true });
+        });
         const calm = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
         demos.forEach((video) => {
             if (calm) video.controls = true;
@@ -421,7 +498,11 @@
                     : 'Привет! Хочу PayTalon AutoPay';
                 cta.href = `https://t.me/jaims?text=${encodeURIComponent(text)}`;
             };
-            calc.addEventListener('change', update);
+            calc.addEventListener('change', () => {
+                update();
+                const picked = [...calc.querySelectorAll('input:checked')].map((input) => input.value);
+                track('price_calc_change', { banks: picked.join(', '), bank_count: picked.length, value: picked.length * 100, currency: 'USD' });
+            });
             calc.addEventListener('submit', (event) => event.preventDefault());
             update();
         }
