@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>PayTalon AutoPay — автооплата СБП-заявок с телефона</title>
+    <meta name="description" content="Телефон сам оплачивает СБП-заявки: открывает банк, вводит код, проверяет, платит и отправляет чек. 6 банков, 100 $ за банк, обновления бесплатно.">
+    <link rel="canonical" href="https://renot.dev/sale/autopay/">
+    <link rel="icon" href="media/icon.png" type="image/png">
+
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://renot.dev/sale/autopay/">
+    <meta property="og:title" content="PayTalon AutoPay — автооплата СБП-заявок">
+    <meta property="og:description" content="Телефон сам оплачивает СБП-заявки и отправляет чек. 6 банков, 100 $ за банк.">
+    <meta property="twitter:card" content="summary">
+    <meta property="twitter:title" content="PayTalon AutoPay — автооплата СБП-заявок">
+    <meta property="twitter:description" content="Телефон сам оплачивает СБП-заявки и отправляет чек. 6 банков, 100 $ за банк.">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;1,500&family=Inter:wght@400;500&family=JetBrains+Mono:wght@400&family=Unbounded:wght@500;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="autopay.css?v=20261108-1">
+
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-4SBTELZLFG"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-4SBTELZLFG');
+    </script>
+</head>
+
+<body class="sale-page">
+
+    <main>
+        <section class="sale-hero" aria-labelledby="hero-title">
+            <div class="container">
+                <img class="sale-hero-icon" src="media/icon.png" width="88" height="88" alt="Иконка приложения PayTalon">
+                <h1 id="hero-title" class="sale-hero-title">PayTalon AutoPay</h1>
+                <p class="sale-hero-lead">Телефон сам оплачивает СБП-заявки. Пришла заявка, он открыл нужный банк, ввёл код, всё проверил, оплатил и отправил чек. Вам остаётся только смотреть.</p>
+
+                <ol class="sale-flow" aria-label="Путь заявки">
+                    <li>Пришла заявка</li>
+                    <li>Открыл банк</li>
+                    <li>Проверил</li>
+                    <li>Оплатил</li>
+                    <li>Отправил чек</li>
+                </ol>
+
+                <div class="sale-actions">
+                    <a class="btn" href="https://t.me/jaims" target="_blank" rel="noopener noreferrer">Написать мне</a>
+                    <a class="btn btn--secondary" href="#pricing">Сколько стоит</a>
+                </div>
+            </div>
+        </section>
+
+        <section class="sale-section--soft demo" id="demo" aria-labelledby="demo-title">
+            <div class="container">
+                <h2 id="demo-title" class="sale-title demo-title">Как это выглядит</h2>
+                <p class="sale-lead demo-lead">Обычные записи экрана, ничего не вырезал. Сам PayTalon укладывается в 2,6–2,9 секунды, остальное время уходит на банк и связь. На облачных телефонах всё чуть медленнее.</p>
+            </div>
+            <div class="demo-reel" tabindex="0" aria-label="Видео с примерами автооплаты">
+                <figure class="demo-item">
+                    <div class="demo-phone">
+                        <video src="media/tbank-screen.mp4" muted loop playsinline preload="metadata" width="334" height="760" data-demo></video>
+                    </div>
+                    <figcaption><b>Т-Банк</b> оплата и квитанция</figcaption>
+                </figure>
+                <figure class="demo-item">
+                    <div class="demo-phone">
+                        <video src="media/tbank-phone.mp4" muted loop playsinline preload="metadata" width="464" height="848" data-demo></video>
+                    </div>
+                    <figcaption><b>Т-Банк</b> обычный телефон, от QR до чека</figcaption>
+                </figure>
+                <figure class="demo-item">
+                    <div class="demo-phone">
+                        <video src="media/mts-cloud.mp4" muted loop playsinline preload="metadata" width="300" height="780" data-demo></video>
+                    </div>
+                    <figcaption><b>МТС Деньги</b> облачный телефон</figcaption>
+                </figure>
+                <figure class="demo-item">
+                    <div class="demo-phone">
+                        <video src="media/yoomoney.mp4" muted loop playsinline preload="metadata" width="540" height="960" data-demo></video>
+                    </div>
+                    <figcaption><b>ЮMoney</b> эмулятор, ручной режим</figcaption>
+                </figure>
+            </div>
+        </section>
+
+        <section aria-labelledby="why-title">
+            <div class="container">
+                <h2 id="why-title" class="sale-title">Зачем это вам</h2>
+                <div class="sale-grid sale-grid--3">
+                    <article class="sale-card">
+                        <h3>Не нужно сидеть у экрана</h3>
+                        <p>Вставить QR, выбрать банк, ввести код, нажать «Оплатить» — всё это телефон делает сам. И ночью тоже.</p>
+                    </article>
+                    <article class="sale-card">
+                        <h3>Шесть банков в одном приложении</h3>
+                        <p>Т-Банк, Ozon, ЮMoney, МТС Деньги, Яндекс и ВБ. Если у вас несколько аккаунтов одного банка, ставите копии приложения, и каждая работает как отдельный банк.</p>
+                    </article>
+                    <article class="sale-card">
+                        <h3>Не хватает скорости — добавьте телефон</h3>
+                        <p>Подключаете сколько угодно телефонов. Заявки сами расходятся по тем, у кого банк готов и хватает денег.</p>
+                    </article>
+                    <article class="sale-card">
+                        <h3>Не нужно следить за балансом</h3>
+                        <p>Деньги на счёте кончились — банк сам выходит из работы. Пополнили — сам возвращается. Руками ничего переключать не надо.</p>
+                    </article>
+                    <article class="sale-card">
+                        <h3>Никаких «вроде оплатил»</h3>
+                        <p>Нажатая кнопка ещё не оплата. Заявка закрывается, только когда банк сам показал, что деньги ушли.</p>
+                    </article>
+                    <article class="sale-card">
+                        <h3>Встаёт в ваш софт</h3>
+                        <p>Есть готовый протокол из трёх запросов и документация. Не хотите разбираться — подключу сам.</p>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <section id="banks" class="sale-section--soft" aria-labelledby="banks-title">
+            <div class="container">
+                <h2 id="banks-title" class="sale-title">Банки</h2>
+                <p class="sale-lead">Каждый банк стоит 100 $, берёте только нужные. Под ваш набор я собираю отдельную версию приложения, лишнего в ней не будет.</p>
+
+                <div class="sale-grid sale-grid--3">
+                    <article class="sale-card bank-card">
+                        <div class="bank-card-head"><h3>Т-Банк</h3><span class="status status--ok">Стабильно</span></div>
+                        <p>Сам выбирает нужный счёт (Black, Platinum и любой другой), читает баланс с главной и находит квитанцию. Ждёт, пока банк «рассчитывает условия». Если QR не принимается, честно возвращает отказ.</p>
+                        <p class="bank-card-price">100 $</p>
+                    </article>
+                    <article class="sale-card bank-card">
+                        <div class="bank-card-head"><h3>Ozon Банк</h3><span class="status status--ok">Стабильно</span></div>
+                        <p>У Ozon хитрая клавиатура для кода, с ней справляется без проблем. Дальше открывает QR, проверяет форму и ждёт итогового экрана.</p>
+                        <p class="bank-card-price">100 $</p>
+                    </article>
+                    <article class="sale-card bank-card">
+                        <div class="bank-card-head"><h3>ЮMoney</h3><span class="status status--ok">Готов</span></div>
+                        <p>Вводит код доступа, сверяет реквизиты СБП и сумму списания, потом ловит результат.</p>
+                        <p class="bank-card-price">100 $</p>
+                    </article>
+                    <article class="sale-card bank-card">
+                        <div class="bank-card-head"><h3>МТС Деньги</h3><span class="status status--ok">Готов</span></div>
+                        <p>Работает и с новым приложением «МТС Деньги», и со старым «МТС Банк». Код вводит примерно за 0,3 секунды.</p>
+                        <p class="bank-card-price">100 $</p>
+                    </article>
+                    <article class="sale-card bank-card">
+                        <div class="bank-card-head"><h3>Яндекс Банк</h3><span class="status status--part">Частично</span></div>
+                        <p>Работает через «Яндекс Пэй». Если банк думает долго, спокойно ждёт и второй раз не платит.</p>
+                        <p class="bank-card-price">100 $</p>
+                    </article>
+                    <article class="sale-card bank-card">
+                        <div class="bank-card-head"><h3>ВБ Банк</h3><span class="status status--part">Частично</span></div>
+                        <p>Работает с WB Кошельком внутри Wildberries. Пароль из 6 цифр вводит быстро. Если с первого раза не вышло, второй раз вводит медленнее, зато наверняка.</p>
+                        <p class="bank-card-price">100 $</p>
+                    </article>
+                </div>
+
+                <p class="sale-note"><span class="status status--ok">Стабильно / Готов</span> можно запускать и работать. <span class="status status--part">Частично</span> автоматизация готова, но на каких-то телефонах может споткнуться. Такое чиню бесплатно. Нужен банк, которого нет в списке? Напишите, добавлю.</p>
+            </div>
+        </section>
+
+        <section id="how" aria-labelledby="how-title">
+            <div class="container">
+                <h2 id="how-title" class="sale-title">Как это работает</h2>
+
+                <div class="sale-split">
+                    <div>
+                        <h3 class="sale-subtitle">Серверный режим</h3>
+                        <p>Запускаете приложение, оно подключается к вашим серверам и ждёт заявки. Заявка приходит сразу с указанием, каким банком платить, поэтому ничего вставлять и выбирать не нужно.</p>
+                        <p>Дальше всё по шагам, вот так:</p>
+                    </div>
+                    <ol class="sale-steps">
+                        <li><b>Телефон → сервер.</b> «Я на месте, вот мои банки и сколько на них денег».</li>
+                        <li><b>Сервер → телефон.</b> «Держи заявку: QR, сумма, каким банком платить».</li>
+                        <li><b>Телефон → сервер.</b> «Беру». Пока сервер не подтвердил, телефон ничего не оплачивает.</li>
+                        <li><b>Телефон → банк.</b> Открывает QR в нужном приложении и вводит код.</li>
+                        <li><b>Проверка.</b> Смотрит сумму, счёт и форму оплаты.</li>
+                        <li><b>Оплата.</b> Жмёт «Оплатить». Один раз, не больше.</li>
+                        <li><b>Банк → телефон.</b> Банк показывает результат.</li>
+                        <li><b>Телефон → сервер.</b> «Оплачено, вот чек» или «не вышло, вот почему».</li>
+                    </ol>
+                </div>
+
+                <div class="sale-grid sale-grid--2 sale-gap-top">
+                    <article class="sale-card">
+                        <h3>Ручной режим</h3>
+                        <p>Это для тестов и обычной жизни. Вставляете QR-ссылку, выбираете банк и жмёте старт, сервер не нужен. Все проверки работают так же, как в серверном режиме.</p>
+                        <p class="sale-hint">Добавили новый банк? Прогоните его сначала вручную на своём телефоне, так спокойнее.</p>
+                    </article>
+                    <article class="sale-card">
+                        <h3>Настройка (один раз)</h3>
+                        <ol class="sale-list-numbered">
+                            <li>Ставите PayTalon и нужные банки.</li>
+                            <li>Даёте PayTalon доступ к специальным возможностям Android и убираете ограничения работы в фоне.</li>
+                            <li>Для каждого банка вписываете код, счёт для оплаты и сколько денег всегда оставлять на счёте.</li>
+                            <li>Открываете банк и проверяете, что вход проходит.</li>
+                            <li>Указываете адрес сервера и жмёте «Запустить».</li>
+                        </ol>
+                    </article>
+                    <article class="sale-card">
+                        <h3>Копии банков</h3>
+                        <p>Системные клоны приложений тоже работают. Каждая копия живёт своей жизнью: свои настройки, свой баланс, свой минимальный остаток. То есть три аккаунта Т-Банка на одном телефоне — это три отдельных банка для автооплаты.</p>
+                    </article>
+                    <article class="sale-card">
+                        <h3>Несколько телефонов</h3>
+                        <p>Один телефон платит одну заявку за раз, так надёжнее. Нужно больше — добавляете телефоны, все они встают в общую очередь. Обычные и облачные подходят одинаково.</p>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <section class="sale-section--soft" aria-labelledby="slots-title">
+            <div class="container sale-split">
+                <div>
+                    <h2 id="slots-title" class="sale-title">Приложение следит за каждым банком</h2>
+                    <p class="sale-lead">Баланс упал ниже порога — банк сам выходит из работы, и заявки идут в другой. Пополнили — он сам возвращается.</p>
+                    <p>Если готовых банков не осталось совсем, новые оплаты просто не начинаются. Сервер при этом работает дальше и ждёт, пока какой-нибудь банк освободится.</p>
+                </div>
+                <ul class="sale-checklist">
+                    <li>Включён ли банк в автооплату</li>
+                    <li>Установлено ли приложение</li>
+                    <li>Получилось ли войти</li>
+                    <li>Готов ли банк платить прямо сейчас</li>
+                    <li>Сколько денег на счёте</li>
+                    <li>Не дошли ли до минимального остатка</li>
+                </ul>
+            </div>
+        </section>
+
+        <section id="safety" class="sale-section--dark" aria-labelledby="safety-title">
+            <div class="container">
+                <h2 id="safety-title" class="sale-title">Не уверен — не платит</h2>
+                <div class="sale-grid sale-grid--3">
+                    <article class="sale-card sale-card--dark">
+                        <h3>Перед оплатой всё сверяет</h3>
+                        <p>Кнопку не нажмёт, если:</p>
+                        <ul>
+                            <li>сумма в банке не та, что в заявке;</li>
+                            <li>реквизиты или форма выглядят странно;</li>
+                            <li>выбран не тот счёт или откуда-то взялся другой источник списания;</li>
+                            <li>кнопка серая или форма ещё грузится.</li>
+                        </ul>
+                    </article>
+                    <article class="sale-card sale-card--dark">
+                        <h3>Нажимает один раз</h3>
+                        <p>По одной заявке «Оплатить» нажимается один раз. Даже если телефон перезагрузился, пропала связь или вышло время заявки, второго списания не будет.</p>
+                    </article>
+                    <article class="sale-card sale-card--dark">
+                        <h3>Верит только банку</h3>
+                        <p>Если банк выдал ошибку, попросил что-то подтвердить или повёл себя странно, заявка <strong>не</strong> считается оплаченной. Если банк прямо отказал, сервер узнаёт причину.</p>
+                        <p>Чек сохраняется, результат сразу уходит на сервер. Пропала связь — телефон подождёт и отправит позже.</p>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <section id="integration" aria-labelledby="integration-title">
+            <div class="container">
+                <h2 id="integration-title" class="sale-title">Подключение к вашему софту</h2>
+
+                <div class="sale-grid sale-grid--2">
+                    <article class="sale-card">
+                        <h3>Если у вас свой сервер</h3>
+                        <p>PayTalon ходит к вам сам. На вашей стороне нужно всего три запроса:</p>
+                        <dl class="sale-methods">
+                            <div><dt><code>poll</code></dt><dd>Телефон говорит, что он на месте, какие у него банки и балансы, и забирает заявку.</dd></div>
+                            <div><dt><code>accept</code></dt><dd>Телефон берёт заявку. Без этого он ничего не оплачивает.</dd></div>
+                            <div><dt><code>events</code></dt><dd>Как идёт оплата и чем закончилась: оплачено, отказ с причиной, чек.</dd></div>
+                        </dl>
+                        <ul>
+                            <li>Можно по HTTPS или по HTTP с подписью HMAC-SHA256.</li>
+                            <li>Дам документацию, OpenAPI и готовые примеры JSON.</li>
+                            <li>Проверить, что всё сходится, можно даже без телефона.</li>
+                            <li>Один телефон может работать сразу с несколькими серверами.</li>
+                        </ul>
+                    </article>
+                    <article class="sale-card">
+                        <h3>Если разбираться некогда</h3>
+                        <p>Подключу автооплату к вашей площадке, CRM или процессингу сам:</p>
+                        <ol class="sale-list-numbered">
+                            <li>Смотрим, как у вас ходят заявки и какие бывают статусы.</li>
+                            <li>Настраиваю обмен под вашу систему.</li>
+                            <li>Гоняем на ваших телефонах и банках.</li>
+                            <li>Отдаю рабочую связку и остаюсь на связи.</li>
+                        </ol>
+                        <p><a href="https://t.me/jaims" target="_blank" rel="noopener noreferrer">Обсудить подключение</a></p>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <section id="pricing" class="sale-section--soft" aria-labelledby="pricing-title">
+            <div class="container sale-split">
+                <div>
+                    <h2 id="pricing-title" class="sale-title">Цена</h2>
+                    <p class="sale-lead">100 $ за каждый банк. Отметьте нужные, и сумма посчитается сама.</p>
+                    <ul class="sale-checklist">
+                        <li>PayTalon под ваш набор банков</li>
+                        <li>Помогу настроить телефоны</li>
+                        <li><strong>Обновления бесплатно</strong>, когда банки что-то меняют</li>
+                        <li><strong>Починка бесплатно</strong>, если на вашем телефоне что-то сломалось</li>
+                    </ul>
+                </div>
+
+                <form class="sale-card price-calc" data-price-calc aria-label="Калькулятор стоимости">
+                    <fieldset>
+                        <label><input type="checkbox" value="Т-Банк" checked> Т-Банк <span>100 $</span></label>
+                        <label><input type="checkbox" value="Ozon Банк" checked> Ozon Банк <span>100 $</span></label>
+                        <label><input type="checkbox" value="ЮMoney"> ЮMoney <span>100 $</span></label>
+                        <label><input type="checkbox" value="МТС Деньги"> МТС Деньги <span>100 $</span></label>
+                        <label><input type="checkbox" value="Яндекс Банк"> Яндекс Банк <span>100 $</span></label>
+                        <label><input type="checkbox" value="ВБ Банк"> ВБ Банк <span>100 $</span></label>
+                    </fieldset>
+                    <p class="price-total"><span>Итого</span> <output data-price-total>200 $</output></p>
+                    <a class="btn" href="https://t.me/jaims" target="_blank" rel="noopener noreferrer" data-price-cta>Хочу так</a>
+                </form>
+            </div>
+        </section>
+
+        <section id="support-free" aria-labelledby="support-title">
+            <div class="container sale-split">
+                <div>
+                    <h2 id="support-title" class="sale-title">Обновления и починка бесплатно</h2>
+                </div>
+                <div>
+                    <p class="sale-lead">Банки постоянно двигают кнопки и меняют экраны. Я за этим слежу и выпускаю обновления, платить за них не нужно.</p>
+                    <p>Если на вашем телефоне что-то пошло не так, просто напишите, разберусь и починю. Обновление ставится поверх, настройки никуда не денутся.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="faq" class="sale-section--soft" aria-labelledby="faq-title">
+            <div class="container sale-faq-wrap">
+                <h2 id="faq-title" class="sale-title">Частые вопросы</h2>
+                <div class="sale-faq">
+                    <details>
+                        <summary>Телефон нужно держать в руках?</summary>
+                        <p>Нет. После настройки он всё делает сам. Главное, чтобы был включён, был интернет и система не выгружала PayTalon в фоне.</p>
+                    </details>
+                    <details>
+                        <summary>А если на счёте кончатся деньги?</summary>
+                        <p>Как только баланс опустится ниже порога, этот банк выйдет из работы, и заявки пойдут в другие. Пополните — он вернётся сам.</p>
+                    </details>
+                    <details>
+                        <summary>Может одна заявка оплатиться дважды?</summary>
+                        <p>Нет. Второе нажатие по той же заявке заблокировано, даже после перезагрузки или потери связи. Если непонятно, прошла оплата или нет, приложение ждёт ответа банка, а не платит снова.</p>
+                    </details>
+                    <details>
+                        <summary>Что будет, когда банк обновится?</summary>
+                        <p>Я слежу за этим и выпускаю обновления бесплатно. Если банк поменял экран так, что приложение его не узнаёт, оно не будет жать кнопки наугад. Заявка просто останется неоплаченной.</p>
+                    </details>
+                    <details>
+                        <summary>Можно несколько аккаунтов одного банка?</summary>
+                        <p>Можно, через системные копии приложения. Каждая копия работает как отдельный банк со своим балансом и настройками.</p>
+                    </details>
+                    <details>
+                        <summary>Сколько телефонов можно подключить?</summary>
+                        <p>Сколько договоримся, можно и без ограничений. Каждый телефон платит одну заявку за раз.</p>
+                    </details>
+                    <details>
+                        <summary>Сколько стоит и что входит?</summary>
+                        <p>100 $ за каждый банк. В цену входят приложение под ваш набор банков, помощь с настройкой, обновления и починка.</p>
+                    </details>
+                    <details>
+                        <summary>Можно сначала посмотреть вживую?</summary>
+                        <p>Конечно. Напишите в Telegram, покажу, как всё работает, и обсудим вашу схему.</p>
+                    </details>
+                </div>
+            </div>
+        </section>
+
+        <section class="sale-section--dark sale-cta" aria-labelledby="cta-title">
+            <div class="container">
+                <h2 id="cta-title" class="sale-title">Хватит платить руками</h2>
+                <p class="sale-lead">Напишите, какие банки нужны и сколько у вас телефонов. Подберу набор и помогу всё запустить.</p>
+                <a class="btn btn--light" href="https://t.me/jaims" target="_blank" rel="noopener noreferrer">Написать в Telegram</a>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p class="footer-brand">ReNothingg</p>
+            <p>© <span data-year></span> ReNothingg. Все права кем-то защищены. Наверное...</p>
+        </div>
+        <p class="footer-word" aria-hidden="true">PayTalon</p>
+    </footer>
+
+    <script>
+        document.querySelectorAll('[data-year]').forEach((node) => { node.textContent = new Date().getFullYear(); });
+
+        const demos = [...document.querySelectorAll('[data-demo]')];
+        const calm = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        demos.forEach((video) => {
+            if (calm) video.controls = true;
+            video.addEventListener('click', () => { video.paused ? video.play() : video.pause(); });
+        });
+        if (!calm && 'IntersectionObserver' in window) {
+            const watcher = new IntersectionObserver((entries) => {
+                entries.forEach(({ target, isIntersecting }) => {
+                    if (isIntersecting) target.play().catch((error) => { if (error.name === 'NotAllowedError') target.controls = true; });
+                    else target.pause();
+                });
+            }, { threshold: 0.4 });
+            demos.forEach((video) => watcher.observe(video));
+        }
+
+        const calc = document.querySelector('[data-price-calc]');
+        if (calc) {
+            const total = calc.querySelector('[data-price-total]');
+            const cta = calc.querySelector('[data-price-cta]');
+            const update = () => {
+                const picked = [...calc.querySelectorAll('input:checked')].map((input) => input.value);
+                total.textContent = `${picked.length * 100} $`;
+                const text = picked.length
+                    ? `Привет! Хочу PayTalon AutoPay: ${picked.join(', ')}, итого ${picked.length * 100} $`
+                    : 'Привет! Хочу PayTalon AutoPay';
+                cta.href = `https://t.me/jaims?text=${encodeURIComponent(text)}`;
+            };
+            calc.addEventListener('change', update);
+            calc.addEventListener('submit', (event) => event.preventDefault());
+            update();
+        }
+    </script>
+</body>
+
+</html>
