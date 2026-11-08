@@ -1,7 +1,7 @@
 footer {
   display: grid;
   gap: var(--space-lg);
-  padding: 0 0 var(--space-xl);
+  padding: 0 0 calc(var(--space-xl) + env(safe-area-inset-bottom));
   background: var(--surface-dark);
   color: var(--on-dark-soft);
 }
