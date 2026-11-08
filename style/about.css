@@ -91,6 +91,13 @@
   text-align: center;
 }
 
+.about-stack-tags .stack-icon {
+  width: 1.05em;
+  height: 1em;
+  flex: none;
+  fill: var(--muted);
+}
+
 @media (max-width: 900px) {
   .about-container {
     grid-template-columns: 1fr;

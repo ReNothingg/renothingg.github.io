@@ -105,6 +105,15 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     track.appendChild(clone);
+
+    let visible = false;
+    const updateAnimation = () => track.classList.toggle('is-visible', visible && !document.hidden && !document.querySelector('.project-viewer[open]'));
+    new IntersectionObserver(([entry]) => {
+      visible = entry.isIntersecting;
+      updateAnimation();
+    }, { rootMargin: '100px' }).observe(track);
+    document.addEventListener('visibilitychange', updateAnimation);
+    document.addEventListener('projectviewerchange', updateAnimation);
   };
 
   const setupHorizontalDrag = (scroller) => {
@@ -216,18 +225,36 @@ document.addEventListener('DOMContentLoaded', () => {
     const note = card.querySelector('.cursor-note');
     if (!note) return;
     document.body.append(note);
+    let width = 0;
+    let height = 0;
+    let frame = 0;
+    let position;
     const place = (x, y) => {
       const gap = 18;
-      const w = note.offsetWidth;
-      const h = note.offsetHeight;
       let left = x + gap;
       let top = y + gap;
-      if (left + w > window.innerWidth - 8) left = x - w - gap;
-      if (top + h > window.innerHeight - 8) top = Math.max(8, y - h - gap);
+      if (left + width > window.innerWidth - 8) left = x - width - gap;
+      if (top + height > window.innerHeight - 8) top = Math.max(8, y - height - gap);
       note.style.transform = `translate(${Math.max(8, left)}px, ${top}px)`;
     };
-    card.addEventListener('mouseenter', (e) => { place(e.clientX, e.clientY); note.classList.add('is-visible'); });
-    card.addEventListener('mousemove', (e) => place(e.clientX, e.clientY));
-    card.addEventListener('mouseleave', () => note.classList.remove('is-visible'));
+    card.addEventListener('mouseenter', (event) => {
+      width = note.offsetWidth;
+      height = note.offsetHeight;
+      place(event.clientX, event.clientY);
+      note.classList.add('is-visible');
+    });
+    card.addEventListener('mousemove', (event) => {
+      position = { x: event.clientX, y: event.clientY };
+      if (frame) return;
+      frame = requestAnimationFrame(() => {
+        frame = 0;
+        place(position.x, position.y);
+      });
+    });
+    card.addEventListener('mouseleave', () => {
+      cancelAnimationFrame(frame);
+      frame = 0;
+      note.classList.remove('is-visible');
+    });
   });
 })();

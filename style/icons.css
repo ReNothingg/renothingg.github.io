@@ -1,0 +1,152 @@
+@font-face {
+  font-family: "ReNothingg Icons Solid";
+  font-style: normal;
+  font-weight: 900;
+  font-display: block;
+  src: url("public/fonts/icons-solid.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "ReNothingg Icons Brands";
+  font-style: normal;
+  font-weight: 400;
+  font-display: block;
+  src: url("public/fonts/icons-brands.woff2") format("woff2");
+}
+
+.fa-solid,
+.fas,
+.fa-brands,
+.fab {
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  display: var(--fa-display, inline-block);
+  font-style: normal;
+  font-variant: normal;
+  line-height: 1;
+  text-rendering: auto;
+}
+
+.fa-solid,
+.fas {
+  font-family: "ReNothingg Icons Solid";
+  font-weight: 900;
+}
+
+.fa-brands,
+.fab {
+  font-family: "ReNothingg Icons Brands";
+  font-weight: 400;
+}
+
+.fa-apple::before {
+  content: "\f179";
+}
+
+.fa-arrow-right::before {
+  content: "\f061";
+}
+
+.fa-brain::before {
+  content: "\f5dc";
+}
+
+.fa-briefcase::before {
+  content: "\f0b1";
+}
+
+.fa-cloud::before {
+  content: "\f0c2";
+}
+
+.fa-code::before {
+  content: "\f121";
+}
+
+.fa-database::before {
+  content: "\f1c0";
+}
+
+.fa-docker::before {
+  content: "\f395";
+}
+
+.fa-flask::before {
+  content: "\f0c3";
+}
+
+.fa-gears::before {
+  content: "\f085";
+}
+
+.fa-github::before {
+  content: "\f09b";
+}
+
+.fa-hashtag::before {
+  content: "\23";
+}
+
+.fa-linux::before {
+  content: "\f17c";
+}
+
+.fa-microchip::before {
+  content: "\f2db";
+}
+
+.fa-node-js::before {
+  content: "\f3d3";
+}
+
+.fa-python::before {
+  content: "\f3e2";
+}
+
+.fa-react::before {
+  content: "\f41b";
+}
+
+.fa-robot::before {
+  content: "\f544";
+}
+
+.fa-route::before {
+  content: "\f4d7";
+}
+
+.fa-satellite-dish::before {
+  content: "\f7c0";
+}
+
+.fa-server::before {
+  content: "\f233";
+}
+
+.fa-spider::before {
+  content: "\f717";
+}
+
+.fa-steam::before {
+  content: "\f1b6";
+}
+
+.fa-swift::before {
+  content: "\f8e1";
+}
+
+.fa-telegram::before {
+  content: "\f2c6";
+}
+
+.fa-windows::before {
+  content: "\f17a";
+}
+
+.fa-x-twitter::before {
+  content: "\e61b";
+}
+
+.fa-youtube::before {
+  content: "\f167";
+}

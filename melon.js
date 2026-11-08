@@ -164,6 +164,10 @@ const createReflections = (renderer) => {
   const pmrem = new THREE.PMREMGenerator(renderer);
   const texture = pmrem.fromScene(room, 0.02).texture;
   pmrem.dispose();
+  room.traverse((object) => {
+    object.geometry?.dispose();
+    object.material?.dispose();
+  });
   return texture;
 };
 
@@ -395,19 +399,33 @@ export function mountMelon(host, hit, options = {}) {
     pop: 1,
     popVelocity: 0,
     running: false,
-    visible: true,
+    visible: false,
     glassesFlight: null,
   };
 
   const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   const halfHeight = CAMERA_DISTANCE * Math.tan(THREE.MathUtils.degToRad(FOV / 2));
+  const gl = renderer.getContext();
+  const maxDims = gl.getParameter(gl.MAX_VIEWPORT_DIMS);
+  const maxSide = Math.min(maxDims[0], maxDims[1], gl.getParameter(gl.MAX_RENDERBUFFER_SIZE), 4096);
+  let renderWidth = 0;
+  let renderHeight = 0;
+  let renderRatio = 0;
+  let croppedRender = false;
+  const canCrop = () => state.phase === 'idle' && Math.abs(state.pop - 1) < 0.01 && Math.abs(state.popVelocity) < 0.05;
 
   const resize = () => {
     const rect = host.getBoundingClientRect();
     if (!rect.width || !rect.height) return;
-    const gl = renderer.getContext();
-    const maxDims = gl.getParameter(gl.MAX_VIEWPORT_DIMS);
-    const maxSide = Math.min(maxDims[0], maxDims[1], gl.getParameter(gl.MAX_RENDERBUFFER_SIZE), 4096);
+    const hitRect = hit.getBoundingClientRect();
+    const cx = hitRect.left + hitRect.width / 2 - rect.left;
+    const cy = hitRect.top + hitRect.height / 2 - rect.top;
+    const cropped = canCrop();
+    croppedRender = cropped;
+    const left = cropped ? Math.max(0, Math.floor(cx - hitRect.width * 0.825)) : 0;
+    const top = cropped ? Math.max(0, Math.floor(cy - hitRect.height * 0.75)) : 0;
+    const width = cropped ? Math.ceil(Math.min(rect.width, cx + hitRect.width * 0.825) - left) : rect.width;
+    const height = cropped ? Math.ceil(Math.min(rect.height, cy + hitRect.height * 0.95) - top) : rect.height;
     const budget = small ? 2.4e6 : 6e6;
     const ratio = Math.min(
       window.devicePixelRatio || 1,
@@ -416,14 +434,20 @@ export function mountMelon(host, hit, options = {}) {
       maxSide / rect.height,
       Math.sqrt(budget / (rect.width * rect.height))
     );
-    renderer.setPixelRatio(ratio);
-    renderer.setSize(rect.width, rect.height, false);
+    if (ratio !== renderRatio) renderer.setPixelRatio(ratio);
+    if (ratio !== renderRatio || width !== renderWidth || height !== renderHeight) {
+      renderer.setSize(width, height, false);
+      renderWidth = width;
+      renderHeight = height;
+      renderRatio = ratio;
+    }
+    canvas.style.left = `${left}px`;
+    canvas.style.top = `${top}px`;
+    canvas.style.width = `${width}px`;
+    canvas.style.height = `${height}px`;
     camera.aspect = rect.width / rect.height;
-    camera.updateProjectionMatrix();
+    camera.setViewOffset(rect.width, rect.height, left, top, width, height);
 
-    const hitRect = hit.getBoundingClientRect();
-    const cx = hitRect.left + hitRect.width / 2 - rect.left;
-    const cy = hitRect.top + hitRect.height / 2 - rect.top;
     const halfWidth = halfHeight * camera.aspect;
     stage.position.set((cx / rect.width) * 2 * halfWidth - halfWidth, halfHeight - (cy / rect.height) * 2 * halfHeight, 0);
     const radius = (hitRect.height / 2 / rect.height) * 2 * halfHeight;
@@ -433,6 +457,7 @@ export function mountMelon(host, hit, options = {}) {
   const setPhase = (phase) => {
     state.phase = phase;
     state.phaseTime = 0;
+    resize();
     host.classList.toggle('is-busy', phase !== 'idle');
     options.onState?.(phase === 'exploded' ? 'boom' : phase);
   };
@@ -521,26 +546,36 @@ export function mountMelon(host, hit, options = {}) {
     tilt: new THREE.Vector2(),
     tiltBase: null,
   };
+  let pointerPosition = null;
 
   const onPointerMove = (event) => {
-    const rect = hit.getBoundingClientRect();
-    const cx = rect.left + rect.width / 2;
-    const cy = rect.top + rect.height / 2;
-    state.pointer.set(
-      THREE.MathUtils.clamp((event.clientX - cx) / (window.innerWidth / 2), -1, 1),
-      THREE.MathUtils.clamp((event.clientY - cy) / (window.innerHeight / 2), -1, 1)
-    );
+    if (!state.running) return;
+    pointerPosition = { x: event.clientX, y: event.clientY };
     if (event.pointerType === 'mouse') gaze.source = 'mouse';
     else gaze.touchUntil = state.time + 1.2;
   };
 
+  const updatePointer = () => {
+    if (!pointerPosition) return;
+    const rect = hit.getBoundingClientRect();
+    const cx = rect.left + rect.width / 2;
+    const cy = rect.top + rect.height / 2;
+    state.pointer.set(
+      THREE.MathUtils.clamp((pointerPosition.x - cx) / (window.innerWidth / 2), -1, 1),
+      THREE.MathUtils.clamp((pointerPosition.y - cy) / (window.innerHeight / 2), -1, 1)
+    );
+    pointerPosition = null;
+  };
+
   const onOrientation = (event) => {
+    if (!state.running) return;
     if (event.beta === null || event.gamma === null) return;
     const portrait = window.innerHeight >= window.innerWidth;
     const x = portrait ? event.gamma : event.beta;
     const y = portrait ? event.beta : -event.gamma;
     if (!gaze.tiltBase) gaze.tiltBase = new THREE.Vector2(x, y);
-    gaze.tiltBase.lerp(new THREE.Vector2(x, y), 0.004);
+    gaze.tiltBase.x += (x - gaze.tiltBase.x) * 0.004;
+    gaze.tiltBase.y += (y - gaze.tiltBase.y) * 0.004;
     gaze.tilt.set(
       THREE.MathUtils.clamp((x - gaze.tiltBase.x) / 22, -1, 1),
       THREE.MathUtils.clamp((y - gaze.tiltBase.y) / 22, -1, 1)
@@ -592,9 +627,11 @@ export function mountMelon(host, hit, options = {}) {
   const direction = new THREE.Vector3();
   const CHARGE = 1.25;
   const EXPLODED = 3.6;
+  const particlePools = Object.values(pools);
 
   const updatePools = (dt) => {
-    Object.values(pools).forEach((pool) => {
+    const damping = Math.pow(0.6, dt);
+    particlePools.forEach((pool) => {
       const { items, mesh } = pool;
       for (let i = items.length - 1; i >= 0; i -= 1) {
         const item = items[i];
@@ -604,7 +641,7 @@ export function mountMelon(host, hit, options = {}) {
           continue;
         }
         item.velocity.y -= 15 * dt;
-        item.velocity.multiplyScalar(Math.pow(0.6, dt));
+        item.velocity.multiplyScalar(damping);
         item.position.addScaledVector(item.velocity, dt);
         item.rotation.x += item.spin.x * dt;
         item.rotation.y += item.spin.y * dt;
@@ -630,6 +667,7 @@ export function mountMelon(host, hit, options = {}) {
     const t = state.time;
     const idle = reduceMotion ? 0 : 1;
 
+    updatePointer();
     updateGaze(t);
     state.look.lerp(state.pointer, 1 - Math.pow(0.003, dt));
     root.rotation.y = state.look.x * 0.5 + Math.sin(t * 0.6) * 0.05 * idle;
@@ -702,36 +740,43 @@ export function mountMelon(host, hit, options = {}) {
     shadow.scale.set(shadowScale, shadowScale, 1);
 
     updatePools(dt);
+    if (croppedRender !== canCrop()) resize();
     renderer.render(scene, camera);
   };
 
+  let frameId = 0;
   const frame = () => {
+    frameId = 0;
     if (!state.running) return;
     tick(Math.min(clock.getDelta(), 0.05));
-    requestAnimationFrame(frame);
+    frameId = requestAnimationFrame(frame);
   };
 
   const start = () => {
     if (state.running) return;
     state.running = true;
     clock.getDelta();
-    requestAnimationFrame(frame);
+    frameId = requestAnimationFrame(frame);
   };
   const stop = () => {
     state.running = false;
+    cancelAnimationFrame(frameId);
+    frameId = 0;
+  };
+
+  const syncRunning = () => {
+    if (state.visible && !document.hidden && !document.querySelector('.project-viewer[open]')) start();
+    else stop();
   };
 
   const io = new IntersectionObserver(([entry]) => {
     state.visible = entry.isIntersecting;
-    if (state.visible && !document.hidden) start();
-    else stop();
+    syncRunning();
   });
   io.observe(host);
 
-  document.addEventListener('visibilitychange', () => {
-    if (document.hidden) stop();
-    else if (state.visible) start();
-  });
+  document.addEventListener('visibilitychange', syncRunning);
+  document.addEventListener('projectviewerchange', syncRunning);
 
   const ro = new ResizeObserver(resize);
   ro.observe(host);
@@ -739,7 +784,6 @@ export function mountMelon(host, hit, options = {}) {
   resize();
   tick(0);
   host.classList.add('is-3d');
-  start();
 
   return { trigger };
 }
@@ -809,6 +853,9 @@ export function mountGlassesRest(host) {
   const pairs = [];
   let running = false;
   let last = 0;
+  let frameId = 0;
+  let visible = false;
+  let active = false;
 
   const makePair = (slot) => {
     const { group } = buildGlasses(materials);
@@ -900,30 +947,48 @@ export function mountGlassesRest(host) {
   };
 
   const frame = (now) => {
+    frameId = 0;
+    if (!running) return;
     const dt = Math.min((now - last) / 1000, 1 / 30);
     last = now;
-    const active = step(dt);
+    active = step(dt);
     renderer.render(scene, camera);
-    if (active) requestAnimationFrame(frame);
+    if (active) frameId = requestAnimationFrame(frame);
     else running = false;
   };
 
   const start = () => {
-    if (running) return;
+    if (running || !active || !visible || document.hidden) return;
     running = true;
     last = performance.now();
-    requestAnimationFrame(frame);
+    frameId = requestAnimationFrame(frame);
+  };
+
+  const syncRunning = () => {
+    if (visible && !document.hidden && !document.querySelector('.project-viewer[open]')) start();
+    else {
+      running = false;
+      cancelAnimationFrame(frameId);
+      frameId = 0;
+    }
   };
 
   const drop = () => {
     if (pairs.length >= SLOTS.length) return false;
     pairs.push(makePair(SLOTS[pairs.length]));
     resize();
-    start();
+    active = true;
+    syncRunning();
     return true;
   };
 
   new ResizeObserver(resize).observe(host);
+  new IntersectionObserver(([entry]) => {
+    visible = entry.isIntersecting;
+    syncRunning();
+  }).observe(host);
+  document.addEventListener('visibilitychange', syncRunning);
+  document.addEventListener('projectviewerchange', syncRunning);
   resize();
 
   return { drop };

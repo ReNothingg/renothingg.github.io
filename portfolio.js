@@ -1,6 +1,17 @@
 (() => {
   const portfolioItems = [
     {
+      title: 'Ловец выплат 911pay',
+      category: 'Telegram-бот · Go',
+      media: [
+        'public/client-cases/catcher911-dashboard.jpg',
+        'public/client-cases/catcher911-history.jpg',
+        'public/client-cases/catcher911-history-2.jpg',
+        'public/client-cases/catcher911-settings.jpg',
+        'public/client-cases/catcher911-stats.jpg',
+      ],
+    },
+    {
       title: 'WatchGPT — ChatGPT на Apple Watch',
       category: 'Приложение watchOS · SwiftUI',
       fit: 'contain',
@@ -46,7 +57,6 @@
     {
       title: 'AutoAdd — каталог товаров с ИИ',
       category: 'Веб-приложение · МойСклад',
-      openFullImage: true,
       fit: 'contain',
       cover: 'public/client-cases/autoadd-01-import.webp',
       media: [
@@ -423,119 +433,275 @@
         'public/client-cases/23184183-06.webp',
       ],
     },
-    {
-      title: 'Ловец выплат 911pay',
-      category: 'Telegram-бот · Go',
-      media: [
-        'public/client-cases/catcher911-dashboard.jpg',
-        'public/client-cases/catcher911-history.jpg',
-        'public/client-cases/catcher911-history-2.jpg',
-        'public/client-cases/catcher911-settings.jpg',
-        'public/client-cases/catcher911-stats.jpg',
-      ],
-    },
   ];
 
-  const createMediaElement = (source, title, position, total) => {
+  const createMediaElement = (source, title, position, total, options = {}) => {
     if (source.endsWith('.mp4')) {
       const video = document.createElement('video');
-      video.src = source;
       video.controls = true;
       video.playsInline = true;
       video.preload = 'metadata';
       video.setAttribute('aria-label', `${title}, видео ${position} из ${total}`);
+      video.src = source;
       return video;
     }
 
     const image = document.createElement('img');
-    image.src = source;
     image.alt = `${title}, изображение ${position} из ${total}`;
-    image.loading = 'lazy';
+    image.loading = options.loading || 'lazy';
+    image.fetchPriority = options.priority || 'auto';
     image.decoding = 'async';
+    image.src = source;
     return image;
   };
 
-  const createPortfolioCard = (item) => {
-    const card = document.createElement('article');
-    card.className = 'client-case-card';
+  const createProjectViewer = () => {
+    const dialog = document.createElement('dialog');
+    dialog.className = 'project-viewer';
+    dialog.setAttribute('aria-labelledby', 'project-viewer-title');
+    dialog.innerHTML = `
+      <div class="project-viewer-window">
+        <header class="project-viewer-header">
+          <div>
+            <p class="project-viewer-category"></p>
+            <h2 id="project-viewer-title"></h2>
+          </div>
+          <button class="project-viewer-close" type="button" aria-label="Закрыть проект" autofocus>×</button>
+        </header>
+        <div class="project-viewer-gallery" role="region" aria-label="Галерея проекта" aria-roledescription="карусель">
+          <div class="project-viewer-stage"></div>
+          <div class="project-viewer-navigation">
+            <button class="project-viewer-arrow" type="button" data-direction="-1" aria-label="Предыдущий скриншот">←</button>
+            <p class="project-viewer-counter" aria-live="polite" aria-atomic="true"></p>
+            <button class="project-viewer-arrow" type="button" data-direction="1" aria-label="Следующий скриншот">→</button>
+          </div>
+          <input class="project-viewer-range" type="range" min="1" step="1" aria-label="Номер скриншота">
+        </div>
+        <footer class="project-viewer-footer">
+          <p class="project-viewer-description"></p>
+          <div class="project-viewer-links">
+            <a class="project-viewer-website" target="_blank" rel="noopener noreferrer" hidden>Перейти к проекту ↗</a>
+          </div>
+        </footer>
+      </div>`;
+    document.body.append(dialog);
 
-    const visual = document.createElement('div');
-    visual.className = 'client-case-visual';
-
-    const mediaSlot = document.createElement('div');
-    mediaSlot.className = 'client-case-media';
-    visual.appendChild(mediaSlot);
-
-    const caption = document.createElement('div');
-    caption.className = 'client-case-caption';
-
-    const captionText = document.createElement('div');
-    captionText.className = 'client-case-text';
-    const titleEl = document.createElement('h5');
-    titleEl.className = 'client-case-title';
-    titleEl.textContent = item.title;
-    captionText.append(titleEl);
-    if (item.category) {
-      const categoryEl = document.createElement('p');
-      categoryEl.className = 'client-case-category';
-      categoryEl.textContent = item.category;
-      captionText.append(categoryEl);
-    }
-    caption.append(captionText);
-
-    card.append(visual, caption);
-
-    let activeIndex = Math.max(item.media.indexOf(item.cover), 0);
-    const counter = document.createElement('span');
-    counter.className = 'client-case-count';
+    const stage = dialog.querySelector('.project-viewer-stage');
+    const gallery = dialog.querySelector('.project-viewer-gallery');
+    const counter = dialog.querySelector('.project-viewer-counter');
+    const range = dialog.querySelector('.project-viewer-range');
+    const website = dialog.querySelector('.project-viewer-website');
+    const arrows = [...dialog.querySelectorAll('[data-direction]')];
+    let currentItem;
+    let activeIndex = 0;
+    let opener;
+    let previousOverflow;
+    let pointerStart;
+    let suppressClick = false;
+    let lastWheel = 0;
+    let wheelDistance = 0;
+    let lastWheelEvent = 0;
+    let slides = [];
+    let rangeFrame = 0;
 
     const render = () => {
-      const source = item.media[activeIndex];
-      const media = createMediaElement(source, item.title, activeIndex + 1, item.media.length);
-      if (item.fit) media.style.objectFit = item.fit;
-      if (item.openFullImage) {
-        const fullImage = document.createElement('a');
-        fullImage.href = source;
-        fullImage.target = '_blank';
-        fullImage.rel = 'noopener noreferrer';
-        fullImage.setAttribute('aria-label', `Открыть скриншот ${activeIndex + 1} из ${item.media.length}: ${item.title}`);
-        fullImage.append(media);
-        mediaSlot.replaceChildren(fullImage);
-      } else {
-        mediaSlot.replaceChildren(media);
-      }
-      counter.textContent = `${activeIndex + 1} / ${item.media.length}`;
+      const total = currentItem.media.length;
+      slides.forEach((slide, index) => {
+        const offset = index - activeIndex;
+        const distance = Math.abs(offset);
+        const active = offset === 0;
+        slide.hidden = distance > 3;
+        slide.classList.toggle('is-active', active);
+        slide.style.setProperty('--offset', offset);
+        slide.style.setProperty('--distance', distance);
+        slide.style.setProperty('--side', Math.sign(offset));
+        slide.style.zIndex = 10 - distance;
+        slide.setAttribute('aria-hidden', String(!active));
+        if (distance <= 3 && !slide.firstChild) {
+          const media = createMediaElement(currentItem.media[index], currentItem.title, index + 1, total, {
+            loading: 'eager',
+            priority: active ? 'high' : 'low',
+          });
+          media.draggable = false;
+          slide.append(media);
+        }
+        const image = slide.querySelector('img');
+        if (image) image.fetchPriority = active ? 'high' : 'low';
+        const video = slide.querySelector('video');
+        if (video) {
+          video.controls = active;
+          video.tabIndex = active ? 0 : -1;
+          if (!active) video.pause();
+        }
+        if (distance > 3 && slide.firstChild) {
+          if (video) {
+            video.removeAttribute('src');
+            video.load();
+          }
+          slide.replaceChildren();
+        }
+      });
+      counter.textContent = `${activeIndex + 1} / ${total}`;
+      range.value = activeIndex + 1;
+      range.setAttribute('aria-valuetext', `${activeIndex + 1} из ${total}`);
+      arrows[0].disabled = activeIndex === 0;
+      arrows[1].disabled = activeIndex === total - 1;
     };
 
-    if (item.media.length > 1) {
-      const previous = document.createElement('button');
-      previous.className = 'client-case-arrow client-case-arrow--prev';
-      previous.type = 'button';
-      previous.setAttribute('aria-label', `Предыдущее изображение: ${item.title}`);
-      previous.textContent = '←';
+    const select = (index) => {
+      const nextIndex = Math.max(0, Math.min(index, currentItem.media.length - 1));
+      if (nextIndex === activeIndex) return;
+      activeIndex = nextIndex;
+      render();
+    };
 
-      const next = document.createElement('button');
-      next.className = 'client-case-arrow client-case-arrow--next';
-      next.type = 'button';
-      next.setAttribute('aria-label', `Следующее изображение: ${item.title}`);
-      next.textContent = '→';
+    arrows.forEach((button) => {
+      button.addEventListener('click', () => select(activeIndex + Number(button.dataset.direction)));
+    });
+    range.addEventListener('input', () => {
+      if (rangeFrame) return;
+      rangeFrame = window.requestAnimationFrame(() => {
+        rangeFrame = 0;
+        select(Number(range.value) - 1);
+      });
+    });
+    dialog.querySelector('.project-viewer-close').addEventListener('click', () => dialog.close());
+    dialog.addEventListener('click', (event) => {
+      if (event.target === dialog && pointerStart?.backdrop) dialog.close();
+    });
+    dialog.addEventListener('pointerdown', (event) => {
+      pointerStart = { x: event.clientX, y: event.clientY, backdrop: event.target === dialog };
+    });
+    dialog.addEventListener('keydown', (event) => {
+      if (event.target.matches('input, video')) return;
+      if (event.key === 'ArrowLeft' || event.key === 'ArrowRight') {
+        event.preventDefault();
+        select(activeIndex + (event.key === 'ArrowLeft' ? -1 : 1));
+      } else if (event.key === 'Home' || event.key === 'End') {
+        event.preventDefault();
+        select(event.key === 'Home' ? 0 : currentItem.media.length - 1);
+      }
+    });
+    stage.addEventListener('pointerdown', (event) => {
+      if (event.target.closest('video') || (event.pointerType === 'mouse' && event.button !== 0)) return;
+      stage.setPointerCapture(event.pointerId);
+    });
+    stage.addEventListener('pointerup', (event) => {
+      if (!stage.hasPointerCapture(event.pointerId)) return;
+      stage.releasePointerCapture(event.pointerId);
+      if (!pointerStart) return;
+      const dx = event.clientX - pointerStart.x;
+      const dy = event.clientY - pointerStart.y;
+      if (Math.abs(dx) > 40 && Math.abs(dx) > Math.abs(dy)) {
+        suppressClick = true;
+        select(activeIndex + (dx < 0 ? 1 : -1));
+        window.setTimeout(() => { suppressClick = false; }, 0);
+      } else if (Math.abs(dx) < 10 && Math.abs(dy) < 10) {
+        const slide = document.elementFromPoint(event.clientX, event.clientY)?.closest('.project-viewer-slide');
+        if (slide) select(Number(slide.dataset.index));
+      }
+    });
+    stage.addEventListener('click', (event) => {
+      if (suppressClick) {
+        event.preventDefault();
+        event.stopPropagation();
+      }
+    });
+    gallery.addEventListener('wheel', (event) => {
+      if (event.ctrlKey || currentItem.media.length < 2) return;
+      event.preventDefault();
+      const now = performance.now();
+      if (now - lastWheelEvent > 160) wheelDistance = 0;
+      lastWheelEvent = now;
+      if (now - lastWheel < 280) return;
+      wheelDistance += (Math.abs(event.deltaX) > Math.abs(event.deltaY) ? event.deltaX : event.deltaY)
+        * (event.deltaMode === 1 ? 16 : event.deltaMode === 2 ? stage.clientHeight : 1);
+      if (Math.abs(wheelDistance) < 35) return;
+      select(activeIndex + Math.sign(wheelDistance));
+      lastWheel = now;
+      wheelDistance = 0;
+    }, { passive: false });
+    dialog.addEventListener('close', () => {
+      window.cancelAnimationFrame(rangeFrame);
+      rangeFrame = 0;
+      stage.querySelectorAll('video').forEach((video) => video.pause());
+      stage.replaceChildren();
+      slides = [];
+      document.documentElement.style.overflow = previousOverflow;
+      opener?.focus({ preventScroll: true });
+      document.dispatchEvent(new Event('projectviewerchange'));
+    });
 
-      const move = (direction) => {
-        const currentMedia = mediaSlot.querySelector('video');
-        currentMedia?.pause();
-        activeIndex = (activeIndex + direction + item.media.length) % item.media.length;
-        render();
-      };
+    return (item, trigger) => {
+      currentItem = item;
+      opener = trigger;
+      activeIndex = Math.max(item.media.indexOf(item.cover), 0);
+      pointerStart = null;
+      lastWheel = 0;
+      lastWheelEvent = 0;
+      wheelDistance = 0;
+      dialog.querySelector('#project-viewer-title').textContent = item.title;
+      dialog.querySelector('.project-viewer-category').textContent = item.category || 'Проект';
+      dialog.querySelector('.project-viewer-description').textContent = item.description || '';
+      dialog.querySelector('.project-viewer-footer').hidden = !item.description && !item.href;
+      website.hidden = !item.href;
+      if (item.href) website.href = item.href;
+      range.max = item.media.length;
+      range.hidden = item.media.length < 2;
+      slides = item.media.map((source, index) => {
+        const slide = document.createElement('div');
+        slide.className = 'project-viewer-slide';
+        slide.dataset.index = index;
+        slide.setAttribute('role', 'group');
+        slide.setAttribute('aria-roledescription', 'слайд');
+        slide.setAttribute('aria-label', `${index + 1} из ${item.media.length}`);
+        return slide;
+      });
+      stage.replaceChildren(...slides);
+      render();
+      previousOverflow = document.documentElement.style.overflow;
+      document.documentElement.style.overflow = 'hidden';
+      dialog.showModal();
+      document.dispatchEvent(new Event('projectviewerchange'));
+    };
+  };
 
-      previous.addEventListener('click', () => move(-1));
-      next.addEventListener('click', () => move(1));
-      const controls = document.createElement('div');
-      controls.className = 'client-case-controls';
-      controls.append(previous, counter, next);
-      caption.append(controls);
-    }
+  const createPortfolioCard = (item, openProject) => {
+    const card = document.createElement('button');
+    card.type = 'button';
+    card.className = 'client-case-card';
+    card.setAttribute('aria-haspopup', 'dialog');
+    card.setAttribute('aria-label', `Открыть проект: ${item.title}`);
 
-    render();
+    const visual = document.createElement('span');
+    visual.className = 'client-case-visual';
+    const mediaSlot = document.createElement('span');
+    mediaSlot.className = 'client-case-media';
+    const coverIndex = Math.max(item.media.indexOf(item.cover), 0);
+    const media = createMediaElement(item.cover || item.media[0], item.title, coverIndex + 1, item.media.length);
+    if (item.fit) media.style.objectFit = item.fit;
+    if (media.tagName === 'VIDEO') media.controls = false;
+    mediaSlot.append(media);
+    visual.append(mediaSlot);
+
+    const caption = document.createElement('span');
+    caption.className = 'client-case-caption';
+    const captionText = document.createElement('span');
+    captionText.className = 'client-case-text';
+    const title = document.createElement('span');
+    title.className = 'client-case-title';
+    title.textContent = item.title;
+    const category = document.createElement('span');
+    category.className = 'client-case-category';
+    category.textContent = item.category || '';
+    captionText.append(title, category);
+    const hint = document.createElement('span');
+    hint.className = 'client-case-open';
+    hint.setAttribute('aria-hidden', 'true');
+    hint.textContent = '↗';
+    caption.append(captionText, hint);
+    card.append(visual, caption);
+    card.addEventListener('click', () => openProject(item, card));
     return card;
   };
 
@@ -555,7 +721,31 @@
       count.textContent = `${total} ${word}`;
     }
 
-    const cards = portfolioItems.map(createPortfolioCard);
+    let viewer;
+    const openProject = (item, trigger) => {
+      viewer ||= createProjectViewer();
+      viewer(item, trigger);
+    };
+    const cards = portfolioItems.slice(0, 6).map((item) => createPortfolioCard(item, openProject));
+    document.querySelectorAll('.project-card').forEach((card) => {
+      const title = card.querySelector('h4')?.textContent.trim();
+      const matched = portfolioItems.find((item) => item.title === title || item.title.startsWith(`${title} —`))
+        || (title === 'SynvexAI' ? portfolioItems.find((item) => item.title === 'SynvexAI.com') : null);
+      const item = {
+        ...matched,
+        title,
+        category: matched?.category || card.querySelector('.project-status')?.textContent,
+        description: card.querySelector('.project-card-copy > p')?.textContent,
+        media: matched?.media || [card.querySelector('.project-card-art').getAttribute('src')],
+        href: card.href,
+      };
+      card.setAttribute('aria-haspopup', 'dialog');
+      card.addEventListener('click', (event) => {
+        if (event.defaultPrevented || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+        event.preventDefault();
+        openProject(item, card);
+      });
+    });
     grid.replaceChildren(...cards);
 
     const getCollapsedHeight = () => {
@@ -583,6 +773,12 @@
     toggle.addEventListener('click', () => {
       const willExpand = !portfolio.classList.contains('is-expanded');
 
+      if (willExpand && cards.length < portfolioItems.length) {
+        const remaining = portfolioItems.slice(cards.length).map((item) => createPortfolioCard(item, openProject));
+        cards.push(...remaining);
+        grid.append(...remaining);
+      }
+
       if (!willExpand) {
         grid.style.maxHeight = `${grid.scrollHeight}px`;
       }
@@ -596,7 +792,16 @@
       });
     });
 
-    window.addEventListener('resize', updateHeight);
+    let heightFrame = 0;
+    const requestHeightUpdate = () => {
+      if (heightFrame) return;
+      heightFrame = window.requestAnimationFrame(() => {
+        heightFrame = 0;
+        updateHeight();
+      });
+    };
+    window.addEventListener('resize', requestHeightUpdate, { passive: true });
+    document.fonts.ready.then(requestHeightUpdate);
     updateCollapsedAccessibility(false);
     window.requestAnimationFrame(updateHeight);
   });

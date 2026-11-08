@@ -28,6 +28,11 @@
   min-width: max-content;
   padding-right: var(--dead-project-gap);
   animation: dead-projects-scroll 40s linear infinite;
+  animation-play-state: paused;
+}
+
+.dead-projects-track.is-visible .dead-projects-group {
+  animation-play-state: running;
   will-change: transform;
 }
 

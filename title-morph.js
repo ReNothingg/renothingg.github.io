@@ -136,6 +136,7 @@ export function mountTitleMorph(word, chips, options = {}) {
     const newBox = word.getBoundingClientRect();
     const newFont = parseFloat(getComputedStyle(word).fontSize);
     const ratio = oldFont / newFont;
+    const newRects = new Map(next.filter((span) => oldRects.has(span)).map((span) => [span, span.getBoundingClientRect()]));
 
     leaving.forEach((span, i) => {
       const rect = oldRects.get(span);
@@ -160,7 +161,7 @@ export function mountTitleMorph(word, chips, options = {}) {
       if (span === gap) return;
       const from = oldRects.get(span);
       if (from) {
-        const to = span.getBoundingClientRect();
+        const to = newRects.get(span);
         const dx = from.left + from.width / 2 - (to.left + to.width / 2);
         const dy = from.top + from.height / 2 - (to.top + to.height / 2);
         const hop = Math.min(Math.abs(dx) * 0.22, newFont * 0.45) * (dx > 0 ? 1 : -1);
@@ -189,6 +190,7 @@ export function mountTitleMorph(word, chips, options = {}) {
   };
 
   const busy = () => hero.classList.contains('is-charging') || hero.classList.contains('is-boom');
+  const canAnimate = () => visible && !document.hidden && !document.querySelector('.project-viewer[open]');
 
   const schedule = (delay) => {
     clearTimeout(timer);
@@ -196,7 +198,7 @@ export function mountTitleMorph(word, chips, options = {}) {
   };
 
   const step = () => {
-    if (!visible || document.hidden) return;
+    if (!canAnimate()) return;
     if (busy()) {
       schedule(600);
       return;
@@ -207,7 +209,8 @@ export function mountTitleMorph(word, chips, options = {}) {
   };
 
   const resume = () => {
-    if (visible && !document.hidden) schedule(current === home ? homeHold : wordHold);
+    if (canAnimate()) schedule(current === home ? homeHold : wordHold);
+    else clearTimeout(timer);
   };
 
   if (reduceMotion) return null;
@@ -218,14 +221,17 @@ export function mountTitleMorph(word, chips, options = {}) {
     else clearTimeout(timer);
   }).observe(hero);
 
-  document.addEventListener('visibilitychange', () => {
-    if (document.hidden) clearTimeout(timer);
-    else resume();
-  });
+  document.addEventListener('visibilitychange', resume);
+  document.addEventListener('projectviewerchange', resume);
 
+  let resizeFrame = 0;
   window.addEventListener('resize', () => {
-    if (gap.isConnected && !gapWidth()) gap.remove();
-    fitFor();
+    if (resizeFrame) return;
+    resizeFrame = requestAnimationFrame(() => {
+      resizeFrame = 0;
+      if (gap.isConnected && !gapWidth()) gap.remove();
+      fitFor();
+    });
   }, { passive: true });
 
   schedule(options.startDelay || 2600);
