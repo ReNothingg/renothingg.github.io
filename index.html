@@ -9,7 +9,7 @@
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="stylesheet" href="style.css?v=20261107-melon3">
+    <link rel="stylesheet" href="style.css?v=20261107-melon4">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css" >
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;1,500&family=Inter:wght@400;500&family=JetBrains+Mono:wght@400&family=Unbounded:wght@500;700;900&display=swap" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
@@ -60,7 +60,6 @@
 
             <h1 id="hero-title" class="hero-title" aria-label="ReNothingg">
                 <span class="hero-word" aria-hidden="true"><span>R</span><span>e</span><span>N</span><span>o</span><span>t</span><span>h</span><span>i</span><span>n</span><span>g</span><span>g</span></span>
-                <span class="hero-67" aria-hidden="true">67</span>
             </h1>
 
             <div class="hero-melon" data-melon>
@@ -655,7 +654,7 @@
             mountMelon(host, hit, {
                 onState: (state) => {
                     hero.classList.toggle('is-charging', state === 'charge');
-                    hero.classList.toggle('is-67', state === 'boom');
+                    hero.classList.toggle('is-boom', state === 'boom');
                 },
             });
         }

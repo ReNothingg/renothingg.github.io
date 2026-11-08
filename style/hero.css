@@ -95,39 +95,11 @@
   }
 }
 
-.hero-67 {
-  position: absolute;
-  inset: 0;
-  display: grid;
-  place-items: center;
-  font-size: 1.9em;
-  letter-spacing: -0.06em;
-  color: var(--h-melon);
-  -webkit-text-stroke: 0.035em var(--h-ink);
-  paint-order: stroke fill;
-  text-shadow: 0.05em 0.05em 0 var(--h-ink);
-  opacity: 0;
-  scale: 0.2;
-  pointer-events: none;
-}
-
 #hero.is-charging .hero-word {
   animation: hero-tremble 0.09s linear infinite;
 }
 
-#hero.is-67 .hero-word {
-  opacity: 0;
-  scale: 0.6;
-}
-
-#hero.is-67 .hero-67 {
-  opacity: 1;
-  scale: 1;
-  transition: scale 0.45s var(--h-spring), opacity 0.1s;
-  animation: hero-67-shake 0.11s linear infinite;
-}
-
-#hero.is-67 {
+#hero.is-boom {
   animation: hero-quake 0.6s cubic-bezier(0.3, 0.7, 0.4, 1);
 }
 
@@ -137,15 +109,6 @@
   50% { transform: translate(2px, -1px); }
   75% { transform: translate(-1px, -2px); }
   100% { transform: translate(1px, 2px); }
-}
-
-@keyframes hero-67-shake {
-  0% { transform: translate(0, 0) rotate(0deg); }
-  20% { transform: translate(-0.03em, 0.02em) rotate(-2deg); }
-  40% { transform: translate(0.025em, -0.03em) rotate(1.5deg); }
-  60% { transform: translate(-0.02em, -0.015em) rotate(-1deg); }
-  80% { transform: translate(0.03em, 0.025em) rotate(2deg); }
-  100% { transform: translate(0, 0) rotate(0deg); }
 }
 
 @keyframes hero-quake {
@@ -317,8 +280,7 @@
 
 @media (prefers-reduced-motion: reduce) {
   .hero-word > span,
-  #hero.is-67,
-  #hero.is-67 .hero-67,
+  #hero.is-boom,
   #hero.is-charging .hero-word {
     animation: none;
   }
