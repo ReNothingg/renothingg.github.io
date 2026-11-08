@@ -454,19 +454,7 @@ export function mountMelon(host, hit, options = {}) {
     });
   };
 
-  const explode = () => {
-    body.visible = false;
-    lasers.forEach((laser) => (laser.group.visible = false));
-
-    for (let i = 0; i < counts.chunk * 2; i += 1) spawn(pools.flesh, 0.8, 9, 2.5, 1, 3);
-    for (let i = 0; i < counts.chunk; i += 1) {
-      spawn(pools.dark, 0.8, 9, 2.5, 1, 3);
-      spawn(pools.light, 0.8, 9, 2.5, 1, 3);
-      spawn(pools.white, 0.8, 9, 2.5, 0.8, 3);
-    }
-    for (let i = 0; i < counts.seed; i += 1) spawn(pools.seed, 0.5, 11, 3, 1, 3);
-    for (let i = 0; i < counts.juice; i += 1) spawn(pools.juice, 0.6, 14, 0, 1.2, 1.8);
-
+  const launchGlasses = () => {
     const worldPosition = new THREE.Vector3();
     const worldQuaternion = new THREE.Quaternion();
     glasses.getWorldPosition(worldPosition);
@@ -481,6 +469,22 @@ export function mountMelon(host, hit, options = {}) {
       velocity: new THREE.Vector3((Math.random() - 0.5) * 3, 11, 0.8),
       spin: new THREE.Vector3((Math.random() - 0.5) * 8, (Math.random() - 0.5) * 6, (Math.random() - 0.5) * 10),
     };
+  };
+
+  const explode = () => {
+    body.visible = false;
+    lasers.forEach((laser) => (laser.group.visible = false));
+
+    for (let i = 0; i < counts.chunk * 2; i += 1) spawn(pools.flesh, 0.8, 9, 2.5, 1, 3);
+    for (let i = 0; i < counts.chunk; i += 1) {
+      spawn(pools.dark, 0.8, 9, 2.5, 1, 3);
+      spawn(pools.light, 0.8, 9, 2.5, 1, 3);
+      spawn(pools.white, 0.8, 9, 2.5, 0.8, 3);
+    }
+    for (let i = 0; i < counts.seed; i += 1) spawn(pools.seed, 0.5, 11, 3, 1, 3);
+    for (let i = 0; i < counts.juice; i += 1) spawn(pools.juice, 0.6, 14, 0, 1.2, 1.8);
+
+    launchGlasses();
 
     flash.visible = true;
     ring.visible = true;
@@ -738,4 +742,189 @@ export function mountMelon(host, hit, options = {}) {
   start();
 
   return { trigger };
+}
+
+export function mountGlassesRest(host) {
+  const small = isSmallScreen();
+  const canvas = document.createElement('canvas');
+  canvas.className = 'glasses-rest-canvas';
+  canvas.setAttribute('aria-hidden', 'true');
+
+  let renderer;
+  try {
+    renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: true });
+  } catch (error) {
+    return null;
+  }
+
+  host.appendChild(canvas);
+  renderer.outputColorSpace = THREE.SRGBColorSpace;
+  renderer.toneMapping = THREE.NoToneMapping;
+
+  const scene = new THREE.Scene();
+  const camera = new THREE.PerspectiveCamera(24, 2.4, 0.1, 60);
+  camera.position.set(0, 2.3, 14);
+  camera.lookAt(0, 0.35, 0);
+
+  scene.add(new THREE.AmbientLight(0xffffff, 1.6));
+  const key = new THREE.DirectionalLight(0xffffff, 1.45);
+  key.position.set(-3, 5, 5);
+  scene.add(key);
+
+  const reflections = createReflections(renderer);
+  const softGradient = createGradientMap([215, 255]);
+  const materials = {
+    frame: new THREE.MeshToonMaterial({ color: COLORS.red, gradientMap: softGradient }),
+    lens: new THREE.MeshStandardMaterial({
+      color: '#8e8e94',
+      roughness: 0.07,
+      metalness: 1,
+      envMap: reflections,
+      envMapIntensity: 1,
+      polygonOffset: true,
+      polygonOffsetFactor: -2,
+      polygonOffsetUnits: -2,
+    }),
+    rivet: new THREE.MeshBasicMaterial({ color: COLORS.rivet }),
+  };
+
+  const shadowCanvas = document.createElement('canvas');
+  shadowCanvas.width = 128;
+  shadowCanvas.height = 128;
+  const sctx = shadowCanvas.getContext('2d');
+  const grad = sctx.createRadialGradient(64, 64, 4, 64, 64, 64);
+  grad.addColorStop(0, 'rgba(0,0,0,0.55)');
+  grad.addColorStop(1, 'rgba(0,0,0,0)');
+  sctx.fillStyle = grad;
+  sctx.fillRect(0, 0, 128, 128);
+  const shadowTexture = new THREE.CanvasTexture(shadowCanvas);
+
+  const REST_TILT = -0.54;
+  const SLOTS = [
+    { x: 0, yaw: 0.18, lean: 0 },
+    { x: -2.35, yaw: -0.32, lean: 0.04 },
+    { x: 2.35, yaw: 0.42, lean: -0.05 },
+  ];
+
+  const pairs = [];
+  let running = false;
+  let last = 0;
+
+  const makePair = (slot) => {
+    const { group } = buildGlasses(materials);
+    group.position.set(0, 0, 0);
+    const pivot = new THREE.Group();
+    pivot.add(group);
+    group.rotation.x = REST_TILT;
+    group.updateMatrixWorld(true);
+    const box = new THREE.Box3().setFromObject(group);
+    group.position.y = -box.min.y;
+    group.position.z = -(box.min.z + box.max.z) / 2;
+
+    const holder = new THREE.Group();
+    holder.add(pivot);
+    holder.position.x = slot.x;
+    scene.add(holder);
+
+    const shadow = new THREE.Mesh(
+      new THREE.PlaneGeometry(2.6, 1.5),
+      new THREE.MeshBasicMaterial({ map: shadowTexture, transparent: true, depthWrite: false })
+    );
+    shadow.rotation.x = -Math.PI / 2;
+    shadow.position.set(slot.x, 0.002, 0);
+    shadow.rotation.z = -slot.yaw;
+    scene.add(shadow);
+
+    return {
+      slot,
+      holder,
+      pivot,
+      shadow,
+      y: 6 + Math.random() * 1.5,
+      vy: 0,
+      spin: new THREE.Vector3((Math.random() - 0.5) * 2.4, (Math.random() - 0.5) * 3, (Math.random() - 0.5) * 2),
+      spinVel: new THREE.Vector3(),
+      landed: false,
+      time: 0,
+    };
+  };
+
+  const resize = () => {
+    const rect = host.getBoundingClientRect();
+    if (!rect.width || !rect.height) return;
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, small ? 1.5 : 2));
+    renderer.setSize(rect.width, rect.height, false);
+    camera.aspect = rect.width / rect.height;
+    const span = small ? 3.7 : 3.9;
+    const distance = span / Math.tan(THREE.MathUtils.degToRad(camera.fov / 2)) / camera.aspect;
+    camera.position.set(0, distance * 0.16, distance);
+    camera.lookAt(0, distance * 0.16 - 0.1, 0);
+    camera.updateProjectionMatrix();
+    renderer.render(scene, camera);
+  };
+
+  const step = (dt) => {
+    let active = false;
+    pairs.forEach((pair) => {
+      pair.time += dt;
+      if (!pair.landed) {
+        pair.vy -= 30 * dt;
+        pair.y += pair.vy * dt;
+        if (pair.y <= 0) {
+          pair.y = 0;
+          if (Math.abs(pair.vy) > 2.2) {
+            pair.vy = -pair.vy * 0.32;
+            pair.spinVel.x += (Math.random() - 0.5) * 6;
+            pair.spinVel.z += (Math.random() - 0.5) * 5;
+          } else {
+            pair.vy = 0;
+            pair.landed = true;
+          }
+        }
+      }
+      const stiffness = pair.y > 0.02 ? 6 : 70;
+      const damping = pair.y > 0.02 ? 0.6 : 7;
+      ['x', 'y', 'z'].forEach((axis) => {
+        pair.spinVel[axis] += (-pair.spin[axis] * stiffness - pair.spinVel[axis] * damping) * dt;
+        pair.spin[axis] += pair.spinVel[axis] * dt;
+      });
+      pair.holder.position.y = pair.y;
+      pair.pivot.rotation.set(pair.spin.x, pair.slot.yaw + pair.spin.y, pair.slot.lean + pair.spin.z);
+      const h = Math.min(pair.y / 4, 1);
+      pair.shadow.scale.setScalar(1 - h * 0.6);
+      pair.shadow.material.opacity = 1 - h * 0.85;
+      const moving = !pair.landed || Math.abs(pair.spinVel.x) + Math.abs(pair.spinVel.y) + Math.abs(pair.spinVel.z) > 0.01 || Math.abs(pair.spin.x) + Math.abs(pair.spin.z) > 0.002;
+      if (moving) active = true;
+    });
+    return active;
+  };
+
+  const frame = (now) => {
+    const dt = Math.min((now - last) / 1000, 1 / 30);
+    last = now;
+    const active = step(dt);
+    renderer.render(scene, camera);
+    if (active) requestAnimationFrame(frame);
+    else running = false;
+  };
+
+  const start = () => {
+    if (running) return;
+    running = true;
+    last = performance.now();
+    requestAnimationFrame(frame);
+  };
+
+  const drop = () => {
+    if (pairs.length >= SLOTS.length) return false;
+    pairs.push(makePair(SLOTS[pairs.length]));
+    resize();
+    start();
+    return true;
+  };
+
+  new ResizeObserver(resize).observe(host);
+  resize();
+
+  return { drop };
 }

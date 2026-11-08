@@ -9,7 +9,7 @@
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="stylesheet" href="style.css?v=20261108-morph3">
+    <link rel="stylesheet" href="style.css?v=20261108-contact4">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css" >
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;1,500&family=Inter:wght@400;500&family=JetBrains+Mono:wght@400&family=Unbounded:wght@500;700;900&display=swap" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
@@ -503,6 +503,11 @@
                             </div>
                         </div>
                     </div>
+                    <a href="https://kwork.ru/user/renothing" target="_blank" rel="noopener noreferrer"
+                        aria-label="Kwork">
+                        <i class="fa-solid fa-briefcase"></i>
+                        <span class="link-text">Kwork</span>
+                    </a>
                     <a href="https://github.com/ReNothingg" class="btn btn--on-dark dead-projects-more">
                         Больше на GitHub
                     </a>
@@ -571,13 +576,19 @@
         </section>
 
         <section id="contact">
-            <div class="container">
-                <h3 class="section-title"><a class="section-permalink" href="?contact" data-section-link="contact">Связаться со мной</a></h3>
+            <div class="container contact-grid">
+                <div class="contact-intro">
+                    <h3 class="section-title"><a class="section-permalink" href="?contact" data-section-link="contact">Связаться со мной</a></h3>
+                    <p>Если есть вопросы, предложения или заказ — пишите в Telegram. Обычно отвечаю по делу, когда понимаю задачу и контекст.</p>
+                </div>
 
-                <p>Если есть вопросы, предложения или заказ — пишите в Telegram. Обычно отвечаю по делу, когда понимаю задачу и контекст.</p>
-                <div class="contact-actions">
-                    <a href="https://t.me/daich" class="btn btn--light">Telegram: @daich</a>
-                    <a href="https://kwork.ru/user/renothing" class="btn btn--light">Kwork</a>
+                <div class="contact-list">
+                    <a href="https://t.me/daich" class="contact-row">
+                        <span class="contact-row-label">Telegram</span>
+                        <span class="contact-row-value">@daich</span>
+                        <span class="contact-row-note">Лучше всего писать сюда</span>
+                        <span class="contact-row-arrow" aria-hidden="true"><i class="fa-solid fa-arrow-right"></i></span>
+                    </a>
                 </div>
 
                 <div class="social-links">
@@ -585,11 +596,6 @@
                         aria-label="YouTube">
                         <i class="fab fa-youtube"></i>
                         <span class="link-text">YouTube</span>
-                    </a>
-                    <a href="https://www.tiktok.com/@renothingg" target="_blank" rel="noopener noreferrer"
-                        aria-label="TikTok">
-                        <i class="fab fa-tiktok"></i>
-                        <span class="link-text">TikTok</span>
                     </a>
                     <a href="https://steamcommunity.com/id/Arbuzekkk" target="_blank" rel="noopener noreferrer"
                         aria-label="Steam">
@@ -605,6 +611,11 @@
                         aria-label="X (Twitter)">
                         <i class="fab fa-x-twitter"></i>
                         <span class="link-text">X (Twitter)</span>
+                    </a>
+                    <a href="https://kwork.ru/user/renothing" target="_blank" rel="noopener noreferrer"
+                        aria-label="Kwork">
+                        <i class="fa-solid fa-briefcase"></i>
+                        <span class="link-text">Kwork</span>
                     </a>
                     <a href="https://github.com/ReNothingg" target="_blank" rel="noopener noreferrer"
                         aria-label="GitHub">
@@ -636,7 +647,7 @@
     <script src="script.js?v=20261103-note" defer></script>
     <script src="portfolio.js?v=20261103-igroshop" defer></script>
     <script type="module">
-        import { mountMelon } from './melon.js?v=20261108-boom15';
+        import { mountMelon, mountGlassesRest } from './melon.js?v=20261108-boom17';
         import { mountTitleMorph } from './title-morph.js?v=20261108-morph3';
 
         const hero = document.getElementById('hero');
@@ -657,8 +668,36 @@
         }
 
         if (host && hit && canRender) {
+            const footer = document.querySelector('footer');
+            let rest = null;
+            let waiting = 0;
+            const restHost = document.createElement('div');
+            restHost.className = 'footer-glasses';
+            restHost.setAttribute('aria-hidden', 'true');
+            const flush = () => {
+                while (waiting > 0) {
+                    waiting -= 1;
+                    rest?.drop();
+                }
+            };
+            let restVisible = false;
+            const dropGlasses = () => {
+                if (!footer) return;
+                if (!rest) {
+                    footer.appendChild(restHost);
+                    rest = mountGlassesRest(restHost);
+                    new IntersectionObserver(([entry]) => {
+                        restVisible = entry.isIntersecting;
+                        if (restVisible) setTimeout(flush, 250);
+                    }, { threshold: 0.6 }).observe(restHost);
+                }
+                waiting += 1;
+                if (restVisible) flush();
+            };
+
             mountMelon(host, hit, {
                 onState: (state) => {
+                    if (state === 'boom') dropGlasses();
                     hero.classList.toggle('is-charging', state === 'charge');
                     hero.classList.toggle('is-boom', state === 'boom');
                 },
