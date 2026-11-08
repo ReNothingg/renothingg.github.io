@@ -405,6 +405,18 @@ export function mountMelon(host, hit, options = {}) {
   const resize = () => {
     const rect = host.getBoundingClientRect();
     if (!rect.width || !rect.height) return;
+    const gl = renderer.getContext();
+    const maxDims = gl.getParameter(gl.MAX_VIEWPORT_DIMS);
+    const maxSide = Math.min(maxDims[0], maxDims[1], gl.getParameter(gl.MAX_RENDERBUFFER_SIZE), 4096);
+    const budget = small ? 2.4e6 : 6e6;
+    const ratio = Math.min(
+      window.devicePixelRatio || 1,
+      small ? 1.5 : 2,
+      maxSide / rect.width,
+      maxSide / rect.height,
+      Math.sqrt(budget / (rect.width * rect.height))
+    );
+    renderer.setPixelRatio(ratio);
     renderer.setSize(rect.width, rect.height, false);
     camera.aspect = rect.width / rect.height;
     camera.updateProjectionMatrix();
