@@ -54,8 +54,24 @@
 }
 
 .hero-word {
+  position: relative;
   display: inline-flex;
+  font-size: calc(var(--fit, 1) * 1em);
   transition: opacity 0.25s, scale 0.4s var(--h-spring);
+}
+
+.hero-word.is-morphing > span {
+  animation: none;
+}
+
+.hero-word > .hero-gap {
+  flex: none;
+  animation: none;
+}
+
+.hero-word > span.is-leaving {
+  position: absolute;
+  pointer-events: none;
 }
 
 .hero-word > span {
@@ -75,7 +91,7 @@
 .hero-word > span:nth-child(9) { animation-delay: 560ms; }
 .hero-word > span:nth-child(10) { animation-delay: 615ms; }
 
-.hero-word > span:nth-child(-n + 2) {
+.hero-word > span.is-accent {
   color: var(--h-melon);
 }
 
