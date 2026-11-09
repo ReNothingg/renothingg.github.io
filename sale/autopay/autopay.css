@@ -1,5 +1,5 @@
-@import url("../../style/base.css?v=20261108-fullscreen1");
-@import url("../../style/footer.css?v=20261108-fullscreen1");
+@import url("../../src/style/base.css?v=20261108-fullscreen1");
+@import url("../../src/style/footer.css?v=20261108-fullscreen1");
 
 html {
   scroll-behavior: smooth;
