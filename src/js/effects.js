@@ -1,4 +1,4 @@
-import { mountTitleMorph } from './title-morph.js?v=20261108-perf1';
+import { mountTitleMorph } from './title-morph.js?v=20261115-melon';
 
 const hero = document.getElementById('hero');
 const host = hero?.querySelector('[data-melon]');
@@ -19,7 +19,7 @@ if (host && hit) {
     if (loading || mounted || !visible || document.hidden) return;
     loading = true;
     try {
-      melonModule ||= await import('./melon.js?v=20261108-perf1');
+      melonModule ||= await import('./melon.js?v=20261115-melon');
       if (!visible || document.hidden) return;
 
       const footer = document.querySelector('footer');
@@ -59,17 +59,21 @@ if (host && hit) {
           hero.classList.toggle('is-boom', state === 'boom');
         },
       }));
+      host.classList.toggle('is-fallback', !mounted);
     } catch (error) {
       mounted = false;
+      host.classList.add('is-fallback');
     } finally {
       loading = false;
     }
   };
 
   const scheduleMount = () => {
-    if ('requestIdleCallback' in window) window.requestIdleCallback(mount, { timeout: 1200 });
-    else window.requestAnimationFrame(mount);
+    mount();
   };
+  const rect = host.getBoundingClientRect();
+  visible = rect.bottom > 0 && rect.top < window.innerHeight;
+  if (visible) scheduleMount();
   new IntersectionObserver(([entry]) => {
     visible = entry.isIntersecting;
     if (visible) scheduleMount();

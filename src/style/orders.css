@@ -33,6 +33,7 @@
   min-width: 0;
   padding: 0 0 var(--space-md);
   overflow-x: auto;
+  overflow-y: hidden;
   cursor: grab;
   scrollbar-color: var(--surface-cream-strong) transparent;
   scrollbar-width: thin;

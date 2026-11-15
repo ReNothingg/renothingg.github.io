@@ -37,6 +37,7 @@
   margin: 0;
   padding: 0 max(24px, calc((100vw - var(--wide-content-width)) / 2 + 24px)) var(--space-md);
   overflow-x: auto;
+  overflow-y: hidden;
   cursor: grab;
   scrollbar-color: var(--surface-dark-elevated) transparent;
   scrollbar-width: thin;
