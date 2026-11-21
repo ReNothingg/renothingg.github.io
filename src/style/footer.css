@@ -19,9 +19,8 @@ footer .container {
 .footer-brand {
   margin: 0;
   color: var(--on-dark);
-  font-family: var(--font-serif);
   font-size: 28px;
-  font-weight: 500;
+  font-weight: 600;
   letter-spacing: -0.02em;
 }
 
@@ -57,7 +56,7 @@ footer:has(.footer-word) {
 
 footer .footer-word {
   margin: 8px 0 0;
-  font-family: "Unbounded", "Arial Black", sans-serif;
+  font-family: var(--font-brand);
   font-weight: 900;
   font-size: 19.4vw;
   line-height: 0.74;
@@ -67,7 +66,7 @@ footer .footer-word {
   white-space: nowrap;
   text-align: left;
   color: transparent;
-  -webkit-text-stroke: 1.5px rgba(244, 240, 230, 0.22);
+  -webkit-text-stroke: 1.5px rgba(255, 255, 255, 0.22);
   translate: 0 8%;
   user-select: none;
 }

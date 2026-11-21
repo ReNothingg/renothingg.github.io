@@ -1,7 +1,3 @@
-#about {
-  background: var(--surface-card);
-}
-
 .about-container {
   display: grid;
   grid-template-columns: minmax(0, 1.7fr) minmax(0, 1fr);
@@ -43,17 +39,16 @@
 .about-quote p {
   margin: 0;
   color: var(--on-dark);
-  font-family: var(--font-serif);
-  font-size: clamp(1.75rem, 2.6vw, 2.25rem);
+  font-size: clamp(1.5rem, 2.35vw, 2rem);
   font-weight: 500;
   letter-spacing: -0.02em;
-  line-height: 1.15;
+  line-height: 1.25;
 }
 
 .about-stack {
   margin-top: var(--space-xxl);
   padding-top: var(--space-xl);
-  border-top: 1px solid var(--surface-cream-strong);
+  border-top: 1px solid var(--surface-border-strong);
 }
 
 .about-stack-head {
@@ -78,7 +73,7 @@
   gap: var(--space-xs);
   padding: 6px 14px;
   border-radius: var(--radius-pill);
-  background: var(--canvas);
+  background: var(--surface-card);
   color: var(--ink);
   font-size: 13px;
   font-weight: 500;
@@ -96,6 +91,12 @@
   height: 1em;
   flex: none;
   fill: var(--muted);
+}
+
+@media (prefers-color-scheme: dark) {
+  .about-quote {
+    background: var(--surface-card);
+  }
 }
 
 @media (max-width: 900px) {

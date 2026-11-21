@@ -5,7 +5,7 @@
   padding: 0;
   overflow-x: hidden;
   overflow-y: auto;
-  border: 1px solid rgba(250, 249, 245, 0.18);
+  border: 1px solid rgba(255, 255, 255, 0.18);
   border-radius: 20px;
   background: var(--surface-dark);
   color: var(--on-dark);
@@ -15,7 +15,7 @@
 }
 
 .project-viewer::backdrop {
-  background: rgba(13, 12, 11, 0.78);
+  background: rgba(13, 13, 13, 0.78);
   backdrop-filter: blur(12px);
 }
 
@@ -33,7 +33,7 @@
   justify-content: space-between;
   gap: 24px;
   padding: 20px 28px;
-  border-bottom: 1px solid rgba(250, 249, 245, 0.08);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
 }
 
 .project-viewer-category {
@@ -45,9 +45,9 @@
 .project-viewer-header h2 {
   margin: 0;
   color: var(--on-dark);
-  font-family: var(--font-serif);
   font-size: clamp(24px, 3vw, 38px);
-  font-weight: 500;
+  font-weight: 600;
+  letter-spacing: -0.02em;
   line-height: 1.15;
   text-wrap: balance;
 }
@@ -60,9 +60,9 @@
   width: 44px;
   height: 44px;
   padding: 0;
-  border: 1px solid rgba(250, 249, 245, 0.16);
+  border: 1px solid rgba(255, 255, 255, 0.16);
   border-radius: 50%;
-  background: rgba(250, 249, 245, 0.04);
+  background: rgba(255, 255, 255, 0.04);
   color: var(--on-dark);
   font: 400 20px/1 var(--font-sans);
   cursor: pointer;
@@ -75,7 +75,7 @@
 
 .project-viewer-close:hover,
 .project-viewer-arrow:hover:enabled {
-  background: rgba(250, 249, 245, 0.14);
+  background: rgba(255, 255, 255, 0.14);
 }
 
 .project-viewer :focus-visible {
@@ -85,7 +85,7 @@
 .project-viewer-gallery {
   padding: 0 0 24px;
   overflow: hidden;
-  background: radial-gradient(ellipse at 50% 44%, #292722 0, #141412 65%, #10100f 100%);
+  background: radial-gradient(ellipse at 50% 44%, #292929 0, #141414 65%, #101010 100%);
 }
 
 .project-viewer-stage {
@@ -173,7 +173,7 @@
   display: flex;
   justify-content: flex-end;
   padding: 22px 32px;
-  border-top: 1px solid rgba(250, 249, 245, 0.08);
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
 }
 
 .project-viewer-footer[hidden] {
@@ -184,7 +184,7 @@
   padding-block: 6px;
   font-size: 12px;
   text-decoration: underline;
-  text-decoration-color: rgba(250, 249, 245, 0.25);
+  text-decoration-color: rgba(255, 255, 255, 0.25);
   text-underline-offset: 4px;
 }
 

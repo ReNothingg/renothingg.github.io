@@ -1,10 +1,10 @@
 #projects {
-  --color-bg-raw: 24, 23, 21;
-  --color-text-raw: 250, 249, 245;
+  --color-bg-raw: 24, 24, 24;
+  --color-text-raw: 255, 255, 255;
   --color-bg: var(--surface-dark);
   --color-text: var(--on-dark);
   --color-text-muted: var(--on-dark-soft);
-  --color-border: rgba(250, 249, 245, 0.1);
+  --color-border: rgba(255, 255, 255, 0.1);
 
   overflow-x: clip;
   background: var(--surface-dark);

@@ -4,7 +4,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-    <meta name="theme-color" content="#faf9f5">
+    <meta name="color-scheme" content="light dark">
+    <meta name="theme-color" media="(prefers-color-scheme: light)" content="#ffffff">
+    <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#181818">
     <meta name="mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="default">
@@ -18,19 +20,19 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
     <link rel="stylesheet" href="src/style/icons.css?v=20261115-melon">
-    <link rel="stylesheet" href="src/style/base.css?v=20261115-melon">
-    <link rel="stylesheet" href="src/style/hero.css?v=20261115-melon">
-    <link rel="stylesheet" href="src/style/about.css?v=20261115-melon">
-    <link rel="stylesheet" href="src/style/orders.css?v=20261121-wide-cases">
-    <link rel="stylesheet" href="src/style/projects-layout.css?v=20261115-melon">
-    <link rel="stylesheet" href="src/style/project-cards.css?v=20261121-cards">
-    <link rel="stylesheet" href="src/style/client-cases.css?v=20261121-cards">
-    <link rel="stylesheet" href="src/style/project-archive.css?v=20261115-melon">
-    <link rel="stylesheet" href="src/style/support.css?v=20261115-melon">
-    <link rel="stylesheet" href="src/style/contact.css?v=20261115-melon">
-    <link rel="stylesheet" href="src/style/footer.css?v=20261115-melon">
-    <link rel="stylesheet" href="src/style/project-viewer.css?v=20261121-gallery-media">
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;1,500&family=Inter:wght@400;500&family=JetBrains+Mono:wght@400&family=Unbounded:wght@500;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="src/style/base.css?v=20261121-onest">
+    <link rel="stylesheet" href="src/style/hero.css?v=20261121-onest">
+    <link rel="stylesheet" href="src/style/about.css?v=20261121-onest">
+    <link rel="stylesheet" href="src/style/orders.css?v=20261121-full-width">
+    <link rel="stylesheet" href="src/style/projects-layout.css?v=20261121-neutral">
+    <link rel="stylesheet" href="src/style/project-cards.css?v=20261121-full-width">
+    <link rel="stylesheet" href="src/style/client-cases.css?v=20261121-theme">
+    <link rel="stylesheet" href="src/style/project-archive.css?v=20261121-neutral">
+    <link rel="stylesheet" href="src/style/support.css?v=20261121-theme">
+    <link rel="stylesheet" href="src/style/contact.css?v=20261121-onest">
+    <link rel="stylesheet" href="src/style/footer.css?v=20261121-onest">
+    <link rel="stylesheet" href="src/style/project-viewer.css?v=20261121-onest">
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400&amp;family=Onest:wght@400..700&amp;family=Unbounded:wght@900&amp;display=swap" rel="stylesheet">
     
     <title>ReNothingg</title>
     <link rel="icon" href="public/favicon.png" type="image/png" sizes="256x256">
@@ -158,7 +160,8 @@
                     </div>
                 </div>
 
-                <div class="order-cards-shell is-at-start" data-order-cards-shell>
+            </div>
+            <div class="order-cards-shell is-at-start" data-order-cards-shell>
                 <div class="order-cards" tabindex="0" aria-label="Основные клиентские кейсы, горизонтальная прокрутка"
                     data-order-cards-scroll>
 
@@ -340,9 +343,9 @@
                         </div>
                     </article>
                 </div>
+            </div>
 
-                </div>
-
+            <div class="container orders-container">
                 <dialog class="order-case-dialog" aria-labelledby="order-case-title" data-order-case-dialog>
                     <header class="order-case-dialog-heading">
                         <h4 id="order-case-title"></h4>
@@ -430,7 +433,8 @@
                 <div class="projects-title">
                     <h3 class="section-title"><a class="section-permalink" href="?projects" data-section-link="projects">Мои проекты</a></h3>
                 </div>
-                <div class="projects-grid-shell is-at-start" data-projects-scroll-shell>
+            </div>
+            <div class="projects-grid-shell is-at-start" data-projects-scroll-shell>
                 <div class="projects-grid" data-projects-scroll>
                     <a href="https://github.com/ReNothingg/WatchGPT" target="_blank" rel="noopener noreferrer"
                         class="project-card" style="--project-accent: 16, 163, 127;">
@@ -538,7 +542,7 @@
                             decoding="async">
                         <span class="project-card-shade" aria-hidden="true"></span>
                         <div class="project-card-top">
-                            <span class="project-status project-status--active">Активен</span>
+                            <span class="project-status project-status--complete">Завершён</span>
                         </div>
                         <div class="project-card-copy">
                             <p>Видео из любой ссылки — сразу файлом в Telegram, без лишних переходов.</p>
@@ -548,9 +552,27 @@
                             </div>
                         </div>
                     </a>
-                </div>
-                </div>
 
+                    <a href="https://chat.synvexai.com/" target="_blank" rel="noopener noreferrer"
+                        class="project-card" style="--project-accent: 174, 186, 214;">
+                        <img class="project-card-art" src="public/project/ReMind.png" alt="" loading="lazy"
+                            decoding="async">
+                        <span class="project-card-shade" aria-hidden="true"></span>
+                        <div class="project-card-top">
+                            <span class="project-status project-status--dormant">Приостановлен</span>
+                        </div>
+                        <div class="project-card-copy">
+                            <p>ReMind — для всех. Даже для тех, кто ещё не понял зачем.</p>
+                            <div class="project-card-heading">
+                                <h4>ReMind</h4>
+                                <time datetime="2025">2025</time>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+
+            <div class="projects-container">
                 <div id="client-portfolio" class="client-portfolio" data-client-portfolio
                     aria-labelledby="client-portfolio-title">
                     <div class="client-portfolio-heading">
@@ -588,11 +610,6 @@
                             </div>
                         </div>
                     </div>
-                    <a href="https://kwork.ru/user/renothing" target="_blank" rel="noopener noreferrer"
-                        aria-label="Kwork">
-                        <i class="fa-solid fa-briefcase"></i>
-                        <span class="link-text">Kwork</span>
-                    </a>
                     <a href="https://github.com/ReNothingg" class="btn btn--on-dark dead-projects-more">
                         Больше на GitHub
                     </a>
@@ -603,7 +620,6 @@
         <section id="support">
             <div class="container support-layout">
                 <div class="support-sticky">
-                    <p class="support-kicker">Здесь указаны актуальные данные дла оплаты</p>
                     <h3 class="support-title"><a class="section-permalink" href="?support" data-section-link="support">Реквизиты</a></h3>
                     <p class="support-subtitle">
                         Если вам откликается то, что я делаю, можно помочь развитию проектов. Каждый вклад идет в эксперименты, железо и новые идеи.
@@ -730,7 +746,7 @@
     </footer>
 
     <script src="src/js/script.js?v=20261121-wide-cases" defer></script>
-    <script src="src/js/portfolio.js?v=20261121-thumbnails" defer></script>
+    <script src="src/js/portfolio.js?v=20261121-project-links" defer></script>
     <script type="module" src="src/js/effects.js?v=20261115-melon"></script>
 </body>
 

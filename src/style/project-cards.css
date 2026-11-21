@@ -1,7 +1,5 @@
 .projects-grid-shell {
   position: relative;
-  width: 100vw;
-  margin-left: calc(50% - 50vw);
 }
 
 .projects-grid-shell::before,
@@ -35,13 +33,13 @@
   display: flex;
   gap: var(--space-md);
   margin: 0;
-  padding: 0 max(24px, calc((100vw - var(--wide-content-width)) / 2 + 24px)) var(--space-md);
+  padding: 0 env(safe-area-inset-right) var(--space-md) env(safe-area-inset-left);
   overflow-x: auto;
   overflow-y: hidden;
   cursor: grab;
   scrollbar-color: var(--surface-dark-elevated) transparent;
   scrollbar-width: thin;
-  scroll-padding-inline: max(24px, calc((100vw - var(--wide-content-width)) / 2 + 24px));
+  scroll-padding-inline: env(safe-area-inset-left) env(safe-area-inset-right);
   scroll-snap-type: inline mandatory;
   overscroll-behavior-inline: contain;
   touch-action: pan-x pan-y;
@@ -107,7 +105,7 @@
   position: absolute;
   z-index: -2;
   inset: 0;
-  background: linear-gradient(to bottom, rgba(37, 35, 32, 0) 38%, var(--surface-dark-elevated) 64%);
+  background: linear-gradient(to bottom, rgba(37, 37, 37, 0) 38%, var(--surface-dark-elevated) 64%);
 }
 
 .project-card-top {
@@ -188,11 +186,6 @@
 }
 
 @media (max-width: 768px) {
-  .projects-grid {
-    padding: 0 16px var(--space-md);
-    scroll-padding-inline: 16px;
-  }
-
   .project-card {
     flex-basis: min(86vw, 360px);
     width: min(86vw, 360px);

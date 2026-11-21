@@ -1,5 +1,5 @@
-@import url("../../src/style/base.css?v=20261108-fullscreen1");
-@import url("../../src/style/footer.css?v=20261108-fullscreen1");
+@import url("../../src/style/base.css?v=20261121-onest");
+@import url("../../src/style/footer.css?v=20261121-onest");
 
 html {
   scroll-behavior: smooth;
@@ -8,9 +8,9 @@ html {
 h2 {
   margin-top: 0;
   color: var(--ink);
-  font-family: var(--font-serif);
-  font-weight: 500;
-  letter-spacing: -0.02em;
+  font-family: var(--font-family-display);
+  font-weight: 650;
+  letter-spacing: -0.035em;
   text-wrap: balance;
 }
 
@@ -182,9 +182,8 @@ h2 {
 .demo-item figcaption b {
   display: block;
   color: var(--ink);
-  font-family: var(--font-serif);
   font-size: 22px;
-  font-weight: 500;
+  font-weight: 600;
 }
 
 .sale-section--soft {
@@ -277,8 +276,8 @@ h2 {
   margin-top: auto !important;
   padding-top: var(--space-md);
   color: var(--ink);
-  font-family: var(--font-serif);
   font-size: 32px;
+  font-weight: 600;
   line-height: 1;
 }
 
@@ -440,8 +439,9 @@ h2 {
 
 .price-total output {
   color: var(--ink);
-  font-family: var(--font-serif);
   font-size: clamp(2.5rem, 6vw, 3.5rem);
+  font-weight: 650;
+  letter-spacing: -0.035em;
   line-height: 1;
 }
 
@@ -467,8 +467,8 @@ h2 {
   gap: var(--space-md);
   padding: var(--space-lg) 0;
   color: var(--ink);
-  font-family: var(--font-serif);
   font-size: 24px;
+  font-weight: 500;
   line-height: 1.2;
   list-style: none;
   cursor: pointer;

@@ -1,11 +1,10 @@
 #hero {
-  --h-ink: #151412;
-  --h-muted: #6f6a5f;
-  --h-line: rgba(21, 20, 18, 0.1);
+  --h-ink: var(--ink);
+  --h-muted: var(--muted);
+  --h-line: rgba(var(--color-text-raw), 0.1);
   --h-melon: #ff3d57;
   --h-red: #d24a41;
-  --h-display: "Unbounded", "Arial Black", sans-serif;
-  --h-mono: "JetBrains Mono", ui-monospace, Menlo, monospace;
+  --h-green: #1e6b3a;
   --h-gutter: clamp(16px, 4vw, 56px);
   --h-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
   --melon-size: min(46vh, 44vw, 520px);
@@ -18,7 +17,7 @@
   padding: 36px 0 0;
   overflow: hidden;
   isolation: isolate;
-  background: linear-gradient(to bottom, var(--canvas) 0%, var(--canvas) 52%, var(--surface-card) 100%);
+  background: var(--canvas);
   color: var(--h-ink);
 }
 
@@ -43,7 +42,7 @@
   z-index: 1;
   margin: 0;
   color: var(--h-ink);
-  font-family: var(--h-display);
+  font-family: var(--font-brand);
   font-weight: 900;
   font-size: clamp(52px, 13.2vw, 250px);
   line-height: 0.82;
@@ -97,7 +96,7 @@
 
 .hero-word > span:hover {
   transform: translateY(-10%) rotate(-6deg);
-  color: #1e6b3a;
+  color: var(--h-green);
 }
 
 @keyframes hero-letter-rise {
@@ -206,7 +205,7 @@
   max-width: none;
   margin: 0 0 20px;
   color: var(--h-ink);
-  font-family: var(--h-display);
+  font-family: var(--font-sans);
   font-weight: 500;
   font-size: clamp(18px, 1.8vw, 26px);
   line-height: 1.2;
@@ -248,7 +247,7 @@
 .hero-btn--ink {
   --shadow: var(--h-melon);
   background: var(--h-ink);
-  color: #f4f0e6;
+  color: var(--on-primary);
 }
 
 .hero-btn--ghost {
@@ -258,8 +257,14 @@
 
 .hero-btn--ghost:hover {
   background: #ffcf3a;
+  color: var(--surface-dark);
 }
 
+@media (prefers-color-scheme: dark) {
+  #hero {
+    --h-green: #5db872;
+  }
+}
 
 @media (max-width: 900px) {
   #hero {

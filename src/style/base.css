@@ -1,34 +1,34 @@
 :root {
   color-scheme: light;
 
-  --primary: #141413;
-  --primary-active: #3d3d3a;
-  --primary-disabled: #e6dfd8;
+  --primary: var(--ink);
+  --primary-active: #3d3d3d;
+  --primary-disabled: #e0e0e0;
   --accent-teal: #5db8a6;
   --accent-amber: #e8a55a;
-  --canvas: #faf9f5;
-  --surface-soft: #f5f0e8;
-  --surface-card: #efe9de;
-  --surface-cream-strong: #e8e0d2;
-  --surface-dark: #181715;
-  --surface-dark-elevated: #252320;
-  --surface-dark-soft: #1f1e1b;
-  --hairline: #e6dfd8;
-  --hairline-soft: #ebe6df;
-  --ink: #141413;
-  --body-strong: #252523;
-  --body: #3d3d3a;
-  --muted: #6c6a64;
-  --muted-soft: #8e8b82;
-  --on-primary: #faf9f5;
-  --on-dark: #faf9f5;
-  --on-dark-soft: #a09d96;
+  --canvas: #ffffff;
+  --surface-soft: #f7f7f7;
+  --surface-card: #f3f3f3;
+  --surface-border-strong: #d7d7d7;
+  --surface-dark: #181818;
+  --surface-dark-elevated: #252525;
+  --surface-dark-soft: #1f1f1f;
+  --hairline: #e0e0e0;
+  --hairline-soft: #ebebeb;
+  --ink: #0d0d0d;
+  --body-strong: var(--ink);
+  --body: var(--ink);
+  --muted: #696969;
+  --muted-soft: #8b8b8b;
+  --on-primary: #ffffff;
+  --on-dark: #ffffff;
+  --on-dark-soft: #a0a0a0;
   --success: #5db872;
   --warning: #d4a017;
   --error: #c64545;
 
-  --font-serif: "Tiempos Headline", "Cormorant Garamond", Garamond, "Times New Roman", serif;
-  --font-sans: StyreneB, Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-sans: Onest, system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-brand: Unbounded, "Arial Black", sans-serif;
   --font-mono: "JetBrains Mono", ui-monospace, Menlo, monospace;
 
   --space-xxs: 4px;
@@ -47,12 +47,12 @@
   --radius-xl: 16px;
   --radius-pill: 9999px;
 
-  --shadow-hover: 0 1px 3px rgba(20, 20, 19, 0.08);
+  --shadow-hover: 0 1px 3px rgba(20, 20, 20, 0.08);
 
-  --color-bg-raw: 250, 249, 245;
-  --color-surface-raw: 239, 233, 222;
-  --color-text-raw: 20, 20, 19;
-  --color-muted-raw: 108, 106, 100;
+  --color-bg-raw: 255, 255, 255;
+  --color-surface-raw: 243, 243, 243;
+  --color-text-raw: 13, 13, 13;
+  --color-muted-raw: 105, 105, 105;
 
   --color-bg: var(--canvas);
   --color-surface: var(--surface-card);
@@ -62,10 +62,10 @@
   --color-accent-text: var(--on-primary);
   --color-border-subtle: var(--hairline-soft);
   --color-border: var(--hairline);
-  --color-border-strong: var(--surface-cream-strong);
+  --color-border-strong: var(--surface-border-strong);
 
   --font-family-base: var(--font-sans);
-  --font-family-display: var(--font-serif);
+  --font-family-display: var(--font-sans);
   --font-weight-medium: 500;
   --font-weight-bold: 500;
   --font-size-root: 16px;
@@ -86,6 +86,30 @@
   accent-color: var(--primary);
 }
 
+@media (prefers-color-scheme: dark) {
+  :root {
+    color-scheme: dark;
+
+    --primary-active: #dedede;
+    --primary-disabled: #383838;
+    --canvas: #181818;
+    --surface-soft: #202020;
+    --surface-card: #262626;
+    --surface-border-strong: #555555;
+    --hairline: #414141;
+    --hairline-soft: #333333;
+    --ink: #ffffff;
+    --muted: #b3b3b3;
+    --muted-soft: #999999;
+    --on-primary: #181818;
+
+    --color-bg-raw: 24, 24, 24;
+    --color-surface-raw: 38, 38, 38;
+    --color-text-raw: 255, 255, 255;
+    --color-muted-raw: 179, 179, 179;
+  }
+}
+
 *,
 *::before,
 *::after {
@@ -93,7 +117,7 @@
 }
 
 ::selection {
-  background: var(--surface-cream-strong);
+  background: var(--surface-border-strong);
   color: var(--ink);
 }
 
@@ -149,6 +173,10 @@ button {
   outline-offset: 3px;
 }
 
+:where(#projects, #contact, footer) :focus-visible {
+  outline-color: var(--on-dark);
+}
+
 [hidden] {
   display: none !important;
 }
@@ -170,10 +198,16 @@ h4,
 h5 {
   margin-top: 0;
   color: var(--ink);
-  font-family: var(--font-serif);
-  font-weight: 500;
+  font-family: var(--font-family-display);
+  font-weight: 600;
   letter-spacing: -0.02em;
   text-wrap: balance;
+}
+
+h1,
+h3 {
+  font-weight: 650;
+  letter-spacing: -0.035em;
 }
 
 section {

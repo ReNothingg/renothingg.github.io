@@ -4,10 +4,9 @@
 }
 
 .orders-container {
-  --orders-max-width: 1640px;
   display: grid;
   grid-template-columns: minmax(0, 1fr);
-  max-width: var(--orders-max-width);
+  max-width: 1640px;
 }
 
 .orders-heading {
@@ -26,8 +25,6 @@
 
 .order-cards-shell {
   position: relative;
-  width: 100vw;
-  margin-inline-start: calc(50% - 50vw);
 }
 
 .order-cards-shell::before,
@@ -57,9 +54,6 @@
 }
 
 .order-cards {
-  --case-gutter: max(24px, calc((100vw - var(--orders-max-width)) / 2 + 24px));
-  --case-gutter-left: max(var(--case-gutter), env(safe-area-inset-left));
-  --case-gutter-right: max(var(--case-gutter), env(safe-area-inset-right));
   position: relative;
   display: grid;
   grid-auto-flow: column;
@@ -67,12 +61,12 @@
   gap: var(--space-md);
   width: 100%;
   min-width: 0;
-  padding-inline: var(--case-gutter-left) var(--case-gutter-right);
-  scroll-padding-inline: var(--case-gutter-left) var(--case-gutter-right);
+  padding-inline: env(safe-area-inset-left) env(safe-area-inset-right);
+  scroll-padding-inline: env(safe-area-inset-left) env(safe-area-inset-right);
   overflow-x: auto;
   overflow-y: hidden;
   cursor: grab;
-  scrollbar-color: var(--surface-cream-strong) transparent;
+  scrollbar-color: var(--surface-border-strong) transparent;
   scrollbar-width: thin;
   scroll-snap-type: x mandatory;
   overscroll-behavior-inline: contain;
@@ -170,10 +164,9 @@
 .order-case-dialog blockquote {
   margin: 0;
   padding-left: var(--space-sm);
-  border-left: 2px solid var(--surface-cream-strong);
+  border-left: 2px solid var(--surface-border-strong);
   color: var(--muted);
-  font-family: var(--font-serif);
-  font-size: 17px;
+  font-size: 15px;
   font-style: italic;
   line-height: 1.35;
 }
@@ -197,7 +190,7 @@
 }
 
 .order-case-dialog::backdrop {
-  background: rgba(24, 23, 21, 0.6);
+  background: rgba(24, 24, 24, 0.6);
 }
 
 .order-case-dialog-heading {
@@ -305,7 +298,6 @@
   }
 
   .order-cards {
-    --case-gutter: 16px;
     grid-auto-columns: min(340px, calc(100vw - 48px));
   }
 
@@ -346,11 +338,11 @@
   padding: 16px 18px;
   border: 1px solid var(--hairline);
   border-radius: var(--radius-lg);
-  background: var(--ink);
-  color: var(--canvas);
+  background: var(--surface-dark-elevated);
+  color: var(--on-dark);
   font-size: 13px;
   line-height: 1.5;
-  box-shadow: 0 18px 40px rgba(20, 20, 19, 0.25);
+  box-shadow: 0 18px 40px rgba(20, 20, 20, 0.25);
   opacity: 0;
   visibility: hidden;
   pointer-events: none;

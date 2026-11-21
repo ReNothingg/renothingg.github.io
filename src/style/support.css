@@ -221,6 +221,13 @@
   white-space: nowrap;
 }
 
+@media (prefers-color-scheme: dark) {
+  .crypto-segment:is(:hover, :focus-visible),
+  .support-card--crypto:not(:has(.crypto-segment:hover, .crypto-segment:focus-visible)) .crypto-segment.is-copied {
+    background: var(--surface-card);
+  }
+}
+
 @media (max-width: 768px) {
   .support-layout {
     grid-template-columns: 1fr;

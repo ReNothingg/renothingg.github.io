@@ -731,24 +731,6 @@
       viewer(item, trigger);
     };
     const cards = portfolioItems.slice(0, 6).map((item) => createPortfolioCard(item, openProject));
-    document.querySelectorAll('.project-card').forEach((card) => {
-      const title = card.querySelector('h4')?.textContent.trim();
-      const matched = portfolioItems.find((item) => item.title === title || item.title.startsWith(`${title} —`))
-        || (title === 'SynvexAI' ? portfolioItems.find((item) => item.title === 'SynvexAI.com') : null);
-      const item = {
-        ...matched,
-        title,
-        category: matched?.category || card.querySelector('.project-status')?.textContent,
-        media: matched?.media || [card.querySelector('.project-card-art').getAttribute('src')],
-        href: card.href,
-      };
-      card.setAttribute('aria-haspopup', 'dialog');
-      card.addEventListener('click', (event) => {
-        if (event.defaultPrevented || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
-        event.preventDefault();
-        openProject(item, card);
-      });
-    });
     grid.replaceChildren(...cards);
 
     const getCollapsedHeight = () => {

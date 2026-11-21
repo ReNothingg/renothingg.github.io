@@ -57,7 +57,7 @@
 }
 
 .client-case-card:hover {
-  border-color: rgba(250, 249, 245, 0.24);
+  border-color: rgba(255, 255, 255, 0.24);
   background: var(--surface-dark-soft);
 }
 
@@ -71,7 +71,7 @@
   place-items: center;
   width: 32px;
   height: 32px;
-  border: 1px solid rgba(250, 249, 245, 0.16);
+  border: 1px solid rgba(255, 255, 255, 0.16);
   border-radius: 50%;
   font-size: 18px;
 }
@@ -144,7 +144,7 @@
   left: 0;
   height: 200px;
   pointer-events: none;
-  background: linear-gradient(to bottom, rgba(24, 23, 21, 0), rgba(24, 23, 21, 0.9) 60%, var(--surface-dark) 100%);
+  background: linear-gradient(to bottom, rgba(24, 24, 24, 0), rgba(24, 24, 24, 0.9) 60%, var(--surface-dark) 100%);
   transition: opacity 360ms var(--transition-easing);
 }
 
@@ -163,14 +163,14 @@
   padding: 12px 20px;
   border: 0;
   border-radius: var(--radius-md);
-  background: var(--canvas);
-  color: var(--ink);
+  background: var(--on-dark);
+  color: var(--surface-dark);
   font: 500 14px/1 var(--font-sans);
   cursor: pointer;
 }
 
 .client-portfolio-toggle:active {
-  background: var(--surface-card);
+  background: color-mix(in srgb, var(--on-dark) 95%, var(--surface-dark));
 }
 
 .client-portfolio.is-expanded .client-portfolio-fade {
