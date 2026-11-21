@@ -29,14 +29,15 @@
 
 .client-case-reveal {
   position: relative;
+  overflow: hidden;
+  transition: max-height 760ms cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .client-case-grid {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-auto-rows: 1fr;
   gap: var(--space-md);
-  overflow: hidden;
-  transition: max-height 760ms cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .client-case-card {
@@ -118,15 +119,13 @@
 .client-case-title {
   display: block;
   margin: 0;
-  overflow: hidden;
+  overflow-wrap: anywhere;
   color: var(--on-dark);
   font-family: var(--font-sans);
   font-size: 15px;
   font-weight: 500;
   letter-spacing: 0;
   line-height: 1.4;
-  text-overflow: ellipsis;
-  white-space: nowrap;
 }
 
 .client-case-category {
@@ -207,7 +206,7 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .client-case-grid,
+  .client-case-reveal,
   .client-portfolio-fade,
   .client-portfolio-controls {
     transition: none;

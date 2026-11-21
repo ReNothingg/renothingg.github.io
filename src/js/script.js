@@ -181,10 +181,7 @@ document.addEventListener('DOMContentLoaded', () => {
     scroller.addEventListener('dragstart', (event) => event.preventDefault());
   };
 
-  const setupProjectsScrollShadows = () => {
-    const shell = document.querySelector('[data-projects-scroll-shell]');
-    const scroller = document.querySelector('[data-projects-scroll]');
-
+  const setupScrollShadows = (shell, scroller) => {
     if (!shell || !scroller) return;
 
     let ticking = false;
@@ -211,10 +208,44 @@ document.addEventListener('DOMContentLoaded', () => {
 
   const setupOrderCardsScroll = () => {
     const scroller = document.querySelector('[data-order-cards-scroll]');
-    setupHorizontalDrag(scroller);
+    setupScrollShadows(document.querySelector('[data-order-cards-shell]'), scroller);
+
+    const dialog = document.querySelector('[data-order-case-dialog]');
+    if (!scroller || !dialog) return;
+
+    const title = dialog.querySelector('#order-case-title');
+    const body = dialog.querySelector('.order-case-dialog-body');
+    scroller.querySelectorAll('.order-card').forEach((card) => {
+      const heading = card.querySelector('h4');
+      const preview = card.querySelector('.order-card-preview');
+      const details = card.querySelector('.order-card-details');
+      const quote = details.querySelector('blockquote');
+      const trigger = document.createElement('button');
+      trigger.type = 'button';
+      trigger.className = 'order-card-more';
+      trigger.textContent = 'Подробнее';
+      trigger.hidden = true;
+      trigger.setAttribute('aria-label', `Подробнее: ${heading.textContent.trim()}`);
+      trigger.setAttribute('aria-haspopup', 'dialog');
+      preview.after(trigger);
+
+      const update = () => {
+        trigger.hidden = ![preview, quote].some((element) => element && element.scrollHeight > element.clientHeight + 1);
+      };
+      const observer = new ResizeObserver(update);
+      observer.observe(preview);
+      if (quote) observer.observe(quote);
+      document.fonts.ready.then(update);
+
+      trigger.addEventListener('click', () => {
+        title.textContent = heading.textContent.trim();
+        body.replaceChildren(...[...preview.children, ...details.children].map((element) => element.cloneNode(true)));
+        dialog.showModal();
+      });
+    });
   };
 
-  setupProjectsScrollShadows();
+  setupScrollShadows(document.querySelector('[data-projects-scroll-shell]'), document.querySelector('[data-projects-scroll]'));
   setupOrderCardsScroll();
   setupDeadProjectsMarquee();
 });

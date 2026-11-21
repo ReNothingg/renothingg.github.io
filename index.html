@@ -21,15 +21,15 @@
     <link rel="stylesheet" href="src/style/base.css?v=20261115-melon">
     <link rel="stylesheet" href="src/style/hero.css?v=20261115-melon">
     <link rel="stylesheet" href="src/style/about.css?v=20261115-melon">
-    <link rel="stylesheet" href="src/style/orders.css?v=20261115-melon">
+    <link rel="stylesheet" href="src/style/orders.css?v=20261121-wide-cases">
     <link rel="stylesheet" href="src/style/projects-layout.css?v=20261115-melon">
-    <link rel="stylesheet" href="src/style/project-cards.css?v=20261115-melon">
-    <link rel="stylesheet" href="src/style/client-cases.css?v=20261115-melon">
+    <link rel="stylesheet" href="src/style/project-cards.css?v=20261121-cards">
+    <link rel="stylesheet" href="src/style/client-cases.css?v=20261121-cards">
     <link rel="stylesheet" href="src/style/project-archive.css?v=20261115-melon">
     <link rel="stylesheet" href="src/style/support.css?v=20261115-melon">
     <link rel="stylesheet" href="src/style/contact.css?v=20261115-melon">
     <link rel="stylesheet" href="src/style/footer.css?v=20261115-melon">
-    <link rel="stylesheet" href="src/style/project-viewer.css?v=20261115-melon">
+    <link rel="stylesheet" href="src/style/project-viewer.css?v=20261121-gallery-media">
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;1,500&family=Inter:wght@400;500&family=JetBrains+Mono:wght@400&family=Unbounded:wght@500;700;900&display=swap" rel="stylesheet">
     
     <title>ReNothingg</title>
@@ -158,13 +158,34 @@
                     </div>
                 </div>
 
+                <div class="order-cards-shell is-at-start" data-order-cards-shell>
                 <div class="order-cards" tabindex="0" aria-label="Основные клиентские кейсы, горизонтальная прокрутка"
                     data-order-cards-scroll>
 
                     <article class="order-card" tabindex="0">
                         <div class="order-card-summary">
+                            <h4>MasterPay</h4>
+                            <div class="order-card-preview">
+                                <p>Веб-платформа для управления входящими платежами (PayIn) и выплатами (PayOut). В админке можно создавать заявки, искать их по номеру, фильтровать по статусу, банку и мерчанту, просматривать историю и выгружать список в CSV.</p>
+                                <p>В финансовом разделе видны оборот, комиссии, доступные средства и суммы в резерве. Для спорных платежей есть арбитраж с обсуждением и проверкой чеков. Администратор управляет командой и её доступами, задаёт лимиты по реквизитам и настраивает комиссии мерчантов.</p>
+                                <p>Мерчанты могут создавать заявки, прикладывать чеки и проверять баланс через API. При изменении статуса заявки сервис отправляет уведомление в систему мерчанта.</p>
+                            </div>
+                        </div>
+                        <div class="order-card-details">
+                            <dl class="order-facts">
+                                <div><dt>Стоимость</dt><dd>400 $</dd></div>
+                                <div><dt>Срок</dt><dd>4 дня</dd></div>
+                            </dl>
+                        </div>
+                    </article>
+
+                    <article class="order-card" tabindex="0">
+                        <div class="order-card-summary">
                             <h4>Aurus</h4>
-                            <p>Сервис оплаты QR-заявок: Telegram-бот и Mini App с кабинетом трейдера и панелью администратора, API для мерчантов. Читает QR со скриншотов, распределяет заявки по трейдерам на линии (вручную или автоматически), фиксирует курс USDT при квоте, считает комиссии и резервирует баланс. Пополнения в TRON зачисляются автоматически, чеки и события уходят в Telegram, есть споры, каскад заявок и возвраты. В Ozon, МТС и ВБ Банке работает автооплата через <a href="/sale/autopay/">PayTalon</a> с учётом телефонов в сети, в остальных банках платит трейдер. У администратора — обзор оборота и маржи, заявки с поиском и фильтрами, трейдеры и запросы на доступ, кошельки, выводы, доставка событий и журнал действий.</p>                        </div>
+                            <div class="order-card-preview">
+                                <p>Сервис оплаты QR-заявок: Telegram-бот и Mini App с кабинетом трейдера и панелью администратора, API для мерчантов. Читает QR со скриншотов, распределяет заявки по трейдерам на линии (вручную или автоматически), фиксирует курс USDT при квоте, считает комиссии и резервирует баланс. Пополнения в TRON зачисляются автоматически, чеки и события уходят в Telegram, есть споры, каскад заявок и возвраты. В Ozon, МТС и ВБ Банке работает автооплата через <a href="/sale/autopay/">PayTalon</a> с учётом телефонов в сети, в остальных банках платит трейдер. У администратора — обзор оборота и маржи, заявки с поиском и фильтрами, трейдеры и запросы на доступ, кошельки, выводы, доставка событий и журнал действий.</p>
+                            </div>
+                        </div>
                         <div class="order-card-details">
                             <dl class="order-facts">
                                 <div><dt>Стоимость</dt><dd>620 $</dd></div>
@@ -176,7 +197,9 @@
                     <article class="order-card" tabindex="0">
                         <div class="order-card-summary">
                             <h4>Импорт товаров в МойСклад</h4>
-                            <p>Веб-сервис для подготовки и загрузки товаров в «МойСклад». Импорт прайс-листов Excel, PDF, Word и CSV, сопоставление с каталогом по артикулу, внутреннему ID и названию, поиск дублей, AI-дополнение описаний и характеристик, подбор фото, массовое редактирование. Контроль импорта: каждая строка прайса учтена — стала товаром или пропущена с причиной, отчёт выгружается в CSV. Цены за штуку и за упаковку раздельно, перенос прошлой наценки менеджера, умный подбор категорий с обучением на выборе менеджера. Модификации по цвету и размеру, в том числе собираются прямо из Excel. Пакетная правка каталога через Excel: выгрузка, правка, обратная загрузка с разбором конфликтов по каждому полю. Перед записью — предпросмотр «было → станет» с отсевом дублей, журнал записей и восстановление прерванного импорта.</p>
+                            <div class="order-card-preview">
+                                <p>Веб-сервис для подготовки и загрузки товаров в «МойСклад». Импорт прайс-листов Excel, PDF, Word и CSV, сопоставление с каталогом по артикулу, внутреннему ID и названию, поиск дублей, AI-дополнение описаний и характеристик, подбор фото, массовое редактирование. Контроль импорта: каждая строка прайса учтена — стала товаром или пропущена с причиной, отчёт выгружается в CSV. Цены за штуку и за упаковку раздельно, перенос прошлой наценки менеджера, умный подбор категорий с обучением на выборе менеджера. Модификации по цвету и размеру, в том числе собираются прямо из Excel. Пакетная правка каталога через Excel: выгрузка, правка, обратная загрузка с разбором конфликтов по каждому полю. Перед записью — предпросмотр «было → станет» с отсевом дублей, журнал записей и восстановление прерванного импорта.</p>
+                            </div>
                         </div>
                         <div class="order-card-details">
                             <dl class="order-facts">
@@ -189,9 +212,11 @@
                     <article class="order-card" tabindex="0">
                         <div class="order-card-summary">
                             <h4>In the Mine</h4>
-                            <p>
-                                2D-игра на Unity для Android. В проект вошли шахта с добычей ресурсов и несколькими уровнями глубины, рабочие, склад на 64 слота, поиск и удаление предметов, крафт, печь, фабрика 512×512 клеток, размещение и перенос механизмов, энергетическая система, цепочки производства, обучение игрока, сохранение прогресса и продуманный интерфейс в портретной ориентации.
-                            </p>
+                            <div class="order-card-preview">
+                                <p>2D-симулятор добычи и автоматизации на Unity для Android. Игрок отправляет лесоруба за древесиной, собирает инструменты на верстаке и спускается за рудой в более глубокие пласты шахты. Добыча поступает на расширяемый склад с поиском, откуда материалы идут в крафт, переплавку и строительство.</p>
+                                <p>На многоэтажной фабрике с картой 512 × 512 клеток можно строить по чертежам, переносить машины, прокладывать трубы для предметов и жидкостей и подключать питание кабелями. Ручные операции постепенно превращаются в производственные линии.</p>
+                                <p>В игре также есть садоводство, пасеки, выведение пчелиных семей и генетические исследования. Сделал обучение, интерфейс для телефона и планшета и локальное сохранение с восстановлением из резервной копии. Игра работает офлайн.</p>
+                            </div>
                         </div>
 
                         <div class="order-card-details">
@@ -211,9 +236,9 @@
                     <article class="order-card" tabindex="0">
                         <div class="order-card-summary">
                             <h4>Telegram-обменник USDT → RUB</h4>
-                            <p>
-                                Криптообменный сервис: Telegram Mini App, клиентский и операторский боты, API и финансовое ядро на SQLite. Подключил пополнение через Crypto Pay и TRC20, вывод на карту и СБП с разделением выплаты между операторами, историю операций, реферальную систему, админ-панель, чеки и поддержку споров. Курс USDT/RUB берётся с рапира с наценкой 14%.
-                            </p>
+                            <div class="order-card-preview">
+                                <p>Криптообменный сервис: Telegram Mini App, клиентский и операторский боты, API и финансовое ядро на SQLite. Подключил пополнение через Crypto Pay и TRC20, вывод на карту и СБП с разделением выплаты между операторами, историю операций, реферальную систему, админ-панель, чеки и поддержку споров. Курс USDT/RUB берётся с рапира с наценкой 14%.</p>
+                            </div>
                         </div>
 
                         <div class="order-card-details">
@@ -227,7 +252,9 @@
                     <article class="order-card" tabindex="0">
                         <div class="order-card-summary">
                             <h4>StellerPay Market</h4>
-                            <p>Telegram Mini апп для быстрой покупки Telegram Stars и Premium. Сервис поддерживает оплату через СБП, CryptoBot и TON, личный баланс, историю операций и автоматическую обработку заказов.</p>
+                            <div class="order-card-preview">
+                                <p>Telegram Mini апп для быстрой покупки Telegram Stars и Premium. Сервис поддерживает оплату через СБП, CryptoBot и TON, личный баланс, историю операций и автоматическую обработку заказов.</p>
+                            </div>
                         </div>
                         <div class="order-card-details">
                             <dl class="order-facts">
@@ -244,7 +271,11 @@
                     <article class="order-card" tabindex="0">
                         <div class="order-card-summary">
                             <h4>ML для торговли криптовалютой</h4>
-                            <p>Исследование и архитектура торгового робота для криптовалютного рынка. Проект включает проектирование системы для работы с BingX и парой BTC/USDT: сбор рыночных данных, backtest-движок, базовые стратегии, ML/RL-модель, риск-менеджмент, paper/demo trading, Telegram-уведомления и подготовку к безопасному live-запуску с минимальными лимитами риска.</p>
+                            <div class="order-card-preview">
+                                <p>Исследовательская платформа для фьючерсов BTC/USDT на BingX. Настроил сбор сделок, стакана, ставок финансирования и открытого интереса. Из этих данных собирал признаки и восстанавливал, что было известно системе в момент каждого решения.</p>
+                                <p>Сравнивал базовые стратегии и ML-модели для входа, выхода и пропуска сделки. Проверял их на последовательных временных окнах и отложенных периодах, отделяя обучение от проверки. Бэктест учитывал комиссии, проскальзывание, финансирование и ограничения исполнения. Для экспериментов с обучением с подкреплением подготовил отдельную среду.</p>
+                                <p>На виртуальном счёте проверял сигналы и ведение позиций с лимитами на размер сделки, дневной убыток и просадку. Для разбора результатов сделал веб-панель с метриками и журналом, а для наблюдения за работой системы подключил уведомления в Telegram.</p>
+                            </div>
                         </div>
                         <div class="order-card-details">
                             <dl class="order-facts">
@@ -260,7 +291,9 @@
                     <article class="order-card" tabindex="0">
                         <div class="order-card-summary">
                             <h4>Ловец ордеров CryptoBot </h4>
-                            <p>Высокопроизводительный софт для мониторинга P2C-платежей в реал тайме и их автоматической обработки и принятие. Использует WebSocket, HTTP/2, многопоточность, адаптивное управление соединениями и оптимизацию сетевых маршрутов для минимальной задержки и высокой отказоустойчивости.</p>
+                            <div class="order-card-preview">
+                                <p>Высокопроизводительный софт для мониторинга P2C-платежей в реал тайме и их автоматической обработки и принятие. Использует WebSocket, HTTP/2, многопоточность, адаптивное управление соединениями и оптимизацию сетевых маршрутов для минимальной задержки и высокой отказоустойчивости.</p>
+                            </div>
                         </div>
                         <div class="order-card-details">
                             <dl class="order-facts">
@@ -276,11 +309,13 @@
                     <article class="order-card" tabindex="0">
                         <div class="order-card-summary">
                             <h4>PDF-генераторы для РЭЛ, Глобэкс и EFR</h4>
-                            <p>Два независимых веб-приложения для создания официальных PDF-документов на фирменных бланках компаний. Внутри: авторизация сотрудников, личный кабинет, список документов с поиском и сортировкой, создание, редактирование, удаление и скачивание PDF, генерация номеров документов, бланки закупки и прочего письма, динамические таблицы и текстовый редактор с форматированием.</p>
+                            <div class="order-card-preview">
+                                <p>Два независимых веб-приложения для создания официальных PDF-документов на фирменных бланках компаний. Внутри: авторизация сотрудников, личный кабинет, список документов с поиском и сортировкой, создание, редактирование, удаление и скачивание PDF, генерация номеров документов, бланки закупки и прочего письма, динамические таблицы и текстовый редактор с форматированием.</p>
+                            </div>
                         </div>
                         <div class="order-card-details">
                             <dl class="order-facts">
-                                <div><dt>Стоимость</dt><dd>3,000 $</dd></div>
+                                <div><dt>Стоимость</dt><dd>500 $</dd></div>
                                 <div><dt>Срок</dt><dd>3–4 недели</dd></div>
                             </dl>
                         </div>
@@ -289,7 +324,9 @@
                     <article class="order-card" tabindex="0">
                         <div class="order-card-summary">
                             <h4>Кастомные маркеры для Organic Maps</h4>
-                            <p>Низкоуровневая доработка C++-ядра Organic Maps для Flutter-приложения. Реализовал регистрацию PNG-изображений по ID, динамическую генерацию runtime-текстур, слой внешних маркеров с upsert/remove по категориям, обработку тапов с возвратом layerId, markerId и payload, а также фиксы стабильности рендера и работы с памятью в Vulkan/Drape.</p>
+                            <div class="order-card-preview">
+                                <p>Низкоуровневая доработка C++-ядра Organic Maps для Flutter-приложения. Реализовал регистрацию PNG-изображений по ID, динамическую генерацию runtime-текстур, слой внешних маркеров с upsert/remove по категориям, обработку тапов с возвратом layerId, markerId и payload, а также фиксы стабильности рендера и работы с памятью в Vulkan/Drape.</p>
+                            </div>
                         </div>
                         <div class="order-card-details">
                             <dl class="order-facts">
@@ -304,13 +341,27 @@
                     </article>
                 </div>
 
-                <div class="small-orders" aria-labelledby="small-orders-title">
-                    <div class="small-orders-heading">
-                        <h4 id="small-orders-title">Небольшие задачи</h4>
-                    </div>
+                </div>
+
+                <dialog class="order-case-dialog" aria-labelledby="order-case-title" data-order-case-dialog>
+                    <header class="order-case-dialog-heading">
+                        <h4 id="order-case-title"></h4>
+                        <form method="dialog">
+                            <button class="btn btn--secondary" type="submit" autofocus>Закрыть</button>
+                        </form>
+                    </header>
+                    <div class="order-case-dialog-body"></div>
+                </dialog>
+
+                <div class="small-orders">
                     <div class="small-orders-marquee" tabindex="0" aria-label="Небольшие клиентские задачи">
                         <div class="small-order-track" data-small-orders-track>
                             <div class="small-order-list" data-small-orders-group>
+                                <article class="small-order-card">
+                                    <h5>RICO QR Grab</h5>
+                                    <p>Telegram-бот и Android-приложение для QR Grab. Распределяет СБП-заявки между телефонами и ведёт историю оплат.</p>
+                                    <span class="small-order-price">340 $ — 3d — 5⭐</span>
+                                </article>
                                 <article class="small-order-card"><h5>Ловец выплат 911pay</h5><p>Бот, который сам забирает выплаты на платёжной площадке быстрее конкурентов. За одну сессию поймал 16 из 25 выплат (~64%), обработал 178 тыс. запросов при 7 ошибках. Замечает новую выплату за ~0,1 с: следит за счётчиками сайта до 100 раз в секунду и укладывается в его лимиты без блокировок. Повторно берёт выплаты, вернувшиеся в общий пул, и доливы, присылает зависшие крупные выплаты с кнопкой «Взять». Управляет автовзятием сайта: очередь, расширение оферов одной кнопкой, удержание автовзятия включённым. Вторая площадка (CryptoBank) в том же боте. Сам выставляет реквизиты и держит лимит, позволяет отправить выплату на проверку или отказаться от неё. Фильтры, админы и статистика прямо в Telegram.</p><span class="small-order-price">235 $ — 9h — 5⭐</span></article>
                                 <article class="small-order-card small-order-card--note" tabindex="0" data-cursor-note><h5>Магазин цифровых игр PS / Xbox <small>заказ друга, финальные правки — мои</small></h5><p>Довёл чужой проект: парсер PS без очистки каталога, переключатель Турция / Украина, пароль и сессии в админке.</p><span class="small-order-price">Бесплатно (заскамили) — 2d</span>
                                     <div class="cursor-note" role="tooltip">
@@ -508,7 +559,7 @@
                     aria-labelledby="client-portfolio-title">
                     <div class="client-portfolio-heading">
                         <h4 id="client-portfolio-title">Портфолио</h4>
-                        <p>36 проектов</p>
+                        <p>40 проектов</p>
                     </div>
 
                     <div class="client-case-reveal">
@@ -682,8 +733,8 @@
         <p class="footer-word" aria-hidden="true">ReNothingg</p>
     </footer>
 
-    <script src="src/js/script.js?v=20261115-melon" defer></script>
-    <script src="src/js/portfolio.js?v=20261115-melon" defer></script>
+    <script src="src/js/script.js?v=20261121-wide-cases" defer></script>
+    <script src="src/js/portfolio.js?v=20261121-thumbnails" defer></script>
     <script type="module" src="src/js/effects.js?v=20261115-melon"></script>
 </body>
 

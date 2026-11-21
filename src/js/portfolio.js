@@ -1,6 +1,54 @@
 (() => {
   const portfolioItems = [
     {
+      title: 'MasterPay',
+      category: 'Платёжная веб-платформа · 400 $ · 4 дня',
+      media: [
+        'public/client-cases/masterpay-dashboard.webp',
+        'public/client-cases/masterpay-payin.webp',
+        'public/client-cases/masterpay-payout.webp',
+        'public/client-cases/masterpay-finance.webp',
+        'public/client-cases/masterpay-disputes.webp',
+        'public/client-cases/masterpay-merchants.webp',
+      ],
+    },
+    {
+      title: 'RICO QR Grab — AutoPay',
+      category: 'Telegram-бот и Android-приложение',
+      fit: 'contain',
+      media: [
+        'public/client-cases/rico-autopay-notifications.webp',
+        'public/client-cases/rico-autopay-payment.webp',
+      ],
+    },
+    {
+      title: 'Drone Studio',
+      category: 'Компьютерное зрение · 3D-симуляция',
+      media: [
+        'public/client-cases/drone-studio-3d-follow.webp',
+        'public/client-cases/drone-studio-3d-overview.webp',
+        'public/client-cases/drone-studio-3d-camera.webp',
+        'public/client-cases/drone-studio-detection-01.webp',
+        'public/client-cases/drone-studio-detection-02.webp',
+        'public/client-cases/drone-studio-detection-03.webp',
+        'public/client-cases/drone-studio-detection-04.webp',
+        'public/client-cases/drone-studio-detection-05.webp',
+        'public/client-cases/drone-studio-bird.webp',
+      ],
+    },
+    {
+      title: 'RBook',
+      category: 'Читалка для iPad · SwiftUI',
+      fit: 'contain',
+      media: [
+        'public/client-cases/rbook-library.webp',
+        'public/client-cases/rbook-reading-now.webp',
+        'public/client-cases/rbook-epub.webp',
+        'public/client-cases/rbook-contents.webp',
+        'public/client-cases/rbook-pdf.webp',
+      ],
+    },
+    {
       title: 'Ловец выплат 911pay',
       category: 'Telegram-бот · Go',
       media: [
@@ -123,14 +171,16 @@
       ],
     },
     {
-      title: "Работа №37",
-      category: "Игры",
+      title: 'In the Mine',
+      category: '2D-игра · Unity · Android',
+      fit: 'contain',
       media: [
-        "public/client-cases/23794004-01.webp",
-        "public/client-cases/23794004-02.webp",
-        "public/client-cases/23794004-03.webp",
-        "public/client-cases/23794004-04.webp",
-        "public/client-cases/23794004-05.webp",
+        'public/client-cases/in-the-mine-tablet-forest.webp',
+        'public/client-cases/in-the-mine-mine.webp',
+        'public/client-cases/in-the-mine-workbench.webp',
+        'public/client-cases/in-the-mine-factory.webp',
+        'public/client-cases/in-the-mine-forest.webp',
+        'public/client-cases/in-the-mine-tablet-factory.webp',
       ],
     },
     {
@@ -368,11 +418,6 @@
       ],
     },
     {
-      title: 'ReNothingg.github.io',
-      category: 'Создание сайта',
-      media: ['public/client-cases/23184397-01.webp'],
-    },
-    {
       title: 'chat.synvexai.com',
       category: 'Создание сайта',
       media: [
@@ -382,55 +427,11 @@
       ],
     },
     {
-      title: 'Работа №8',
-      category: 'Мобильные приложения',
-      media: [
-        'public/client-cases/23184340-01.webp',
-        'public/client-cases/23184340-02.webp',
-        'public/client-cases/23184340-03.webp',
-        'public/client-cases/23184340-04.webp',
-      ],
-    },
-    {
       title: 'Работа №7',
       category: 'Мобильные приложения',
       media: [
         'public/client-cases/23184273-01.webp',
         'public/client-cases/23184273-02.mp4',
-      ],
-    },
-    {
-      title: 'Работа №3',
-      category: 'Мобильные приложения',
-      media: [
-        'public/client-cases/23184224-01.webp',
-        'public/client-cases/23184224-02.webp',
-        'public/client-cases/23184224-03.webp',
-        'public/client-cases/23184224-04.webp',
-      ],
-    },
-    {
-      title: 'Работа №5',
-      category: 'Мобильные приложения',
-      media: [
-        'public/client-cases/23184205-01.webp',
-        'public/client-cases/23184205-02.webp',
-        'public/client-cases/23184205-03.webp',
-        'public/client-cases/23184205-04.webp',
-        'public/client-cases/23184205-05.webp',
-        'public/client-cases/23184205-06.webp',
-      ],
-    },
-    {
-      title: 'ReMind',
-      category: 'Мобильные приложения',
-      media: [
-        'public/client-cases/23184183-01.webp',
-        'public/client-cases/23184183-02.webp',
-        'public/client-cases/23184183-03.webp',
-        'public/client-cases/23184183-04.webp',
-        'public/client-cases/23184183-05.webp',
-        'public/client-cases/23184183-06.webp',
       ],
     },
   ];
@@ -477,11 +478,8 @@
           </div>
           <input class="project-viewer-range" type="range" min="1" step="1" aria-label="Номер скриншота">
         </div>
-        <footer class="project-viewer-footer">
-          <p class="project-viewer-description"></p>
-          <div class="project-viewer-links">
-            <a class="project-viewer-website" target="_blank" rel="noopener noreferrer" hidden>Перейти к проекту ↗</a>
-          </div>
+        <footer class="project-viewer-footer" hidden>
+          <a class="project-viewer-website" target="_blank" rel="noopener noreferrer">Перейти к проекту ↗</a>
         </footer>
       </div>`;
     document.body.append(dialog);
@@ -490,6 +488,7 @@
     const gallery = dialog.querySelector('.project-viewer-gallery');
     const counter = dialog.querySelector('.project-viewer-counter');
     const range = dialog.querySelector('.project-viewer-range');
+    const footer = dialog.querySelector('.project-viewer-footer');
     const website = dialog.querySelector('.project-viewer-website');
     const arrows = [...dialog.querySelectorAll('[data-direction]')];
     let currentItem;
@@ -510,14 +509,15 @@
         const offset = index - activeIndex;
         const distance = Math.abs(offset);
         const active = offset === 0;
-        slide.hidden = distance > 3;
+        const nearby = distance <= 1;
+        slide.hidden = !nearby;
         slide.classList.toggle('is-active', active);
         slide.style.setProperty('--offset', offset);
         slide.style.setProperty('--distance', distance);
         slide.style.setProperty('--side', Math.sign(offset));
         slide.style.zIndex = 10 - distance;
         slide.setAttribute('aria-hidden', String(!active));
-        if (distance <= 3 && !slide.firstChild) {
+        if (nearby && !slide.firstChild) {
           const media = createMediaElement(currentItem.media[index], currentItem.title, index + 1, total, {
             loading: 'eager',
             priority: active ? 'high' : 'low',
@@ -533,7 +533,7 @@
           video.tabIndex = active ? 0 : -1;
           if (!active) video.pause();
         }
-        if (distance > 3 && slide.firstChild) {
+        if (!nearby && slide.firstChild) {
           if (video) {
             video.removeAttribute('src');
             video.load();
@@ -642,9 +642,7 @@
       wheelDistance = 0;
       dialog.querySelector('#project-viewer-title').textContent = item.title;
       dialog.querySelector('.project-viewer-category').textContent = item.category || 'Проект';
-      dialog.querySelector('.project-viewer-description').textContent = item.description || '';
-      dialog.querySelector('.project-viewer-footer').hidden = !item.description && !item.href;
-      website.hidden = !item.href;
+      footer.hidden = !item.href;
       if (item.href) website.href = item.href;
       range.max = item.media.length;
       range.hidden = item.media.length < 2;
@@ -678,7 +676,12 @@
     const mediaSlot = document.createElement('span');
     mediaSlot.className = 'client-case-media';
     const coverIndex = Math.max(item.media.indexOf(item.cover), 0);
-    const media = createMediaElement(item.cover || item.media[0], item.title, coverIndex + 1, item.media.length);
+    const source = item.cover || item.media[0];
+    const thumbnail = source.replace(/\/([^/]+)\.(?:jpe?g|png|webp)$/i, '/thumbs/$1.webp');
+    const media = createMediaElement(thumbnail, item.title, coverIndex + 1, item.media.length);
+    if (thumbnail !== source) {
+      media.addEventListener('error', () => { media.src = source; }, { once: true });
+    }
     if (item.fit) media.style.objectFit = item.fit;
     if (media.tagName === 'VIDEO') media.controls = false;
     mediaSlot.append(media);
@@ -707,10 +710,11 @@
 
   document.addEventListener('DOMContentLoaded', () => {
     const portfolio = document.querySelector('[data-client-portfolio]');
-    const grid = portfolio?.querySelector('[data-client-portfolio-grid]');
+    const reveal = portfolio?.querySelector('.client-case-reveal');
+    const grid = reveal?.querySelector('[data-client-portfolio-grid]');
     const toggle = portfolio?.querySelector('[data-client-portfolio-toggle]');
 
-    if (!portfolio || !grid || !toggle) return;
+    if (!portfolio || !reveal || !grid || !toggle) return;
 
     const count = portfolio.querySelector('.client-portfolio-heading > p');
     if (count) {
@@ -735,7 +739,6 @@
         ...matched,
         title,
         category: matched?.category || card.querySelector('.project-status')?.textContent,
-        description: card.querySelector('.project-card-copy > p')?.textContent,
         media: matched?.media || [card.querySelector('.project-card-art').getAttribute('src')],
         href: card.href,
       };
@@ -754,7 +757,7 @@
     };
 
     const updateHeight = () => {
-      grid.style.maxHeight = portfolio.classList.contains('is-expanded')
+      reveal.style.maxHeight = portfolio.classList.contains('is-expanded')
         ? `${grid.scrollHeight}px`
         : `${getCollapsedHeight()}px`;
     };
@@ -780,7 +783,7 @@
       }
 
       if (!willExpand) {
-        grid.style.maxHeight = `${grid.scrollHeight}px`;
+        reveal.style.maxHeight = `${grid.scrollHeight}px`;
       }
 
       window.requestAnimationFrame(() => {

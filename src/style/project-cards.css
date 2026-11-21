@@ -156,13 +156,9 @@
 }
 
 .project-card-copy > p {
-  display: -webkit-box;
   max-width: 38ch;
   min-height: calc(3 * 1.55em);
   margin: 0;
-  overflow: hidden;
-  -webkit-box-orient: vertical;
-  -webkit-line-clamp: 3;
   color: var(--on-dark-soft);
   font-size: 14px;
   line-height: 1.55;
