@@ -1,4 +1,17 @@
 (() => {
+  const resaveProject = {
+    title: 'ReSave',
+    category: 'Telegram-бот для скачивания видео, музыки и фото',
+    media: [
+      'public/project/resave/start.webp',
+      'public/project/resave/format.webp',
+      'public/project/resave/help.webp',
+      'public/project/resave/queue.webp',
+    ],
+    showFullSize: true,
+    linkLabel: 'Открыть бота в Telegram ↗',
+  };
+
   const portfolioItems = [
     {
       title: 'MasterPay',
@@ -19,6 +32,34 @@
       media: [
         'public/client-cases/rico-autopay-notifications.webp',
         'public/client-cases/rico-autopay-payment.webp',
+      ],
+    },
+    {
+      id: 'in-the-mine',
+      title: 'In the Mine',
+      category: 'Симулятор добычи и автоматизации · Unity · Android',
+      fit: 'contain',
+      media: [
+        'public/client-cases/in-the-mine-tablet-forest.webp',
+        'public/client-cases/in-the-mine-forest.webp',
+        'public/client-cases/in-the-mine-mine.webp',
+        'public/client-cases/in-the-mine-workbench.webp',
+        'public/client-cases/in-the-mine-factory.webp',
+        'public/client-cases/in-the-mine-warehouse.webp',
+        'public/client-cases/in-the-mine-garden.webp',
+        'public/client-cases/in-the-mine-achievements.webp',
+        'public/client-cases/in-the-mine-tablet-factory.webp',
+      ],
+      captions: [
+        'Лес на планшете',
+        'Лесозаготовка',
+        'Добыча в шахте',
+        'Рецепт на верстаке',
+        'Производственные линии',
+        'Склад материалов',
+        'Сад и урожай',
+        'Журнал достижений',
+        'Фабрика на планшете',
       ],
     },
     {
@@ -171,19 +212,6 @@
       ],
     },
     {
-      title: 'In the Mine',
-      category: '2D-игра · Unity · Android',
-      fit: 'contain',
-      media: [
-        'public/client-cases/in-the-mine-tablet-forest.webp',
-        'public/client-cases/in-the-mine-mine.webp',
-        'public/client-cases/in-the-mine-workbench.webp',
-        'public/client-cases/in-the-mine-factory.webp',
-        'public/client-cases/in-the-mine-forest.webp',
-        'public/client-cases/in-the-mine-tablet-factory.webp',
-      ],
-    },
-    {
       title: "Работа №36",
       category: "Игры",
       media: [
@@ -249,13 +277,9 @@
       ],
     },
     {
+      ...resaveProject,
       title: 'Работа №29',
-      category: 'Создание сайта',
-      media: [
-        'public/client-cases/23389736-01.webp',
-        'public/client-cases/23389736-02.webp',
-        'public/client-cases/23389736-03.webp',
-      ],
+      fit: 'contain',
     },
     {
       title: 'Аналог Codex Micro',
@@ -448,7 +472,7 @@
     }
 
     const image = document.createElement('img');
-    image.alt = `${title}, изображение ${position} из ${total}`;
+    image.alt = options.caption ? `${title} — ${options.caption}` : `${title}, изображение ${position} из ${total}`;
     image.loading = options.loading || 'lazy';
     image.fetchPriority = options.priority || 'auto';
     image.decoding = 'async';
@@ -467,7 +491,10 @@
             <p class="project-viewer-category"></p>
             <h2 id="project-viewer-title"></h2>
           </div>
-          <button class="project-viewer-close" type="button" aria-label="Закрыть проект" autofocus>×</button>
+          <div class="project-viewer-header-actions">
+            <a class="project-viewer-website" data-full-size target="_blank" rel="noopener noreferrer" hidden>Полный размер ↗</a>
+            <button class="project-viewer-close" type="button" aria-label="Закрыть проект" autofocus>×</button>
+          </div>
         </header>
         <div class="project-viewer-gallery" role="region" aria-label="Галерея проекта" aria-roledescription="карусель">
           <div class="project-viewer-stage"></div>
@@ -489,7 +516,8 @@
     const counter = dialog.querySelector('.project-viewer-counter');
     const range = dialog.querySelector('.project-viewer-range');
     const footer = dialog.querySelector('.project-viewer-footer');
-    const website = dialog.querySelector('.project-viewer-website');
+    const website = footer.querySelector('.project-viewer-website');
+    const fullSize = dialog.querySelector('[data-full-size]');
     const arrows = [...dialog.querySelectorAll('[data-direction]')];
     let currentItem;
     let activeIndex = 0;
@@ -519,6 +547,7 @@
         slide.setAttribute('aria-hidden', String(!active));
         if (nearby && !slide.firstChild) {
           const media = createMediaElement(currentItem.media[index], currentItem.title, index + 1, total, {
+            caption: currentItem.captions?.[index],
             loading: 'eager',
             priority: active ? 'high' : 'low',
           });
@@ -541,11 +570,14 @@
           slide.replaceChildren();
         }
       });
-      counter.textContent = `${activeIndex + 1} / ${total}`;
+      const position = `${activeIndex + 1} / ${total}`;
+      const caption = currentItem.captions?.[activeIndex];
+      counter.textContent = caption ? `${caption} · ${position}` : position;
       range.value = activeIndex + 1;
       range.setAttribute('aria-valuetext', `${activeIndex + 1} из ${total}`);
       arrows[0].disabled = activeIndex === 0;
       arrows[1].disabled = activeIndex === total - 1;
+      if (currentItem.showFullSize) fullSize.href = currentItem.media[activeIndex];
     };
 
     const select = (index) => {
@@ -644,6 +676,8 @@
       dialog.querySelector('.project-viewer-category').textContent = item.category || 'Проект';
       footer.hidden = !item.href;
       if (item.href) website.href = item.href;
+      website.textContent = item.linkLabel || 'Перейти к проекту ↗';
+      fullSize.hidden = !item.showFullSize;
       range.max = item.media.length;
       range.hidden = item.media.length < 2;
       slides = item.media.map((source, index) => {
@@ -709,6 +743,23 @@
   };
 
   document.addEventListener('DOMContentLoaded', () => {
+    let viewer;
+    const openProject = (item, trigger) => {
+      viewer ||= createProjectViewer();
+      viewer(item, trigger);
+    };
+
+    const resaveCard = document.querySelector('[data-resave-gallery]');
+    if (resaveCard) {
+      const item = { ...resaveProject, href: resaveCard.href };
+      resaveCard.setAttribute('aria-haspopup', 'dialog');
+      resaveCard.addEventListener('click', (event) => {
+        if (event.defaultPrevented || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+        event.preventDefault();
+        openProject(item, resaveCard);
+      });
+    }
+
     const portfolio = document.querySelector('[data-client-portfolio]');
     const reveal = portfolio?.querySelector('.client-case-reveal');
     const grid = reveal?.querySelector('[data-client-portfolio-grid]');
@@ -725,11 +776,12 @@
       count.textContent = `${total} ${word}`;
     }
 
-    let viewer;
-    const openProject = (item, trigger) => {
-      viewer ||= createProjectViewer();
-      viewer(item, trigger);
-    };
+    document.querySelectorAll('[data-portfolio-gallery]').forEach((trigger) => {
+      const item = portfolioItems.find((entry) => entry.id === trigger.dataset.portfolioGallery);
+      if (!item) return;
+      trigger.addEventListener('click', () => openProject(item, trigger));
+      trigger.hidden = false;
+    });
     const cards = portfolioItems.slice(0, 6).map((item) => createPortfolioCard(item, openProject));
     grid.replaceChildren(...cards);
 
